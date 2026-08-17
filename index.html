@@ -7,193 +7,394 @@
   <title>Patrick Diamitani — AWS Solution Architect</title>
   <link rel="stylesheet" href="styles/main.css" />
   <style>
+    /* Premium SaaS Portfolio Design */
+    :root {
+      --color-dark: #0A0E27;
+      --color-primary: #0F172A;
+      --color-secondary: #6B7280;
+      --color-accent: #FF6B35;
+      --color-accent-light: #FF8B5F;
+      --color-surface: #F9FAFB;
+      --color-surface-dark: #F3F4F6;
+      --color-border: #E5E7EB;
+      --color-text: #111827;
+      --color-text-light: #6B7280;
+      --gradient-accent: linear-gradient(135deg, #FF6B35, #FF8B5F);
+      --gradient-dark: linear-gradient(135deg, #0A0E27, #1F2937);
+    }
+
+    /* Hero Section - Premium */
     .hero {
-      min-height: 60vh;
+      min-height: 70vh;
       display: flex;
       align-items: center;
-      padding: 80px 20px;
-      background: var(--grad-hero);
+      justify-content: center;
+      padding: 120px 20px;
+      background: linear-gradient(180deg, rgba(15,23,42,0.5) 0%, rgba(15,23,42,0.2) 100%),
+                  linear-gradient(135deg, #FFFFFF 0%, #F9FAFB 100%);
+      position: relative;
+      overflow: hidden;
     }
-    .hero-content { max-width: 800px; text-align: center; margin: 0 auto; }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -10%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(255,107,53,0.08), transparent 70%);
+      border-radius: 50%;
+      z-index: 0;
+    }
+
+    .hero-content {
+      max-width: 900px;
+      text-align: center;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
     .hero-title {
-      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-size: clamp(2.5rem, 6vw, 4rem);
       font-weight: 800;
-      line-height: 1.1;
-      margin-bottom: 16px;
-      color: var(--color-primary);
+      line-height: 1.15;
+      margin-bottom: 24px;
+      color: var(--color-dark);
+      letter-spacing: -0.5px;
     }
+
     .hero-title .gradient-text {
-      display: block;
-      background: var(--grad-accent);
+      display: inline;
+      background: var(--gradient-accent);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
+
     .hero-subtitle {
-      font-size: 1.1rem;
-      color: var(--color-text-secondary);
-      margin-bottom: 32px;
+      font-size: 1.25rem;
+      color: var(--color-secondary);
+      line-height: 1.8;
+      margin-bottom: 48px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
     }
+
     .hero-cta {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 12px 28px;
-      background: var(--grad-accent);
+      padding: 16px 40px;
+      background: var(--gradient-accent);
       color: white;
-      border-radius: 8px;
-      font-weight: 600;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 1rem;
       text-decoration: none;
-      transition: all 0.2s;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 30px rgba(255, 107, 53, 0.2);
     }
-    .hero-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(255, 107, 53, 0.3); }
-    .section { padding: 80px 20px; }
-    .section-header { text-align: center; margin-bottom: 60px; }
+
+    .hero-cta:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 50px rgba(255, 107, 53, 0.35);
+    }
+
+    /* Section Styling */
+    .section {
+      padding: 100px 20px;
+      background: white;
+    }
+
+    .section:nth-child(even) {
+      background: var(--color-surface);
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 80px;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
     .section-label {
       font-family: 'Courier New', monospace;
       font-size: 0.75rem;
       letter-spacing: 3px;
       text-transform: uppercase;
       color: var(--color-accent);
-      margin-bottom: 12px;
-    }
-    .section-header h2 {
-      font-size: clamp(2rem, 4vw, 2.5rem);
-      font-weight: 800;
       margin-bottom: 16px;
+      font-weight: 700;
+      display: inline-block;
+      padding: 6px 16px;
+      background: rgba(255, 107, 53, 0.1);
+      border-radius: 20px;
     }
+
+    .section-header h2 {
+      font-size: clamp(2rem, 4vw, 2.75rem);
+      font-weight: 800;
+      margin-bottom: 24px;
+      color: var(--color-dark);
+      line-height: 1.2;
+    }
+
     .section-header p {
-      font-size: 1.05rem;
-      color: var(--color-text-secondary);
-      max-width: 600px;
-      margin: 0 auto;
+      font-size: 1.15rem;
+      color: var(--color-secondary);
+      line-height: 1.8;
     }
+
+    /* Card Grid */
     .card-library {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 24px;
-      max-width: 1400px;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 32px;
+      max-width: 1440px;
       margin: 0 auto;
     }
+
     .lib-card {
       background: white;
       border: 1px solid var(--color-border);
-      border-radius: 12px;
+      border-radius: 16px;
       overflow: hidden;
-      transition: all 0.3s ease;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
       display: flex;
       flex-direction: column;
       height: 100%;
       text-decoration: none;
       color: inherit;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
     }
+
     .lib-card:hover {
       border-color: var(--color-accent);
-      transform: translateY(-6px);
-      box-shadow: 0 16px 40px rgba(15, 23, 42, 0.12);
+      transform: translateY(-12px);
+      box-shadow: 0 24px 48px rgba(0, 0, 0, 0.12);
     }
+
     .lib-card-header {
-      padding: 28px 24px 20px;
+      padding: 32px 28px 24px;
       border-bottom: 1px solid var(--color-border);
       display: flex;
       align-items: flex-start;
-      gap: 16px;
+      gap: 20px;
+      background: var(--color-surface);
     }
+
     .lib-card-badge {
-      width: 48px;
-      height: 48px;
-      border-radius: 10px;
+      width: 56px;
+      height: 56px;
+      border-radius: 14px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.5rem;
-      background: linear-gradient(135deg, rgba(255,107,53,0.1), rgba(74,158,255,0.1));
+      font-size: 1.75rem;
+      background: linear-gradient(135deg, rgba(255,107,53,0.15), rgba(74,158,255,0.15));
       flex-shrink: 0;
+      border: 1px solid rgba(255, 107, 53, 0.1);
     }
+
     .lib-card-meta { flex: 1; }
+
     .lib-card-title {
       font-weight: 700;
-      font-size: 1.05rem;
-      margin-bottom: 4px;
-      color: var(--color-primary);
+      font-size: 1.15rem;
+      margin-bottom: 6px;
+      color: var(--color-dark);
+      line-height: 1.4;
     }
+
     .lib-card-subtitle {
       font-size: 0.8rem;
-      color: var(--color-text-secondary);
+      color: var(--color-text-light);
       font-family: 'Courier New', monospace;
+      letter-spacing: 0.5px;
     }
-    .lib-card-body { padding: 20px 24px; flex: 1; }
+
+    .lib-card-body {
+      padding: 24px 28px 28px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
     .lib-card-text {
-      font-size: 0.9rem;
-      color: var(--color-text-secondary);
-      line-height: 1.6;
-      margin-bottom: 16px;
+      font-size: 0.95rem;
+      color: var(--color-secondary);
+      line-height: 1.7;
+      margin-bottom: 20px;
+      flex: 1;
     }
+
     .lib-card-tags {
       display: flex;
-      gap: 8px;
+      gap: 10px;
       flex-wrap: wrap;
-      margin-bottom: 16px;
+      margin-bottom: 20px;
     }
+
     .lib-tag {
-      font-size: 0.7rem;
-      padding: 4px 10px;
+      font-size: 0.75rem;
+      padding: 6px 12px;
       background: var(--color-surface);
-      border-radius: 4px;
-      color: var(--color-text-secondary);
+      border-radius: 6px;
+      color: var(--color-secondary);
+      font-weight: 500;
+      border: 1px solid var(--color-border);
     }
+
     .lib-card-cta {
-      font-size: 0.9rem;
-      font-weight: 600;
+      font-size: 0.95rem;
+      font-weight: 700;
       color: var(--color-accent);
       display: inline-flex;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
       text-decoration: none;
+      transition: gap 0.2s ease;
     }
-    .lib-card-cta:hover { gap: 10px; }
-    .container-wide { max-width: 1400px; margin: 0 auto; padding: 0 20px; }
+
+    .lib-card-cta:hover {
+      gap: 12px;
+    }
+
+    .container-wide {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Contact Section */
     .contact {
-      background: linear-gradient(135deg, #0F172A, #1F2937);
+      background: var(--gradient-dark);
       color: white;
       text-align: center;
-      padding: 80px 20px;
+      padding: 120px 20px;
+      position: relative;
+      overflow: hidden;
     }
-    .contact h2 { color: white; margin-bottom: 16px; font-size: clamp(1.75rem, 4vw, 2.5rem); }
-    .contact p { color: rgba(255, 255, 255, 0.8); margin: 0 auto 32px; max-width: 600px; }
+
+    .contact::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(255,107,53,0.1), transparent 70%);
+      border-radius: 50%;
+      z-index: 0;
+    }
+
+    .contact h2 {
+      color: white;
+      margin-bottom: 20px;
+      font-size: clamp(2rem, 4vw, 2.75rem);
+      font-weight: 800;
+      position: relative;
+      z-index: 1;
+      line-height: 1.2;
+    }
+
+    .contact p {
+      color: rgba(255, 255, 255, 0.85);
+      margin: 0 auto 48px;
+      max-width: 600px;
+      font-size: 1.1rem;
+      line-height: 1.8;
+      position: relative;
+      z-index: 1;
+    }
+
     .contact-ctas {
       display: flex;
-      gap: 16px;
+      gap: 20px;
       justify-content: center;
       flex-wrap: wrap;
+      position: relative;
+      z-index: 1;
     }
+
     .btn-contact {
-      padding: 12px 28px;
-      border-radius: 8px;
-      font-weight: 600;
+      padding: 14px 36px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 0.95rem;
       text-decoration: none;
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      transition: all 0.2s;
+      transition: all 0.3s ease;
     }
+
     .btn-primary-contact {
-      background: var(--grad-accent);
+      background: var(--gradient-accent);
       color: white;
+      box-shadow: 0 10px 30px rgba(255, 107, 53, 0.25);
     }
+
     .btn-primary-contact:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 12px 32px rgba(255, 107, 53, 0.35);
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(255, 107, 53, 0.4);
     }
+
     .btn-secondary-contact {
-      background: rgba(255, 255, 255, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.3);
+      background: rgba(255, 255, 255, 0.12);
+      border: 1.5px solid rgba(255, 255, 255, 0.3);
       color: white;
+      backdrop-filter: blur(4px);
     }
+
+    .btn-secondary-contact:hover {
+      background: rgba(255, 255, 255, 0.18);
+      border-color: rgba(255, 255, 255, 0.5);
+    }
+
+    /* Responsive */
     @media (max-width: 768px) {
-      .card-library { grid-template-columns: 1fr; }
-      .contact-ctas { flex-direction: column; }
-      .btn-contact { width: 100%; justify-content: center; }
+      .hero {
+        min-height: 60vh;
+        padding: 80px 20px;
+      }
+
+      .section {
+        padding: 60px 20px;
+      }
+
+      .section-header {
+        margin-bottom: 50px;
+      }
+
+      .card-library {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .contact {
+        padding: 80px 20px;
+      }
+
+      .contact-ctas {
+        flex-direction: column;
+      }
+
+      .btn-contact {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .hero::before {
+        width: 400px;
+        height: 400px;
+        top: -100px;
+        right: -100px;
+      }
     }
   </style>
 </head>

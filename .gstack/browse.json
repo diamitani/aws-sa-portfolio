@@ -1,9 +1,0 @@
-{
-  "pid": 4513,
-  "port": 33978,
-  "token": "c04d7b18-363d-4e03-970c-3be8492b65b6",
-  "startedAt": "2026-08-17T06:52:39.326Z",
-  "serverPath": "/Users/patmini/.claude/skills/gstack/browse/src/server.ts",
-  "mode": "launched",
-  "configHash": "303a7eeccc03078b"
-}

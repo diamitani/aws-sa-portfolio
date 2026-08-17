@@ -1,0 +1,59 @@
+name: Deploy to AWS
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'index.html'
+      - 'pages/**'
+      - 'styles/**'
+      - 'scripts/**'
+      - 'images/**'
+      - '.github/workflows/deploy.yml'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+
+      - name: Sync to S3
+        run: |
+          aws s3 sync . s3://diamitani-portfolio-web \
+            --exclude ".git/*" \
+            --exclude ".github/*" \
+            --exclude ".gitignore" \
+            --exclude "README.md" \
+            --exclude "DESIGN.md" \
+            --exclude "ARCHITECTURE.md" \
+            --exclude "DEPLOYMENT_GUIDE.md" \
+            --exclude "infrastructure/*" \
+            --exclude "node_modules/*" \
+            --exclude ".DS_Store" \
+            --delete \
+            --cache-control "max-age=31536000,public" \
+            --exclude "*.html" \
+            --cache-control "max-age=3600,public" \
+            --include "*.html"
+
+      - name: Invalidate CloudFront cache
+        run: |
+          aws cloudfront create-invalidation \
+            --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} \
+            --paths "/*"
+
+      - name: Deployment Status
+        run: |
+          echo "✅ Deployment successful!"
+          echo "🌐 Site: https://diamitani-portfolio-web.s3.us-east-1.amazonaws.com"
+          echo "⚡ CloudFront: https://$(aws cloudfront get-distribution-config --id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} --query 'DistributionConfig.DefaultRootObject' 2>/dev/null || echo 'Check AWS Console')"

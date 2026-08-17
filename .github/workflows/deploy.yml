@@ -1,21 +1,18 @@
-name: Deploy to AWS
+name: Deploy to CloudFront + S3
 
 on:
   push:
-    branches: [main]
-    paths:
-      - 'index.html'
-      - 'pages/**'
-      - 'styles/**'
-      - 'scripts/**'
-      - 'images/**'
-      - '.github/workflows/deploy.yml'
+    branches:
+      - main
+  workflow_dispatch:
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     permissions:
+      id-token: write
       contents: read
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -27,24 +24,17 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
 
-      - name: Sync to S3
+      - name: Sync files to S3
         run: |
-          aws s3 sync . s3://diamitani-portfolio-web \
+          aws s3 sync . s3://${{ secrets.S3_BUCKET_NAME }} \
+            --delete \
             --exclude ".git/*" \
             --exclude ".github/*" \
-            --exclude ".gitignore" \
-            --exclude "README.md" \
-            --exclude "DESIGN.md" \
-            --exclude "ARCHITECTURE.md" \
-            --exclude "DEPLOYMENT_GUIDE.md" \
-            --exclude "infrastructure/*" \
             --exclude "node_modules/*" \
-            --exclude ".DS_Store" \
-            --delete \
-            --cache-control "max-age=31536000,public" \
-            --exclude "*.html" \
-            --cache-control "max-age=3600,public" \
-            --include "*.html"
+            --exclude "infrastructure/*" \
+            --exclude ".gitignore" \
+            --exclude "*.tfstate*" \
+            --cache-control "public, max-age=3600, must-revalidate"
 
       - name: Invalidate CloudFront cache
         run: |
@@ -52,8 +42,8 @@ jobs:
             --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} \
             --paths "/*"
 
-      - name: Deployment Status
+      - name: Deployment Summary
         run: |
-          echo "✅ Deployment successful!"
-          echo "🌐 Site: https://diamitani-portfolio-web.s3.us-east-1.amazonaws.com"
-          echo "⚡ CloudFront: https://$(aws cloudfront get-distribution-config --id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} --query 'DistributionConfig.DefaultRootObject' 2>/dev/null || echo 'Check AWS Console')"
+          echo "✅ Deployment Complete"
+          echo "S3 Bucket: ${{ secrets.S3_BUCKET_NAME }}"
+          echo "CloudFront Distribution: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}"

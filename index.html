@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Patrick Diamitani — AWS Solution Architect. Leadership principles and developer content library." />
+  <title>Patrick Diamitani — AWS Solution Architect</title>
+  <link rel="stylesheet" href="styles/main.css" />
+  <style>
+    .hero {
+      min-height: 60vh;
+      display: flex;
+      align-items: center;
+      padding: 80px 20px;
+      background: var(--grad-hero);
+    }
+    .hero-content { max-width: 800px; text-align: center; margin: 0 auto; }
+    .hero-title {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 16px;
+      color: var(--color-primary);
+    }
+    .hero-title .gradient-text {
+      display: block;
+      background: var(--grad-accent);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-subtitle {
+      font-size: 1.1rem;
+      color: var(--color-text-secondary);
+      margin-bottom: 32px;
+    }
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 28px;
+      background: var(--grad-accent);
+      color: white;
+      border-radius: 8px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .hero-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(255, 107, 53, 0.3); }
+    .section { padding: 80px 20px; }
+    .section-header { text-align: center; margin-bottom: 60px; }
+    .section-label {
+      font-family: 'Courier New', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin-bottom: 12px;
+    }
+    .section-header h2 {
+      font-size: clamp(2rem, 4vw, 2.5rem);
+      font-weight: 800;
+      margin-bottom: 16px;
+    }
+    .section-header p {
+      font-size: 1.05rem;
+      color: var(--color-text-secondary);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .card-library {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .lib-card {
+      background: white;
+      border: 1px solid var(--color-border);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      text-decoration: none;
+      color: inherit;
+    }
+    .lib-card:hover {
+      border-color: var(--color-accent);
+      transform: translateY(-6px);
+      box-shadow: 0 16px 40px rgba(15, 23, 42, 0.12);
+    }
+    .lib-card-header {
+      padding: 28px 24px 20px;
+      border-bottom: 1px solid var(--color-border);
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+    .lib-card-badge {
+      width: 48px;
+      height: 48px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      background: linear-gradient(135deg, rgba(255,107,53,0.1), rgba(74,158,255,0.1));
+      flex-shrink: 0;
+    }
+    .lib-card-meta { flex: 1; }
+    .lib-card-title {
+      font-weight: 700;
+      font-size: 1.05rem;
+      margin-bottom: 4px;
+      color: var(--color-primary);
+    }
+    .lib-card-subtitle {
+      font-size: 0.8rem;
+      color: var(--color-text-secondary);
+      font-family: 'Courier New', monospace;
+    }
+    .lib-card-body { padding: 20px 24px; flex: 1; }
+    .lib-card-text {
+      font-size: 0.9rem;
+      color: var(--color-text-secondary);
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+    .lib-card-tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+    .lib-tag {
+      font-size: 0.7rem;
+      padding: 4px 10px;
+      background: var(--color-surface);
+      border-radius: 4px;
+      color: var(--color-text-secondary);
+    }
+    .lib-card-cta {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--color-accent);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+    }
+    .lib-card-cta:hover { gap: 10px; }
+    .container-wide { max-width: 1400px; margin: 0 auto; padding: 0 20px; }
+    .contact {
+      background: linear-gradient(135deg, #0F172A, #1F2937);
+      color: white;
+      text-align: center;
+      padding: 80px 20px;
+    }
+    .contact h2 { color: white; margin-bottom: 16px; font-size: clamp(1.75rem, 4vw, 2.5rem); }
+    .contact p { color: rgba(255, 255, 255, 0.8); margin: 0 auto 32px; max-width: 600px; }
+    .contact-ctas {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn-contact {
+      padding: 12px 28px;
+      border-radius: 8px;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s;
+    }
+    .btn-primary-contact {
+      background: var(--grad-accent);
+      color: white;
+    }
+    .btn-primary-contact:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(255, 107, 53, 0.35);
+    }
+    .btn-secondary-contact {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      color: white;
+    }
+    @media (max-width: 768px) {
+      .card-library { grid-template-columns: 1fr; }
+      .contact-ctas { flex-direction: column; }
+      .btn-contact { width: 100%; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <div class="nav-logo-badge">PD</div>
+      Patrick Diamitani
+    </a>
+    <ul class="nav-links">
+      <li><a href="#leadership" class="nav-link">Leadership</a></li>
+      <li><a href="#content" class="nav-link">Content</a></li>
+      <li><a href="#contact" class="nav-cta">Get in Touch →</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-content">
+    <h1 class="hero-title">Building with <span class="gradient-text">leadership principles.</span></h1>
+    <p class="hero-subtitle">AWS Solutions Architect. Multi-agent systems. GTM automation. Helping startups ship fast on AWS.</p>
+    <a href="#leadership" class="hero-cta">Explore My Work →</a>
+  </div>
+</section>
+
+<section class="section" id="leadership">
+  <div class="container-wide">
+    <div class="section-header">
+      <div class="section-label">AWS Leadership Principles</div>
+      <h2>Six Principles. Real Evidence.</h2>
+      <p>STAR format case studies showing AWS leadership principles in action.</p>
+    </div>
+
+    <div class="card-library">
+      <a href="pages/leadership/customer-obsession.html" class="lib-card">
+        <div class="lib-card-header">
+          <div class="lib-card-badge">👥</div>
+          <div class="lib-card-meta">
+            <div class="lib-card-title">Customer Obsession</div>
+            <div class="lib-card-subtitle">LP 01</div>
+          </div>
+        </div>
+        <div class="lib-card-body">
+          <p class="lib-card-text">Built pre-call briefing automation synthesizing HubSpot, web signals, and intent data into actionable briefs.</p>
+          <div class="lib-card-tags"><span class="lib-tag">n8n</span><span class="lib-tag">HubSpot</span><span class="lib-tag">AI</span></div>
+          <a href="pages/leadership/customer-obsession.html" class="lib-card-cta">Read →</a>
+        </div>
+      </a>
+
+      <a href="pages/leadership/ownership.html" class="lib-card">
+        <div class="lib-card-header">
+          <div class="lib-card-badge">🎯</div>
+          <div class="lib-card-meta">
+            <div class="lib-card-title">Ownership</div>
+            <div class="lib-card-subtitle">LP 02</div>
+          </div>
+        </div>
+        <div class="lib-card-body">
+          <p class="lib-card-text">Built Claude Cowork skill to auto-format and import leads, closing RevOps adoption gap.</p>
+          <div class="lib-card-tags"><span class="lib-tag">Claude</span><span class="lib-tag">HubSpot</span><span class="lib-tag">Automation</span></div>
+          <a href="pages/leadership/ownership.html" class="lib-card-cta">Read →</a>
+        </div>
+      </a>
+
+      <a href="pages/leadership/invent-simplify.html" class="lib-card">
+        <div class="lib-card-header">
+          <div class="lib-card-badge">💡</div>
+          <div class="lib-card-meta">
+            <div class="lib-card-title">Invent & Simplify</div>
+            <div class="lib-card-subtitle">LP 03</div>
+          </div>
+        </div>
+        <div class="lib-card-body">
+          <p class="lib-card-text">End-to-end prospect automation: daily lead sourcing, personalized sequences, multi-tool routing.</p>
+          <div class="lib-card-tags"><span class="lib-tag">n8n</span><span class="lib-tag">Clay</span><span class="lib-tag">Amplemarket</span></div>
+          <a href="pages/leadership/invent-simplify.html" class="lib-card-cta">Read →</a>
+        </div>
+      </a>
+
+      <a href="pages/leadership/learn-be-curious.html" class="lib-card">
+        <div class="lib-card-header">
+          <div class="lib-card-badge">📚</div>
+          <div class="lib-card-meta">
+            <div class="lib-card-title">Learn & Be Curious</div>
+            <div class="lib-card-subtitle">LP 05</div>
+          </div>
+        </div>
+        <div class="lib-card-body">
+          <p class="lib-card-text">Published 30-day newsletter sprint. 992+ subscribers. Daily: top 5 stories, tool, video.</p>
+          <div class="lib-card-tags"><span class="lib-tag">LiveBuildAI</span><span class="lib-tag">LinkedIn</span><span class="lib-tag">Leadership</span></div>
+          <a href="pages/leadership/learn-be-curious.html" class="lib-card-cta">Read →</a>
+        </div>
+      </a>
+
+      <a href="pages/leadership/highest-standards.html" class="lib-card">
+        <div class="lib-card-header">
+          <div class="lib-card-badge">⚙️</div>
+          <div class="lib-card-meta">
+            <div class="lib-card-title">Highest Standards</div>
+            <div class="lib-card-subtitle">LP 08</div>
+          </div>
+        </div>
+        <div class="lib-card-body">
+          <p class="lib-card-text">Built ROSTR Framework with benchmarks. +15.2% task completion, 92% retrieval confidence.</p>
+          <div class="lib-card-tags"><span class="lib-tag">Framework</span><span class="lib-tag">Benchmarks</span><span class="lib-tag">Research</span></div>
+          <a href="pages/leadership/highest-standards.html" class="lib-card-cta">Read →</a>
+        </div>
+      </a>
+
+      <a href="pages/leadership/bias-for-action.html" class="lib-card">
+        <div class="lib-card-header">
+          <div class="lib-card-badge">⚡</div>
+          <div class="lib-card-meta">
+            <div class="lib-card-title">Bias for Action</div>
+            <div class="lib-card-subtitle">LP 11</div>
+          </div>
+        </div>
+        <div class="lib-card-body">
+          <p class="lib-card-text">Built n8n monitoring without being asked. Daily audit, failure flagging, shipped in one cycle.</p>
+          <div class="lib-card-tags"><span class="lib-tag">n8n</span><span class="lib-tag">Monitoring</span><span class="lib-tag">RevOps</span></div>
+          <a href="pages/leadership/bias-for-action.html" class="lib-card-cta">Read →</a>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="content">
+  <div class="container-wide">
+    <div class="section-header">
+      <div class="section-label">Content Library</div>
+      <h2>Learning Resources</h2>
+      <p>Architecture guides, case studies, and technical content on AWS, AI, and GTM.</p>
+    </div>
+
+    <div class="card-library">
+      <a href="pages/developer-advocacy.html" class="lib-card">
+        <div class="lib-card-header">
+          <div class="lib-card-badge">📰</div>
+          <div class="lib-card-meta">
+            <div class="lib-card-title">LiveBuildAI Newsletter</div>
+            <div class="lib-card-subtitle">Daily</div>
+          </div>
+        </div>
+        <div class="lib-card-body">
+          <p class="lib-card-text">30-day sprint, 992+ subscribers. Top 5 AI stories, featured tool, video daily.</p>
+          <div class="lib-card-tags"><span class="lib-tag">LinkedIn</span><span class="lib-tag">AI News</span></div>
+          <a href="pages/developer-advocacy.html" class="lib-card-cta">View →</a>
+        </div>
+      </a>
+
+      <a href="pages/waf-interactive.html" class="lib-card">
+        <div class="lib-card-header">
+          <div class="lib-card-badge">☁️</div>
+          <div class="lib-card-meta">
+            <div class="lib-card-title">ROSTR × WAF</div>
+            <div class="lib-card-subtitle">Interactive</div>
+          </div>
+        </div>
+        <div class="lib-card-body">
+          <p class="lib-card-text">Interactive mapping of ROSTR to AWS Well-Architected Framework pillars.</p>
+          <div class="lib-card-tags"><span class="lib-tag">AWS</span><span class="lib-tag">Architecture</span></div>
+          <a href="pages/waf-interactive.html" class="lib-card-cta">Explore →</a>
+        </div>
+      </a>
+
+      <a href="pages/prospect-engine-case-study.html" class="lib-card">
+        <div class="lib-card-header">
+          <div class="lib-card-badge">🧠</div>
+          <div class="lib-card-meta">
+            <div class="lib-card-title">Prospect Engine</div>
+            <div class="lib-card-subtitle">Case Study</div>
+          </div>
+        </div>
+        <div class="lib-card-body">
+          <p class="lib-card-text">Enterprise RevOps on AWS Bedrock. Multi-agent, DynamoDB, S3.</p>
+          <div class="lib-card-tags"><span class="lib-tag">AWS Bedrock</span><span class="lib-tag">n8n</span></div>
+          <a href="pages/prospect-engine-case-study.html" class="lib-card-cta">View →</a>
+        </div>
+      </a>
+
+      <a href="pages/turnriver-sdr-case-study.html" class="lib-card">
+        <div class="lib-card-header">
+          <div class="lib-card-badge">🤖</div>
+          <div class="lib-card-meta">
+            <div class="lib-card-title">TurnRiver SDR</div>
+            <div class="lib-card-subtitle">Case Study</div>
+          </div>
+        </div>
+        <div class="lib-card-body">
+          <p class="lib-card-text">Multi-tenant AI SDR for 7 PE portfolio companies. 8 agents, compliance-first.</p>
+          <div class="lib-card-tags"><span class="lib-tag">AWS Bedrock</span><span class="lib-tag">Governance</span></div>
+          <a href="pages/turnriver-sdr-case-study.html" class="lib-card-cta">View →</a>
+        </div>
+      </a>
+
+      <a href="https://www.artispreneur.com" target="_blank" class="lib-card">
+        <div class="lib-card-header">
+          <div class="lib-card-badge">🎵</div>
+          <div class="lib-card-meta">
+            <div class="lib-card-title">Artispreneur</div>
+            <div class="lib-card-subtitle">Live Product</div>
+          </div>
+        </div>
+        <div class="lib-card-body">
+          <p class="lib-card-text">Multi-tenant SaaS for artists. Music business OS.</p>
+          <div class="lib-card-tags"><span class="lib-tag">Next.js</span><span class="lib-tag">SaaS</span></div>
+          <a href="https://www.artispreneur.com" target="_blank" class="lib-card-cta">Visit →</a>
+        </div>
+      </a>
+
+      <a href="https://www.linkedin.com/in/diamitani" target="_blank" class="lib-card">
+        <div class="lib-card-header">
+          <div class="lib-card-badge">💼</div>
+          <div class="lib-card-meta">
+            <div class="lib-card-title">Full Profile</div>
+            <div class="lib-card-subtitle">LinkedIn</div>
+          </div>
+        </div>
+        <div class="lib-card-body">
+          <p class="lib-card-text">Experience timeline, background, professional network.</p>
+          <div class="lib-card-tags"><span class="lib-tag">LinkedIn</span><span class="lib-tag">Profile</span></div>
+          <a href="https://www.linkedin.com/in/diamitani" target="_blank" class="lib-card-cta">View →</a>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <h2>Let's Build Together</h2>
+  <p>I'm helping early-stage startups architect on AWS, build AI automation, and ship fast.</p>
+  <div class="contact-ctas">
+    <a href="mailto:patrick.diamitani@gmail.com" class="btn-contact btn-primary-contact">✉️ patrick.diamitani@gmail.com</a>
+    <a href="https://linkedin.com/in/diamitani" target="_blank" class="btn-contact btn-secondary-contact">💼 Connect on LinkedIn</a>
+  </div>
+</section>
+
+<script src="scripts/main.js"></script>
+</body>
+</html>

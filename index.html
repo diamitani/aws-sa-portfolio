@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/main.css" />
   <style>
     * {
       margin: 0;
@@ -31,50 +32,7 @@
       color: inherit;
     }
 
-    /* Navigation */
-    nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 1000;
-      background: rgba(255, 255, 255, 0.8);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-      padding: 16px 0;
-    }
-
-    .nav-content {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 0 40px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .nav-logo {
-      font-weight: 800;
-      font-size: 18px;
-      letter-spacing: -0.5px;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 40px;
-      list-style: none;
-    }
-
-    .nav-links a {
-      font-size: 14px;
-      font-weight: 500;
-      color: #6b7280;
-      transition: color 0.2s;
-    }
-
-    .nav-links a:hover {
-      color: #ff6b35;
-    }
+    /* Navigation uses main.css styles for consistency */
 
     /* Hero Section */
     .hero {
@@ -457,13 +415,16 @@
 </head>
 <body>
 
-<nav>
-  <div class="nav-content">
-    <div class="nav-logo">PD</div>
+<nav class="nav" role="navigation">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-badge">PD</div>
+      Patrick Diamitani
+    </a>
     <ul class="nav-links">
-      <li><a href="#leadership">Leadership</a></li>
-      <li><a href="#content">Content</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a href="#leadership" class="nav-link">Leadership</a></li>
+      <li><a href="#content" class="nav-link">Content</a></li>
+      <li><a href="#contact" class="nav-cta">Let's Connect →</a></li>
     </ul>
   </div>
 </nav>

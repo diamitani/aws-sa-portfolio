@@ -68,6 +68,8 @@ resource "aws_cloudfront_origin_access_control" "portfolio" {
   name                              = "portfolio-oac"
   description                       = "Portfolio OAC for S3"
   origin_access_control_origin_type = "s3"
+  signing_behavior                  = "always"
+  signing_protocol                  = "sigv4"
 }
 
 # S3 Bucket Policy for CloudFront
@@ -153,76 +155,25 @@ resource "aws_cloudfront_distribution" "portfolio" {
     origin_access_control_id = aws_cloudfront_origin_access_control.portfolio.id
   }
 
-  # Default cache behavior for HTML
+  # Default cache behavior
   default_cache_behavior {
-    allowed_methods  = ["GET", "HEAD"]
+    allowed_methods  = ["GET", "HEAD", "OPTIONS"]
     cached_methods   = ["GET", "HEAD"]
     target_origin_id = "S3Origin"
     compress         = true
 
-    cache_policy_id = aws_cloudfront_cache_policy.html_cache.id
+    forwarded_values {
+      query_string = false
+      cookies {
+        forward = "none"
+      }
+    }
 
     viewer_protocol_policy = "redirect-to-https"
+    min_ttl                = 0
+    default_ttl            = 3600
+    max_ttl                = 86400
   }
-
-  # Cache behavior for static assets
-  cache_behaviors = [
-    {
-      path_pattern     = "*.js"
-      allowed_methods  = ["GET", "HEAD"]
-      cached_methods   = ["GET", "HEAD"]
-      target_origin_id = "S3Origin"
-      compress         = true
-
-      cache_policy_id = aws_cloudfront_cache_policy.static_cache.id
-
-      viewer_protocol_policy = "redirect-to-https"
-    },
-    {
-      path_pattern     = "*.css"
-      allowed_methods  = ["GET", "HEAD"]
-      cached_methods   = ["GET", "HEAD"]
-      target_origin_id = "S3Origin"
-      compress         = true
-
-      cache_policy_id = aws_cloudfront_cache_policy.static_cache.id
-
-      viewer_protocol_policy = "redirect-to-https"
-    },
-    {
-      path_pattern     = "*.webp"
-      allowed_methods  = ["GET", "HEAD"]
-      cached_methods   = ["GET", "HEAD"]
-      target_origin_id = "S3Origin"
-      compress         = true
-
-      cache_policy_id = aws_cloudfront_cache_policy.static_cache.id
-
-      viewer_protocol_policy = "redirect-to-https"
-    },
-    {
-      path_pattern     = "*.png"
-      allowed_methods  = ["GET", "HEAD"]
-      cached_methods   = ["GET", "HEAD"]
-      target_origin_id = "S3Origin"
-      compress         = true
-
-      cache_policy_id = aws_cloudfront_cache_policy.static_cache.id
-
-      viewer_protocol_policy = "redirect-to-https"
-    },
-    {
-      path_pattern     = "*.jpg"
-      allowed_methods  = ["GET", "HEAD"]
-      cached_methods   = ["GET", "HEAD"]
-      target_origin_id = "S3Origin"
-      compress         = true
-
-      cache_policy_id = aws_cloudfront_cache_policy.static_cache.id
-
-      viewer_protocol_policy = "redirect-to-https"
-    }
-  ]
 
   restrictions {
     geo_restriction {

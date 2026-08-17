@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prospect Automation Engine — Case Study | Patrick Diamitani</title>
+  <meta name="description" content="Case study: The Prospect Automation Engine — an enterprise revenue operations platform built on AWS Bedrock Agent Core with multi-agent orchestration, DynamoDB state, S3 artifact storage, and Cognito auth." />
+  <link rel="stylesheet" href="../styles/main.css" />
+  <link rel="stylesheet" href="../styles/case-study.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+</head>
+<body>
+
+<div class="grid-bg" aria-hidden="true"></div>
+<div class="noise-overlay" aria-hidden="true"></div>
+
+<!-- NAV -->
+<nav class="nav" role="navigation">
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-logo" id="nav-logo">
+      <div class="nav-logo-badge">PD</div>
+      Patrick Diamitani
+    </a>
+    <ul class="nav-links">
+      <li><a href="../index.html#waf" class="nav-link">Well-Architected</a></li>
+      <li><a href="../index.html#lp" class="nav-link">Leadership Principles</a></li>
+      <li><a href="../index.html#cases" class="nav-link">Case Studies</a></li>
+      <li><a href="../index.html#contact" class="nav-cta">Let's Connect →</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="cs-hero">
+  <div class="container">
+    <div class="cs-hero-inner">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="../index.html">Home</a>
+        <span class="breadcrumb-sep" aria-hidden="true">→</span>
+        <a href="../index.html#cases">Case Studies</a>
+        <span class="breadcrumb-sep" aria-hidden="true">→</span>
+        <span>Prospect Automation Engine</span>
+      </nav>
+
+      <div class="cs-hero-tag tag-orange" style="border-color:rgba(255,107,53,0.3)">
+        🧠 AWS Bedrock Agent Core · Multi-Agent Orchestration
+      </div>
+
+      <h1 class="cs-hero-title">
+        Prospect Automation<br/>
+        <span class="gradient-text">Engine</span>
+      </h1>
+
+      <p class="cs-hero-subtitle">
+        An enterprise revenue operations platform built on the <strong>Amazon Bedrock Mantle Runtime</strong>
+        using AWS Well-Architected principles. Multi-agent reasoning, DynamoDB state persistence,
+        S3 workflow artifact storage, and Cognito client authentication drive a complete
+        6-step prospecting pipeline — from raw ICP to enrolled, approved sequences.
+      </p>
+
+      <div class="cs-meta-strip">
+        <div class="cs-meta-item">
+          <span class="cs-meta-label">Industry</span>
+          <span class="cs-meta-value">Revenue Operations · SaaS</span>
+        </div>
+        <div class="cs-meta-item">
+          <span class="cs-meta-label">Runtime</span>
+          <span class="cs-meta-value">AWS Bedrock Agent Core</span>
+        </div>
+        <div class="cs-meta-item">
+          <span class="cs-meta-label">Architecture</span>
+          <span class="cs-meta-value">Multi-Agent · Serverless</span>
+        </div>
+        <div class="cs-meta-item">
+          <span class="cs-meta-label">Status</span>
+          <span class="cs-meta-value" style="color:var(--accent-teal)">✓ Production</span>
+        </div>
+        <div class="cs-meta-item">
+          <span class="cs-meta-label">Author</span>
+          <span class="cs-meta-value">Patrick Diamitani</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESULTS STRIP -->
+<section class="section" style="padding-top:0">
+  <div class="container">
+    <div class="results-strip">
+      <div class="result-box">
+        <span class="result-value">6</span>
+        <span class="result-label">Pipeline steps automated end-to-end</span>
+      </div>
+      <div class="result-box">
+        <span class="result-value">4</span>
+        <span class="result-label">AWS Bedrock Action Groups</span>
+      </div>
+      <div class="result-box">
+        <span class="result-value">100%</span>
+        <span class="result-label">Approval-gated — zero unauthorized sends</span>
+      </div>
+      <div class="result-box">
+        <span class="result-value">0</span>
+        <span class="result-label">Idle compute cost (serverless-first)</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AWS ARCHITECTURE -->
+<section class="section" style="padding-top:0">
+  <div class="container">
+    <div class="arch-diagram">
+      <div class="arch-diagram-title">⚡ AWS Topology & Data Lineage</div>
+
+      <!-- Flow diagram -->
+      <div class="flow-diagram" role="img" aria-label="AWS architecture flow">
+        <div class="flow-node">
+          <div class="flow-node-box">Next.js Dashboard</div>
+          <div class="flow-node-service">Client Layer</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node">
+          <div class="flow-node-box" style="border-color:rgba(255,153,0,0.4)">AWS Cognito</div>
+          <div class="flow-node-service">JWT Auth</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node">
+          <div class="flow-node-box" style="border-color:rgba(74,158,255,0.4)">API Gateway</div>
+          <div class="flow-node-service">REST / Rate Limit</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node">
+          <div class="flow-node-box" style="border-color:rgba(255,107,53,0.5);background:rgba(255,107,53,0.06)">Bedrock Agent Core</div>
+          <div class="flow-node-service">Mantle Runtime</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node">
+          <div class="flow-node-box" style="border-color:rgba(139,92,246,0.4)">DynamoDB</div>
+          <div class="flow-node-service">Session State</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node">
+          <div class="flow-node-box" style="border-color:rgba(0,212,170,0.4)">S3</div>
+          <div class="flow-node-service">Artifact Store</div>
+        </div>
+      </div>
+
+      <!-- Action Groups -->
+      <div style="margin-top:40px">
+        <div class="arch-diagram-title">Action Groups (Bedrock)</div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:16px">
+          <div style="padding:16px;background:rgba(255,107,53,0.06);border:1px solid rgba(255,107,53,0.2);border-radius:12px;text-align:center">
+            <div style="font-family:var(--font-mono);font-size:0.72rem;color:var(--accent-orange);margin-bottom:8px">n8nEngineer</div>
+            <div style="font-size:0.8rem;color:var(--text-secondary)">Compiles customized n8n workflow packages</div>
+          </div>
+          <div style="padding:16px;background:rgba(74,158,255,0.06);border:1px solid rgba(74,158,255,0.2);border-radius:12px;text-align:center">
+            <div style="font-family:var(--font-mono);font-size:0.72rem;color:var(--accent-blue);margin-bottom:8px">ClayEnrichment</div>
+            <div style="font-size:0.8rem;color:var(--text-secondary)">Waterfall enrichment & domain normalization</div>
+          </div>
+          <div style="padding:16px;background:rgba(139,92,246,0.06);border:1px solid rgba(139,92,246,0.2);border-radius:12px;text-align:center">
+            <div style="font-family:var(--font-mono);font-size:0.72rem;color:var(--accent-purple);margin-bottom:8px">CRMSync</div>
+            <div style="font-size:0.8rem;color:var(--text-secondary)">HubSpot/Salesforce/Attio deduplication</div>
+          </div>
+          <div style="padding:16px;background:rgba(0,212,170,0.06);border:1px solid rgba(0,212,170,0.2);border-radius:12px;text-align:center">
+            <div style="font-family:var(--font-mono);font-size:0.72rem;color:var(--accent-teal);margin-bottom:8px">ProspectResearch</div>
+            <div style="font-size:0.8rem;color:var(--text-secondary)">Claude 3.5 Sonnet pain research & PAS email gen</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Component matrix -->
+      <div style="margin-top:40px;overflow-x:auto">
+        <div class="arch-diagram-title">Component Matrix</div>
+        <table style="width:100%;border-collapse:collapse;margin-top:16px;font-size:0.83rem">
+          <thead>
+            <tr style="border-bottom:1px solid var(--border-subtle)">
+              <th style="text-align:left;padding:10px 16px;color:var(--text-secondary);font-weight:600;font-family:var(--font-mono);font-size:0.7rem;text-transform:uppercase;letter-spacing:1px">Component</th>
+              <th style="text-align:left;padding:10px 16px;color:var(--text-secondary);font-weight:600;font-family:var(--font-mono);font-size:0.7rem;text-transform:uppercase;letter-spacing:1px">AWS Service</th>
+              <th style="text-align:left;padding:10px 16px;color:var(--text-secondary);font-weight:600;font-family:var(--font-mono);font-size:0.7rem;text-transform:uppercase;letter-spacing:1px">Role</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom:1px solid var(--border-subtle)">
+              <td style="padding:12px 16px;font-weight:600;color:var(--text-primary)">Agent Core Runtime</td>
+              <td style="padding:12px 16px"><span class="service-pill">Bedrock Agent Core (Mantle)</span></td>
+              <td style="padding:12px 16px;color:var(--text-secondary)">Orchestrates multi-agent execution with AWS_BEARER_TOKEN_BEDROCK</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--border-subtle)">
+              <td style="padding:12px 16px;font-weight:600;color:var(--text-primary)">State & Telemetry</td>
+              <td style="padding:12px 16px"><span class="service-pill">DynamoDB</span></td>
+              <td style="padding:12px 16px;color:var(--text-secondary)">Records session history (PK=WORKSPACE#{'{id}'}, SK=EXECUTION#{'{id}'})</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--border-subtle)">
+              <td style="padding:12px 16px;font-weight:600;color:var(--text-primary)">Artifact Store</td>
+              <td style="padding:12px 16px"><span class="service-pill">S3</span></td>
+              <td style="padding:12px 16px;color:var(--text-secondary)">Stores generated n8n workflow packages with AES-256 encryption</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--border-subtle)">
+              <td style="padding:12px 16px;font-weight:600;color:var(--text-primary)">Authentication</td>
+              <td style="padding:12px 16px"><span class="service-pill">Cognito User Pool</span></td>
+              <td style="padding:12px 16px;color:var(--text-secondary)">OAuth2 JWT client authentication and tenant isolation</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--border-subtle)">
+              <td style="padding:12px 16px;font-weight:600;color:var(--text-primary)">API Surface</td>
+              <td style="padding:12px 16px"><span class="service-pill">API Gateway</span></td>
+              <td style="padding:12px 16px;color:var(--text-secondary)">REST API with rate limiting, CORS, and JWT validation</td>
+            </tr>
+            <tr>
+              <td style="padding:12px 16px;font-weight:600;color:var(--text-primary)">Frontend</td>
+              <td style="padding:12px 16px"><span class="service-pill">Next.js / Vercel</span></td>
+              <td style="padding:12px 16px;color:var(--text-secondary)">Dashboard & Control Center App with OAuth sign-in</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STAR CASE STUDY -->
+<section class="section" style="padding-top:0">
+  <div class="container">
+    <div class="star-section">
+      <h2 class="star-section-title">STAR Case Study</h2>
+      <div class="star-grid">
+
+        <div class="star-block">
+          <div class="star-block-label">
+            <span class="star-block-key">S · Situation</span>
+            <span class="star-block-sub">The problem</span>
+          </div>
+          <div class="star-block-content">
+            Revenue operations teams at high-growth B2B companies were losing days per week to manual
+            prospect research, CRM deduplication, and workflow configuration. Each new ICP required
+            rebuilding automation from scratch across Clay, HubSpot, and n8n — with no shared state,
+            no audit trail, and no governance layer. The result: <strong>missed pipeline, inconsistent
+            outreach, and zero repeatability.</strong>
+          </div>
+        </div>
+
+        <div class="star-block">
+          <div class="star-block-label">
+            <span class="star-block-key">T · Task</span>
+            <span class="star-block-sub">The objective</span>
+          </div>
+          <div class="star-block-content">
+            Design and build a production-grade, multi-agent RevOps platform that could automate the
+            complete 6-step prospecting pipeline — from ICP definition through enrichment, research,
+            copywriting, CRM deduplication, and sequence enrollment — with <strong>human approval at
+            every external action</strong> and a full audit trail for compliance review.
+          </div>
+        </div>
+
+        <div class="star-block">
+          <div class="star-block-label">
+            <span class="star-block-key">A · Action</span>
+            <span class="star-block-sub">What I built</span>
+          </div>
+          <div class="star-block-content">
+            Built on the <strong>Amazon Bedrock Mantle Runtime</strong> with four specialized Action Groups:
+            <br/><br/>
+            • <strong>n8nEngineer</strong> — compiles customized n8n workflow JSON packages per ICP configuration<br/>
+            • <strong>ClayEnrichment</strong> — triggers waterfall enrichment via resumable webhook pattern (Clay's resumeUrl prevents pipeline gaps on async completion)<br/>
+            • <strong>CRMSync</strong> — deduplicates against HubSpot, Salesforce, and Attio before any staging<br/>
+            • <strong>ProspectResearch</strong> — Claude 3.5 Sonnet generates PAS cold email from account pain research<br/><br/>
+            State persisted to <strong>DynamoDB</strong> (PK=WORKSPACE, SK=EXECUTION), workflow artifacts encrypted in
+            <strong>S3</strong>, auth handled via <strong>Cognito User Pool</strong> with per-tenant JWT isolation.
+            <strong>API Gateway</strong> fronts all agent invocations with rate limiting and CORS enforcement.
+          </div>
+        </div>
+
+        <div class="star-block" style="border-color:rgba(0,212,170,0.2)">
+          <div class="star-block-label">
+            <span class="star-block-key" style="color:var(--accent-teal);background:rgba(0,212,170,0.08);border-color:rgba(0,212,170,0.2)">R · Result</span>
+            <span class="star-block-sub">Measured outcomes</span>
+          </div>
+          <div class="star-block-content" style="color:var(--text-primary)">
+            <strong>6-step manual RevOps process fully automated</strong> behind a single chat interface.
+            Workflow packages generated on-demand and stored with AES-256 encryption in S3.
+            Zero unauthorized sends — every external action gated by an approval event in the audit log.
+            Clay enrichment gaps eliminated via resumable webhook pattern.
+            <strong>Evolved from internal tool → SaaS product</strong> with self-serve signup and
+            tenant-isolated billing — zero architectural rework required because the foundation
+            was well-architected from day one.
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AWS SERVICES USED -->
+<section class="section" style="padding-top:0">
+  <div class="container">
+    <div style="background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:20px;padding:32px">
+      <h3 style="font-family:var(--font-display);font-weight:700;font-size:1.1rem;margin-bottom:20px">AWS Services Used</h3>
+      <div class="services-used">
+        <span class="service-pill">☁️ Amazon Bedrock Agent Core</span>
+        <span class="service-pill">🗄️ Amazon DynamoDB (on-demand)</span>
+        <span class="service-pill">📦 Amazon S3 (AES-256)</span>
+        <span class="service-pill">🔐 AWS Cognito User Pool</span>
+        <span class="service-pill">🔗 Amazon API Gateway</span>
+        <span class="service-pill">⚡ AWS Lambda</span>
+        <span class="service-pill">📊 Amazon CloudWatch</span>
+        <span class="service-pill">🔑 AWS IAM</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WAF ALIGNMENT -->
+<section class="section" style="padding-top:0">
+  <div class="container">
+    <div class="lp-alignment">
+      <div class="lp-alignment-title">
+        🏛️ AWS Well-Architected Framework Alignment
+      </div>
+      <div class="lp-alignment-grid">
+        <span class="lp-chip">✅ Operational Excellence — n8n execution monitoring + audit trail</span>
+        <span class="lp-chip">✅ Security — Cognito JWT + tenant isolation + ENV-only secrets</span>
+        <span class="lp-chip">✅ Reliability — Resumable webhook + approval-gated staging</span>
+        <span class="lp-chip">✅ Performance — Bedrock on-demand inference + DynamoDB on-demand</span>
+        <span class="lp-chip">✅ Cost Optimization — Serverless-first, pay-per-invocation only</span>
+        <span class="lp-chip">✅ Sustainability — Event-driven, zero idle compute</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LP ALIGNMENT -->
+<section class="section" style="padding-top:0">
+  <div class="container">
+    <div class="lp-alignment">
+      <div class="lp-alignment-title">
+        🎯 Amazon Leadership Principles Demonstrated
+      </div>
+      <div class="lp-alignment-grid">
+        <span class="lp-chip" style="background:rgba(255,107,53,0.08);border-color:rgba(255,107,53,0.2);color:var(--accent-orange)">Customer Obsession — Built for operator trust, not just function</span>
+        <span class="lp-chip" style="background:rgba(255,107,53,0.08);border-color:rgba(255,107,53,0.2);color:var(--accent-orange)">Invent & Simplify — 6-step process → one chat prompt</span>
+        <span class="lp-chip" style="background:rgba(255,107,53,0.08);border-color:rgba(255,107,53,0.2);color:var(--accent-orange)">Think Big — Internal tool evolved to multi-tenant SaaS</span>
+        <span class="lp-chip" style="background:rgba(255,107,53,0.08);border-color:rgba(255,107,53,0.2);color:var(--accent-orange)">Dive Deep — Clay resumeUrl webhook pattern debugging</span>
+        <span class="lp-chip" style="background:rgba(255,107,53,0.08);border-color:rgba(255,107,53,0.2);color:var(--accent-orange)">Earn Trust — Compliance-first: zero sends without approval</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section" style="padding-top:0">
+  <div class="container">
+    <div style="display:flex;gap:16px;flex-wrap:wrap;align-items:center">
+      <a href="turnriver-sdr-case-study.html" class="btn-primary" id="btn-next-case">
+        Next Case Study: TurnRiver SDR Agent →
+      </a>
+      <a href="../index.html" class="btn-secondary" id="btn-back">
+        ← Back to Portfolio
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-inner">
+      <p class="footer-text">© 2026 Patrick Diamitani · Diamitani Industries, Inc.</p>
+      <p class="footer-made-with">Built on AWS Well-Architected principles 🧡</p>
+    </div>
+  </div>
+</footer>
+
+<script src="../scripts/main.js"></script>
+</body>
+</html>

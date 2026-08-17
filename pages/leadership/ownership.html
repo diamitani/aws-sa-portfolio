@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ownership — Patrick Diamitani | AWS Leadership Principles</title>
+  <link rel="stylesheet" href="../../styles/main.css" />
+  <link rel="stylesheet" href="../../styles/lp-detail.css" />
+</head>
+<body>
+
+<div class="grid-bg" aria-hidden="true"></div>
+<div class="noise-overlay" aria-hidden="true"></div>
+
+<nav class="nav scrolled" role="navigation">
+  <div class="nav-inner">
+    <a href="../../index.html#lp" class="nav-logo">
+      <div class="nav-logo-badge">PD</div>
+      Patrick Diamitani
+    </a>
+    <ul class="nav-links">
+      <li><a href="../../index.html#lp" class="nav-link">← Back to Leadership</a></li>
+      <li><a href="../../index.html#waf" class="nav-link">Well-Architected</a></li>
+      <li><a href="../developer-advocacy.html" class="nav-link">Developer Advocacy</a></li>
+      <li><a href="../../index.html#contact" class="nav-cta">Let's Connect →</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="lp-detail">
+  <div class="container">
+
+    <header class="lp-detail-header">
+      <div class="lp-detail-badge">
+        <span class="lp-badge-number">LP 02</span>
+        <span class="lp-badge-aws">AWS Leadership Principle</span>
+      </div>
+      <h1 class="lp-detail-title">Ownership</h1>
+      <p class="lp-detail-definition">
+        <em>"Leaders are owners. They think long-term and don't sacrifice long-term value for short-term results. They act on behalf of the entire company, beyond just their own team. They never say 'that's not my job.'"</em>
+      </p>
+    </header>
+
+    <section class="star-breakdown">
+
+      <article class="star-section star-situation">
+        <div class="star-marker">
+          <span class="star-letter">S</span>
+          <span class="star-word">Situation</span>
+        </div>
+        <div class="star-content">
+          <p>RevOps needed to clean up the HubSpot database, which had become inconsistent due to reps manually uploading leads without following a standard process—skipping key properties, mislabeling fields, and creating downstream data hygiene issues.</p>
+          <p>RevOps responded by building a standardized import template for all reps to use going forward. But the rollout introduced a new training burden, and several reps struggled to adopt the template correctly inside HubSpot.</p>
+        </div>
+      </article>
+
+      <article class="star-section star-task">
+        <div class="star-marker">
+          <span class="star-letter">T</span>
+          <span class="star-word">Task</span>
+        </div>
+        <div class="star-content">
+          <p>Rather than let the new template become another underused process, I took ownership of closing that adoption gap.</p>
+          <div class="star-insight">
+            <span class="insight-icon">🎯</span>
+            <span>I set out to build a Claude Cowork skill that would let reps upload or search for leads and have them <strong>automatically formatted and imported into HubSpot</strong> using the RevOps template, removing the manual effort and guesswork that was causing errors in the first place.</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="star-section star-action">
+        <div class="star-marker">
+          <span class="star-letter">A</span>
+          <span class="star-word">Action</span>
+        </div>
+        <div class="star-content">
+          <div class="action-steps">
+            <div class="action-step">
+              <span class="step-number">01</span>
+              <div class="step-content">
+                <h4>Cross-Team Alignment</h4>
+                <p>Looped in RevOps early to align on the project and get their input and testing support, since they owned the template and the data standards it enforced.</p>
+              </div>
+            </div>
+            <div class="action-step">
+              <span class="step-number">02</span>
+              <div class="step-content">
+                <h4>Skill Architecture</h4>
+                <p>Using a custom skill-builder project in Claude Cowork—configured to design skills against best-practice documentation as its knowledge base—I directed it to build a skill that would: transform a rep's raw lead list into the correctly formatted template, connect to our HubSpot integration to import the records on the rep's behalf, and automatically create a new list to store each import.</p>
+              </div>
+            </div>
+            <div class="action-step">
+              <span class="step-number">03</span>
+              <div class="step-content">
+                <h4>Validation Loop</h4>
+                <p>To validate the skill, I uploaded the RevOps template and tested it against multiple real lead lists downloaded from Amplemarket, our lead data provider. I iterated on the skill inside the Claude Cowork platform, running repeated test imports until the output consistently met RevOps's formatting standards.</p>
+              </div>
+            </div>
+            <div class="action-step">
+              <span class="step-number">04</span>
+              <div class="step-content">
+                <h4>Ship & Rollout</h4>
+                <p>Once it performed reliably, I shipped it and rolled it out to the broader sales organization.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="star-section star-result">
+        <div class="star-marker">
+          <span class="star-letter">R</span>
+          <span class="star-word">Result</span>
+        </div>
+        <div class="star-content">
+          <div class="result-highlight">
+            <div class="result-metric">
+              <span class="metric-value">0</span>
+              <span class="metric-label">Template Errors</span>
+            </div>
+            <div class="result-metric">
+              <span class="metric-value">100%</span>
+              <span class="metric-label">Data Compliance</span>
+            </div>
+            <div class="result-metric">
+              <span class="metric-value">Auto</span>
+              <span class="metric-label">List Creation</span>
+            </div>
+          </div>
+          <p>The skill now saves reps meaningful time on every lead import during prospecting, while keeping HubSpot data clean and consistent without requiring reps to master the template manually.</p>
+          <div class="result-example">
+            <h4>Real Example:</h4>
+            <p>A rep building an AI outreach sequence for a new ICP category used the skill to import his freshly sourced leads directly into a sequence-ready list—cutting what would have been a manual formatting step out of his workflow entirely and letting him move straight from prospecting to outreach.</p>
+          </div>
+        </div>
+      </article>
+
+    </section>
+
+    <section class="video-section">
+      <h3 class="video-title">📹 Case Study Walkthrough</h3>
+      <div class="video-placeholder">
+        <div class="video-upload-prompt">
+          <span class="video-icon">🎬</span>
+          <p>Video walkthrough coming soon</p>
+          <span class="video-note">Demo of the Claude Cowork lead import skill in action</span>
+        </div>
+      </div>
+    </section>
+
+    <nav class="lp-nav">
+      <a href="customer-obsession.html" class="lp-nav-btn">
+        <span>←</span> Previous: Customer Obsession
+      </a>
+      <a href="invent-simplify.html" class="lp-nav-btn lp-nav-next">
+        Next: Invent and Simplify <span>→</span>
+      </a>
+    </nav>
+
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <p class="footer-text">© 2026 Patrick Diamitani · Diamitani Industries, Inc.</p>
+      <p class="footer-made-with">Built with 🧡 and AWS Well-Architected principles</p>
+    </div>
+  </div>
+</footer>
+
+<script src="../../scripts/main.js"></script>
+</body>
+</html>

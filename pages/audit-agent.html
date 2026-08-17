@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AWS Startup Audit Agent — Architecture & Concept | Patrick Diamitani</title>
+  <meta name="description" content="AWS Startup Audit Agent: a Well-Architected Review agent built for early-stage startups. Scans AWS environments, maps findings to WAF pillars, and generates prioritized remediation roadmaps." />
+  <link rel="stylesheet" href="../styles/main.css" />
+  <link rel="stylesheet" href="../styles/case-study.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+</head>
+<body>
+
+<div class="grid-bg" aria-hidden="true"></div>
+<div class="noise-overlay" aria-hidden="true"></div>
+
+<!-- NAV -->
+<nav class="nav" role="navigation">
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-logo" id="nav-logo">
+      <div class="nav-logo-badge">PD</div>
+      Patrick Diamitani
+    </a>
+    <ul class="nav-links">
+      <li><a href="../index.html#waf" class="nav-link">Well-Architected</a></li>
+      <li><a href="../index.html#lp" class="nav-link">Leadership Principles</a></li>
+      <li><a href="../index.html#cases" class="nav-link">Case Studies</a></li>
+      <li><a href="../index.html#contact" class="nav-cta">Let's Connect →</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="cs-hero">
+  <div class="container">
+    <div class="cs-hero-inner">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="../index.html">Home</a>
+        <span class="breadcrumb-sep" aria-hidden="true">→</span>
+        <a href="../index.html#cases">Case Studies</a>
+        <span class="breadcrumb-sep" aria-hidden="true">→</span>
+        <span>AWS Startup Audit Agent</span>
+      </nav>
+
+      <div class="cs-hero-tag tag-purple" style="border-color:rgba(139,92,246,0.3)">
+        🔍 AWS Concept · Well-Architected · Startup-First Design
+      </div>
+
+      <h1 class="cs-hero-title">
+        AWS Startup<br/>
+        <span class="gradient-text">Audit Agent</span>
+      </h1>
+
+      <p class="cs-hero-subtitle">
+        A Well-Architected Review agent purpose-built for <strong>early-stage startups</strong>.
+        Scans AWS environments, maps every finding to a WAF pillar, and generates a prioritized,
+        startup-pragmatic remediation roadmap — with CloudFormation IaC outputs for immediate action.
+        The kind of advisor that meets startups where they are, not where the textbook says they should be.
+      </p>
+
+      <div class="cs-meta-strip">
+        <div class="cs-meta-item">
+          <span class="cs-meta-label">Target User</span>
+          <span class="cs-meta-value">Early-Stage Startups</span>
+        </div>
+        <div class="cs-meta-item">
+          <span class="cs-meta-label">WAF Coverage</span>
+          <span class="cs-meta-value">All 6 Pillars</span>
+        </div>
+        <div class="cs-meta-item">
+          <span class="cs-meta-label">Output Format</span>
+          <span class="cs-meta-value">IaC (CloudFormation)</span>
+        </div>
+        <div class="cs-meta-item">
+          <span class="cs-meta-label">Status</span>
+          <span class="cs-meta-value" style="color:var(--accent-aws)">⚡ Architecture Proposal</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE PROBLEM -->
+<section class="section" style="padding-top:0">
+  <div class="container">
+    <div style="background:var(--bg-card);border:1px solid rgba(255,153,0,0.2);border-radius:20px;padding:40px;position:relative;overflow:hidden">
+      <div style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--accent-aws),transparent)"></div>
+      <h2 style="font-family:var(--font-display);font-size:1.5rem;font-weight:700;margin-bottom:16px">The Problem This Solves</h2>
+      <p style="font-size:0.975rem;color:var(--text-secondary);line-height:1.8;max-width:800px">
+        Most early-stage startups on AWS have never done a Well-Architected Review. They built fast,
+        they shipped, and they accumulated architectural debt across all six pillars — often without knowing it.
+        A formal AWS WAR costs time and typically requires an SA engagement. The Startup Audit Agent
+        delivers a <strong>startup-pragmatic WAR on-demand</strong>: what matters now, what can wait,
+        and exactly what IaC to run to fix the highest-priority findings.
+      </p>
+      <div style="display:flex;gap:16px;margin-top:24px;flex-wrap:wrap">
+        <div style="padding:12px 20px;background:rgba(255,107,53,0.08);border:1px solid rgba(255,107,53,0.2);border-radius:10px;font-size:0.85rem;color:var(--text-secondary)">
+          <strong style="color:var(--text-primary)">Without this:</strong> Startups discover architectural debt when it's expensive to fix — at Series A, under load, or after a breach.
+        </div>
+        <div style="padding:12px 20px;background:rgba(0,212,170,0.06);border:1px solid rgba(0,212,170,0.2);border-radius:10px;font-size:0.85rem;color:var(--text-secondary)">
+          <strong style="color:var(--accent-teal)">With this:</strong> Startups get a prioritized, actionable remediation roadmap in minutes — with working CloudFormation they can deploy today.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ARCHITECTURE -->
+<section class="section" style="padding-top:0">
+  <div class="container">
+    <div class="arch-diagram">
+      <div class="arch-diagram-title">🏗️ Agent Architecture</div>
+
+      <!-- Flow -->
+      <div class="flow-diagram" style="margin-bottom:40px">
+        <div class="flow-node">
+          <div class="flow-node-box" style="border-color:rgba(255,153,0,0.4)">AWS Config</div>
+          <div class="flow-node-service">Resource inventory</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node">
+          <div class="flow-node-box" style="border-color:rgba(255,153,0,0.4)">Trusted Advisor</div>
+          <div class="flow-node-service">Findings source</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node">
+          <div class="flow-node-box" style="border-color:rgba(255,107,53,0.5);background:rgba(255,107,53,0.06)">Bedrock Agent</div>
+          <div class="flow-node-service">WAF Orchestrator</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node">
+          <div class="flow-node-box" style="border-color:rgba(139,92,246,0.4)">Pillar Analyzers</div>
+          <div class="flow-node-service">6 specialized agents</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node">
+          <div class="flow-node-box" style="border-color:rgba(0,212,170,0.4)">CloudFormation</div>
+          <div class="flow-node-service">IaC remediation</div>
+        </div>
+      </div>
+
+      <!-- Action Groups -->
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
+        <div style="padding:20px;background:rgba(255,107,53,0.06);border:1px solid rgba(255,107,53,0.2);border-radius:12px">
+          <div style="font-family:var(--font-mono);font-size:0.68rem;color:var(--accent-orange);font-weight:700;margin-bottom:8px">SCAN ACTION GROUP</div>
+          <div style="font-size:0.8rem;color:var(--text-secondary);line-height:1.6">Queries AWS Config, Trusted Advisor, Security Hub, and Cost Explorer APIs. Builds a unified resource inventory with compliance flags.</div>
+          <div style="margin-top:12px;display:flex;flex-wrap:wrap;gap:6px">
+            <span style="font-family:var(--font-mono);font-size:0.65rem;color:var(--accent-aws);background:rgba(255,153,0,0.06);border:1px solid rgba(255,153,0,0.15);border-radius:4px;padding:2px 6px">AWS Config</span>
+            <span style="font-family:var(--font-mono);font-size:0.65rem;color:var(--accent-aws);background:rgba(255,153,0,0.06);border:1px solid rgba(255,153,0,0.15);border-radius:4px;padding:2px 6px">Trusted Advisor</span>
+            <span style="font-family:var(--font-mono);font-size:0.65rem;color:var(--accent-aws);background:rgba(255,153,0,0.06);border:1px solid rgba(255,153,0,0.15);border-radius:4px;padding:2px 6px">Security Hub</span>
+          </div>
+        </div>
+
+        <div style="padding:20px;background:rgba(74,158,255,0.06);border:1px solid rgba(74,158,255,0.2);border-radius:12px">
+          <div style="font-family:var(--font-mono);font-size:0.68rem;color:var(--accent-blue);font-weight:700;margin-bottom:8px">ANALYZE ACTION GROUP</div>
+          <div style="font-size:0.8rem;color:var(--text-secondary);line-height:1.6">Maps every finding to a WAF pillar. Scores severity based on startup lifecycle stage (pre-revenue, seed, Series A). Prioritizes by business impact, not just technical severity.</div>
+          <div style="margin-top:12px;display:flex;flex-wrap:wrap;gap:6px">
+            <span style="font-family:var(--font-mono);font-size:0.65rem;color:var(--accent-blue);background:rgba(74,158,255,0.06);border:1px solid rgba(74,158,255,0.15);border-radius:4px;padding:2px 6px">Claude 3.5</span>
+            <span style="font-family:var(--font-mono);font-size:0.65rem;color:var(--accent-blue);background:rgba(74,158,255,0.06);border:1px solid rgba(74,158,255,0.15);border-radius:4px;padding:2px 6px">WAF KB</span>
+          </div>
+        </div>
+
+        <div style="padding:20px;background:rgba(0,212,170,0.06);border:1px solid rgba(0,212,170,0.2);border-radius:12px">
+          <div style="font-family:var(--font-mono);font-size:0.68rem;color:var(--accent-teal);font-weight:700;margin-bottom:8px">REMEDIATE ACTION GROUP</div>
+          <div style="font-size:0.8rem;color:var(--text-secondary);line-height:1.6">Generates CloudFormation templates for each prioritized finding. Outputs a startup-friendly remediation roadmap: "Fix these 3 things this sprint. Defer these 5 to Series A."</div>
+          <div style="margin-top:12px;display:flex;flex-wrap:wrap;gap:6px">
+            <span style="font-family:var(--font-mono);font-size:0.65rem;color:var(--accent-teal);background:rgba(0,212,170,0.06);border:1px solid rgba(0,212,170,0.15);border-radius:4px;padding:2px 6px">CloudFormation</span>
+            <span style="font-family:var(--font-mono);font-size:0.65rem;color:var(--accent-teal);background:rgba(0,212,170,0.06);border:1px solid rgba(0,212,170,0.15);border-radius:4px;padding:2px 6px">IaC Generation</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WAF PILLAR COVERAGE -->
+<section class="section" style="padding-top:0">
+  <div class="container">
+    <h2 style="font-family:var(--font-display);font-size:1.5rem;font-weight:700;margin-bottom:32px">WAF Pillar Coverage — Startup-Specific Checks</h2>
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:20px">
+
+      <div style="padding:24px;background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:16px;transition:all 0.2s" onmouseover="this.style.borderColor='rgba(255,107,53,0.2)'" onmouseout="this.style.borderColor='var(--border-subtle)'">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
+          <span style="font-size:1.5rem">⚙️</span>
+          <div>
+            <div style="font-weight:700;font-size:0.95rem">Operational Excellence</div>
+            <div style="font-family:var(--font-mono);font-size:0.65rem;color:var(--text-muted)">Most missed by early startups</div>
+          </div>
+        </div>
+        <ul style="display:flex;flex-direction:column;gap:8px">
+          <li style="font-size:0.8rem;color:var(--text-secondary);display:flex;gap:8px"><span style="color:var(--accent-orange);flex-shrink:0">▸</span>CloudWatch alarms not configured on critical resources</li>
+          <li style="font-size:0.8rem;color:var(--text-secondary);display:flex;gap:8px"><span style="color:var(--accent-orange);flex-shrink:0">▸</span>No deployment pipeline — manual console changes</li>
+          <li style="font-size:0.8rem;color:var(--text-secondary);display:flex;gap:8px"><span style="color:var(--accent-orange);flex-shrink:0">▸</span>No runbooks for common failure scenarios</li>
+        </ul>
+      </div>
+
+      <div style="padding:24px;background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:16px;transition:all 0.2s" onmouseover="this.style.borderColor='rgba(255,107,53,0.2)'" onmouseout="this.style.borderColor='var(--border-subtle)'">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
+          <span style="font-size:1.5rem">🔐</span>
+          <div>
+            <div style="font-weight:700;font-size:0.95rem">Security</div>
+            <div style="font-family:var(--font-mono);font-size:0.65rem;color:var(--text-muted)">Highest risk for startups</div>
+          </div>
+        </div>
+        <ul style="display:flex;flex-direction:column;gap:8px">
+          <li style="font-size:0.8rem;color:var(--text-secondary);display:flex;gap:8px"><span style="color:var(--accent-orange);flex-shrink:0">▸</span>Root account access keys exist (immediate fix)</li>
+          <li style="font-size:0.8rem;color:var(--text-secondary);display:flex;gap:8px"><span style="color:var(--accent-orange);flex-shrink:0">▸</span>S3 buckets with public read access</li>
+          <li style="font-size:0.8rem;color:var(--text-secondary);display:flex;gap:8px"><span style="color:var(--accent-orange);flex-shrink:0">▸</span>Over-privileged IAM roles (no least-privilege)</li>
+          <li style="font-size:0.8rem;color:var(--text-secondary);display:flex;gap:8px"><span style="color:var(--accent-orange);flex-shrink:0">▸</span>Secrets in environment variables vs. Secrets Manager</li>
+        </ul>
+      </div>
+
+      <div style="padding:24px;background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:16px;transition:all 0.2s" onmouseover="this.style.borderColor='rgba(255,107,53,0.2)'" onmouseout="this.style.borderColor='var(--border-subtle)'">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
+          <span style="font-size:1.5rem">🔄</span>
+          <div>
+            <div style="font-weight:700;font-size:0.95rem">Reliability</div>
+            <div style="font-family:var(--font-mono);font-size:0.65rem;color:var(--text-muted)">Often ignored until it hurts</div>
+          </div>
+        </div>
+        <ul style="display:flex;flex-direction:column;gap:8px">
+          <li style="font-size:0.8rem;color:var(--text-secondary);display:flex;gap:8px"><span style="color:var(--accent-orange);flex-shrink:0">▸</span>Single-AZ RDS with no read replica</li>
+          <li style="font-size:0.8rem;color:var(--text-secondary);display:flex;gap:8px"><span style="color:var(--accent-orange);flex-shrink:0">▸</span>No backup policy on critical data stores</li>
+          <li style="font-size:0.8rem;color:var(--text-secondary);display:flex;gap:8px"><span style="color:var(--accent-orange);flex-shrink:0">▸</span>Lambda functions without error handling or DLQ</li>
+        </ul>
+      </div>
+
+      <div style="padding:24px;background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:16px;transition:all 0.2s" onmouseover="this.style.borderColor='rgba(255,107,53,0.2)'" onmouseout="this.style.borderColor='var(--border-subtle)'">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
+          <span style="font-size:1.5rem">💰</span>
+          <div>
+            <div style="font-weight:700;font-size:0.95rem">Cost Optimization</div>
+            <div style="font-family:var(--font-mono);font-size:0.65rem;color:var(--text-muted)">Runway-critical for pre-revenue startups</div>
+          </div>
+        </div>
+        <ul style="display:flex;flex-direction:column;gap:8px">
+          <li style="font-size:0.8rem;color:var(--text-secondary);display:flex;gap:8px"><span style="color:var(--accent-orange);flex-shrink:0">▸</span>Unused EC2 instances or EBS volumes running 24/7</li>
+          <li style="font-size:0.8rem;color:var(--text-secondary);display:flex;gap:8px"><span style="color:var(--accent-orange);flex-shrink:0">▸</span>Over-provisioned instances (p3.8xlarge for a prototype)</li>
+          <li style="font-size:0.8rem;color:var(--text-secondary);display:flex;gap:8px"><span style="color:var(--accent-orange);flex-shrink:0">▸</span>No Savings Plans or Reserved Instance coverage</li>
+          <li style="font-size:0.8rem;color:var(--text-secondary);display:flex;gap:8px"><span style="color:var(--accent-orange);flex-shrink:0">▸</span>S3 Intelligent-Tiering not enabled on cold data</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SAMPLE OUTPUT -->
+<section class="section" style="padding-top:0">
+  <div class="container">
+    <div class="arch-diagram">
+      <div class="arch-diagram-title">📋 Sample Agent Output — Startup Remediation Roadmap</div>
+      <div style="background:var(--bg-void);border:1px solid var(--border-subtle);border-radius:12px;padding:24px;font-family:var(--font-mono);font-size:0.78rem;color:var(--text-secondary);line-height:1.9;overflow-x:auto">
+        <div style="color:var(--accent-orange);margin-bottom:8px"># AWS Startup Audit Report — Acme SaaS, Inc.</div>
+        <div style="color:var(--text-muted)">Scan Date: Aug 2026 | Stage: Seed | AWS Account: us-east-1</div>
+        <br/>
+        <div style="color:var(--accent-teal)">## CRITICAL (Fix this sprint)</div>
+        <div>🔴 <span style="color:var(--text-primary)">Security:</span> Root access key active (CVE risk: CRITICAL)</div>
+        <div style="padding-left:20px;color:var(--text-muted)">→ CloudFormation: iam-root-cleanup.yaml</div>
+        <div>🔴 <span style="color:var(--text-primary)">Security:</span> S3 bucket "acme-uploads" is publicly readable</div>
+        <div style="padding-left:20px;color:var(--text-muted)">→ CloudFormation: s3-block-public-access.yaml</div>
+        <br/>
+        <div style="color:var(--accent-aws)">## HIGH (Fix before Series A)</div>
+        <div>🟡 <span style="color:var(--text-primary)">Reliability:</span> RDS instance is single-AZ, no automated backup</div>
+        <div style="padding-left:20px;color:var(--text-muted)">→ CloudFormation: rds-multi-az-backup.yaml (est. +$45/mo)</div>
+        <div>🟡 <span style="color:var(--text-primary)">Cost:</span> 3 EC2 t3.large instances at 2% avg CPU utilization</div>
+        <div style="padding-left:20px;color:var(--text-muted)">→ Recommendation: Migrate to Lambda (est. -$180/mo)</div>
+        <br/>
+        <div style="color:var(--text-muted)">## DEFERRED (Post-Series A)</div>
+        <div>⚪ <span style="color:var(--text-muted)">Performance: CloudFront CDN not configured (defer until &gt;10k MAU)</span></div>
+        <div>⚪ <span style="color:var(--text-muted)">Sustainability: Compute carbon footprint reporting (defer to growth stage)</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AWS SERVICES -->
+<section class="section" style="padding-top:0">
+  <div class="container">
+    <div style="background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:20px;padding:32px">
+      <h3 style="font-family:var(--font-display);font-weight:700;font-size:1.1rem;margin-bottom:20px">AWS Services in the Audit Agent Stack</h3>
+      <div class="services-used">
+        <span class="service-pill">🧠 Amazon Bedrock (Claude 3.5)</span>
+        <span class="service-pill">🗄️ AWS Config</span>
+        <span class="service-pill">🔍 AWS Trusted Advisor</span>
+        <span class="service-pill">🛡️ AWS Security Hub</span>
+        <span class="service-pill">💰 AWS Cost Explorer</span>
+        <span class="service-pill">📋 CloudFormation</span>
+        <span class="service-pill">⚡ AWS Lambda</span>
+        <span class="service-pill">🔗 API Gateway</span>
+        <span class="service-pill">📦 S3 (report storage)</span>
+        <span class="service-pill">🔑 IAM (read-only audit role)</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SA CONNECTION -->
+<section class="section" style="padding-top:0">
+  <div class="container">
+    <div style="background:linear-gradient(135deg,rgba(255,107,53,0.08),rgba(74,158,255,0.06));border:1px solid rgba(255,107,53,0.2);border-radius:24px;padding:48px;text-align:center">
+      <div style="font-family:var(--font-mono);font-size:0.72rem;letter-spacing:2px;text-transform:uppercase;color:var(--accent-orange);margin-bottom:16px">Why This Agent Matters for the SA Role</div>
+      <h2 style="font-family:var(--font-display);font-size:1.8rem;font-weight:700;margin-bottom:20px;line-height:1.2">
+        This is what an AWS Startup SA<br/>
+        <span class="gradient-text">does at scale.</span>
+      </h2>
+      <p style="font-size:1rem;color:var(--text-secondary);line-height:1.8;max-width:680px;margin:0 auto 32px">
+        An AWS Startup Solutions Architect serves dozens of startups simultaneously. The Audit Agent
+        lets that SA deliver Well-Architected value to the startups they can't meet 1:1 — a force
+        multiplier for the SA's expertise. It's exactly the kind of startup-specific technical content
+        and tooling the role is designed to produce.
+      </p>
+      <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
+        <a href="../index.html#contact" class="btn-primary" id="btn-discuss">
+          Let's discuss this architecture →
+        </a>
+        <a href="../index.html#cases" class="btn-secondary" id="btn-cases">
+          ← All Case Studies
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-inner">
+      <p class="footer-text">© 2026 Patrick Diamitani · Diamitani Industries, Inc.</p>
+      <p class="footer-made-with">Built to help startups architect what's next 🧡</p>
+    </div>
+  </div>
+</footer>
+
+<script src="../scripts/main.js"></script>
+</body>
+</html>

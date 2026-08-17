@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Insist on the Highest Standards — Patrick Diamitani | AWS Leadership Principles</title>
+  <link rel="stylesheet" href="../../styles/main.css" />
+  <link rel="stylesheet" href="../../styles/lp-detail.css" />
+</head>
+<body>
+
+<div class="grid-bg" aria-hidden="true"></div>
+<div class="noise-overlay" aria-hidden="true"></div>
+
+<nav class="nav scrolled" role="navigation">
+  <div class="nav-inner">
+    <a href="../../index.html#lp" class="nav-logo">
+      <div class="nav-logo-badge">PD</div>
+      Patrick Diamitani
+    </a>
+    <ul class="nav-links">
+      <li><a href="../../index.html#lp" class="nav-link">← Back to Leadership</a></li>
+      <li><a href="../../index.html#waf" class="nav-link">Well-Architected</a></li>
+      <li><a href="../developer-advocacy.html" class="nav-link">Developer Advocacy</a></li>
+      <li><a href="../../index.html#contact" class="nav-cta">Let's Connect →</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="lp-detail">
+  <div class="container">
+
+    <header class="lp-detail-header">
+      <div class="lp-detail-badge">
+        <span class="lp-badge-number">LP 08</span>
+        <span class="lp-badge-aws">AWS Leadership Principle</span>
+      </div>
+      <h1 class="lp-detail-title">Insist on the Highest Standards</h1>
+      <p class="lp-detail-definition">
+        <em>"Leaders have relentlessly high standards — many people may think these standards are unreasonably high. Leaders are continually raising the bar and drive their teams to deliver high-quality products, services, and processes. Leaders ensure that defects do not get sent down the line and that problems are fixed so they stay fixed."</em>
+      </p>
+    </header>
+
+    <section class="star-breakdown">
+
+      <article class="star-section star-situation">
+        <div class="star-marker">
+          <span class="star-letter">S</span>
+          <span class="star-word">Situation</span>
+        </div>
+        <div class="star-content">
+          <p>I was building custom AI agents and web apps using coding harnesses and LLM chain prompting, and I kept hitting the same defect: a single one-shot prompt, no matter how well-written, produced inconsistent output because the model lacked structured context.</p>
+          <div class="star-insight">
+            <span class="insight-icon">⚠️</span>
+            <span>My work at Atlas had already taught me that every serious project needed a defined PRD, architecture, and project plan before build—but most AI-assisted development skipped that discipline entirely and went straight from a vague prompt to code, <strong>letting quality problems get baked in from the start</strong>.</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="star-section star-task">
+        <div class="star-marker">
+          <span class="star-letter">T</span>
+          <span class="star-word">Task</span>
+        </div>
+        <div class="star-content">
+          <p>I set out to fix that root cause rather than patch around it project by project.</p>
+          <p>My goal was to build a repeatable framework that would force every build—agent, web app, or automation—through the same rigorous intent-extraction and documentation process I used at Atlas, so defects from unclear requirements never made it downstream into the actual build.</p>
+        </div>
+      </article>
+
+      <article class="star-section star-action">
+        <div class="star-marker">
+          <span class="star-letter">A</span>
+          <span class="star-word">Action</span>
+        </div>
+        <div class="star-content">
+          <div class="action-steps">
+            <div class="action-step">
+              <span class="step-number">01</span>
+              <div class="step-content">
+                <h4>Intent Classification</h4>
+                <p>Built a classification method that breaks down a user's prompt into its core entities—people, places, things—then runs each entity through a retrieval method I call RAG-DAL to pull relevant best practices.</p>
+                <p class="example-note">Example: A prompt like "I want to build a sneaker website in Seattle" would trigger research into ecommerce platforms, Seattle sneaker culture, and shoe retail patterns.</p>
+              </div>
+            </div>
+            <div class="action-step">
+              <span class="step-number">02</span>
+              <div class="step-content">
+                <h4>Research-Enhanced Rewriting</h4>
+                <p>That research rewrites the original prompt into a sharper, better-instructed version before it ever reaches the build LLM.</p>
+              </div>
+            </div>
+            <div class="action-step">
+              <span class="step-number">03</span>
+              <div class="step-content">
+                <h4>Non-Negotiable Outputs</h4>
+                <p>For outputs, I held the bar at what I knew from Atlas was the minimum for a defensible build: every project had to produce a PRD, an architecture diagram, and a project plan, no exceptions.</p>
+              </div>
+            </div>
+            <div class="action-step">
+              <span class="step-number">04</span>
+              <div class="step-content">
+                <h4>Framework Packaging</h4>
+                <p>Packaged this entire process into a runtime I named <strong>ROSTR</strong> (Runtime, Orchestration, State, Tools, References) and a skill called <strong>PAL</strong> (Prompt Abstraction Layer), which enforces the sequence: extract intent, enrich with RAG-DAL, generate a jobs-to-be-done report, prioritize next steps with a framework I built called NPAO, and always output a complete Build Package—never a partial one.</p>
+              </div>
+            </div>
+            <div class="action-step">
+              <span class="step-number">05</span>
+              <div class="step-content">
+                <h4>Benchmark Validation</h4>
+                <p>Rather than ship this on faith, I held it to a measurable bar. I ran the framework through 11 benchmark tasks and published the results.</p>
+                <div class="benchmark-results">
+                  <div class="benchmark-item">
+                    <span class="benchmark-value">+15.2%</span>
+                    <span class="benchmark-label">Task Completion vs Baseline</span>
+                  </div>
+                  <div class="benchmark-item">
+                    <span class="benchmark-value">+19.7%</span>
+                    <span class="benchmark-label">Output Coherence vs Baseline</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="action-step">
+              <span class="step-number">06</span>
+              <div class="step-content">
+                <h4>Model Selection Matrix</h4>
+                <p>Ran a second evaluation across five local LLMs—testing each on PAL compilation, NPAO routing, RAG grounding, Hub synthesis, and full pipeline orchestration—and used the results to define which model should handle which job:</p>
+                <ul class="model-results">
+                  <li><strong>deepseek-r1:14b</strong> scored 85.1% → default for reasoning and synthesis tasks</li>
+                  <li><strong>qwen2.5-coder:14b</strong> scored 84.4% at less than half the latency → default for balanced day-to-day use</li>
+                  <li>A model scoring only 57.7% was flagged as not recommended and excluded from the routing table entirely</li>
+                </ul>
+              </div>
+            </div>
+            <div class="action-step">
+              <span class="step-number">07</span>
+              <div class="step-content">
+                <h4>Retrieval Validation</h4>
+                <p>On the retrieval side, I benchmarked RAG-DAL's multi-pass, source-credibility-weighted retrieval against single-pass retrieval:</p>
+                <div class="benchmark-results">
+                  <div class="benchmark-item">
+                    <span class="benchmark-value">92%</span>
+                    <span class="benchmark-label">RAG-DAL Confidence</span>
+                  </div>
+                  <div class="benchmark-item">
+                    <span class="benchmark-value">68%</span>
+                    <span class="benchmark-label">Single-Pass Confidence</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="star-section star-result">
+        <div class="star-marker">
+          <span class="star-letter">R</span>
+          <span class="star-word">Result</span>
+        </div>
+        <div class="star-content">
+          <div class="result-highlight">
+            <div class="result-metric">
+              <span class="metric-value">Published</span>
+              <span class="metric-label">GitHub Repo + Research</span>
+            </div>
+            <div class="result-metric">
+              <span class="metric-value">6 Pillars</span>
+              <span class="metric-label">WAF Aligned</span>
+            </div>
+            <div class="result-metric">
+              <span class="metric-value">0</span>
+              <span class="metric-label">Silent Defects</span>
+            </div>
+          </div>
+          <p>ROSTR is now a published, testable framework—available as a GitHub repo, a live platform, and peer-reviewed research—built against AWS's own Well-Architected Framework principles.</p>
+          <p class="result-impact">Because every routing and retrieval decision is backed by a benchmark score rather than assumption, <strong>the framework won't advance a build past a model or method that fails to clear its bar</strong>—which is what turned a defect I kept seeing repeatedly (unstructured prompts producing unreliable output) into a fixed, enforced process that can't quietly recur.</p>
+        </div>
+      </article>
+
+    </section>
+
+    <section class="video-section">
+      <h3 class="video-title">📹 Case Study Walkthrough</h3>
+      <div class="video-placeholder">
+        <div class="video-upload-prompt">
+          <span class="video-icon">🎬</span>
+          <p>Video walkthrough coming soon</p>
+          <span class="video-note">ROSTR framework deep-dive and benchmark results</span>
+        </div>
+      </div>
+    </section>
+
+    <nav class="lp-nav">
+      <a href="learn-be-curious.html" class="lp-nav-btn">
+        <span>←</span> Previous: Learn and Be Curious
+      </a>
+      <a href="bias-for-action.html" class="lp-nav-btn lp-nav-next">
+        Next: Bias for Action <span>→</span>
+      </a>
+    </nav>
+
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <p class="footer-text">© 2026 Patrick Diamitani · Diamitani Industries, Inc.</p>
+      <p class="footer-made-with">Built with 🧡 and AWS Well-Architected principles</p>
+    </div>
+  </div>
+</footer>
+
+<script src="../../scripts/main.js"></script>
+</body>
+</html>

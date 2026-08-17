@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TurnRiver SDR Agent Platform — Case Study | Patrick Diamitani</title>
+  <meta name="description" content="Case study: TurnRiver SDR Agent Platform — a governed, multi-tenant AI SDR workspace built for Turn/River Growth Equity Partners and 7 portfolio companies on AWS Bedrock Agent Core." />
+  <link rel="stylesheet" href="../styles/main.css" />
+  <link rel="stylesheet" href="../styles/case-study.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+</head>
+<body>
+
+<div class="grid-bg" aria-hidden="true"></div>
+<div class="noise-overlay" aria-hidden="true"></div>
+
+<!-- NAV -->
+<nav class="nav" role="navigation">
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-logo" id="nav-logo">
+      <div class="nav-logo-badge">PD</div>
+      Patrick Diamitani
+    </a>
+    <ul class="nav-links">
+      <li><a href="../index.html#waf" class="nav-link">Well-Architected</a></li>
+      <li><a href="../index.html#lp" class="nav-link">Leadership Principles</a></li>
+      <li><a href="../index.html#cases" class="nav-link">Case Studies</a></li>
+      <li><a href="../index.html#contact" class="nav-cta">Let's Connect →</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="cs-hero">
+  <div class="container">
+    <div class="cs-hero-inner">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="../index.html">Home</a>
+        <span class="breadcrumb-sep" aria-hidden="true">→</span>
+        <a href="../index.html#cases">Case Studies</a>
+        <span class="breadcrumb-sep" aria-hidden="true">→</span>
+        <span>TurnRiver SDR Agent</span>
+      </nav>
+
+      <div class="cs-hero-tag tag-blue" style="border-color:rgba(74,158,255,0.3)">
+        🤖 PE Portfolio · Multi-Tenant · Governance-First
+      </div>
+
+      <h1 class="cs-hero-title">
+        TurnRiver SDR<br/>
+        <span class="gradient-text-blue">Agent Platform</span>
+      </h1>
+
+      <p class="cs-hero-subtitle">
+        A governed, multi-tenant AI SDR workspace built for <strong>Turn/River Growth Equity Partners</strong>
+        and 7 active portfolio companies. Eight specialized agents turn a GTM brief into an approved ICP,
+        a researched lead queue, personalized sequences, and a staged automation handoff — with
+        <strong>human approval at every external step</strong> and a full audit trail that legal teams trusted on first review.
+      </p>
+
+      <div class="cs-meta-strip">
+        <div class="cs-meta-item">
+          <span class="cs-meta-label">Client</span>
+          <span class="cs-meta-value">Turn/River Growth Equity</span>
+        </div>
+        <div class="cs-meta-item">
+          <span class="cs-meta-label">Portfolio AUM</span>
+          <span class="cs-meta-value">$4B+</span>
+        </div>
+        <div class="cs-meta-item">
+          <span class="cs-meta-label">Active Workspaces</span>
+          <span class="cs-meta-value">7 Portfolio Companies</span>
+        </div>
+        <div class="cs-meta-item">
+          <span class="cs-meta-label">Agent Count</span>
+          <span class="cs-meta-value">8 Specialized Agents</span>
+        </div>
+        <div class="cs-meta-item">
+          <span class="cs-meta-label">Compliance Incidents</span>
+          <span class="cs-meta-value" style="color:var(--accent-teal)">✓ Zero</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESULTS -->
+<section class="section" style="padding-top:0">
+  <div class="container">
+    <div class="results-strip">
+      <div class="result-box">
+        <span class="result-value">8</span>
+        <span class="result-label">Specialized AI agents in orchestration</span>
+      </div>
+      <div class="result-box">
+        <span class="result-value">7</span>
+        <span class="result-label">PE portfolio companies served</span>
+      </div>
+      <div class="result-box">
+        <span class="result-value">0</span>
+        <span class="result-label">Compliance incidents since launch</span>
+      </div>
+      <div class="result-box">
+        <span class="result-value">250+</span>
+        <span class="result-label">Tool integrations via Composio</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO COMPANIES -->
+<section class="section" style="padding-top:0">
+  <div class="container">
+    <div style="background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:20px;padding:32px">
+      <h3 style="font-family:var(--font-mono);font-size:0.72rem;letter-spacing:2px;text-transform:uppercase;color:var(--accent-aws);margin-bottom:24px">Active Portfolio Workspaces (Aug 2026)</h3>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px">
+        <div style="padding:16px;background:var(--bg-glass);border:1px solid var(--border-subtle);border-radius:12px">
+          <div style="font-weight:700;font-size:0.9rem;margin-bottom:4px">SolarWinds</div>
+          <div style="font-size:0.75rem;color:var(--text-secondary)">IT observability · take-private · $4.4B</div>
+        </div>
+        <div style="padding:16px;background:var(--bg-glass);border:1px solid var(--border-subtle);border-radius:12px">
+          <div style="font-weight:700;font-size:0.9rem;margin-bottom:4px">StarLIMS</div>
+          <div style="font-size:0.75rem;color:var(--text-secondary)">Lab/enterprise informatics</div>
+        </div>
+        <div style="padding:16px;background:var(--bg-glass);border:1px solid var(--border-subtle);border-radius:12px">
+          <div style="font-weight:700;font-size:0.9rem;margin-bottom:4px">ASCI / ActiveBatch</div>
+          <div style="font-size:0.75rem;color:var(--text-secondary)">IT & business process automation</div>
+        </div>
+        <div style="padding:16px;background:var(--bg-glass);border:1px solid var(--border-subtle);border-radius:12px">
+          <div style="font-weight:700;font-size:0.9rem;margin-bottom:4px">Commio</div>
+          <div style="font-size:0.75rem;color:var(--text-secondary)">Voice/text messaging API (CPaaS)</div>
+        </div>
+        <div style="padding:16px;background:var(--bg-glass);border:1px solid var(--border-subtle);border-radius:12px">
+          <div style="font-weight:700;font-size:0.9rem;margin-bottom:4px">Invicti</div>
+          <div style="font-size:0.75rem;color:var(--text-secondary)">Web app & API security scanning</div>
+        </div>
+        <div style="padding:16px;background:var(--bg-glass);border:1px solid var(--border-subtle);border-radius:12px">
+          <div style="font-weight:700;font-size:0.9rem;margin-bottom:4px">Paessler AG</div>
+          <div style="font-size:0.75rem;color:var(--text-secondary)">IT/OT/IoT monitoring (PRTG)</div>
+        </div>
+        <div style="padding:16px;background:var(--bg-glass);border:1px solid var(--border-subtle);border-radius:12px">
+          <div style="font-weight:700;font-size:0.9rem;margin-bottom:4px">Tufin</div>
+          <div style="font-size:0.75rem;color:var(--text-secondary)">Network security automation</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AGENT STACK -->
+<section class="section" style="padding-top:0">
+  <div class="container">
+    <div class="arch-diagram">
+      <div class="arch-diagram-title">🤖 Agent Stack Architecture</div>
+      <p style="font-size:0.875rem;color:var(--text-secondary);margin-bottom:32px">
+        One master agent orchestrates 8 specialized child agents. Research/writing agents produce artifacts
+        but <strong>never perform side effects</strong> — only the NPAO Orchestrator manages run state.
+      </p>
+
+      <div style="text-align:center;margin-bottom:24px">
+        <div style="display:inline-block;padding:16px 32px;background:rgba(255,107,53,0.1);border:2px solid rgba(255,107,53,0.4);border-radius:12px;font-weight:700;font-size:1rem">
+          turnriver-sdr-master
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px">
+        <div style="padding:14px;background:rgba(74,158,255,0.06);border:1px solid rgba(74,158,255,0.2);border-radius:10px;text-align:center">
+          <div style="font-family:var(--font-mono);font-size:0.68rem;color:var(--accent-blue);margin-bottom:6px;font-weight:700">PAL INTAKE</div>
+          <div style="font-size:0.75rem;color:var(--text-secondary)">Intent classification & brief parsing</div>
+        </div>
+        <div style="padding:14px;background:rgba(74,158,255,0.06);border:1px solid rgba(74,158,255,0.2);border-radius:10px;text-align:center">
+          <div style="font-family:var(--font-mono);font-size:0.68rem;color:var(--accent-blue);margin-bottom:6px;font-weight:700">GTM STRATEGIST</div>
+          <div style="font-size:0.75rem;color:var(--text-secondary)">ICP design & market strategy</div>
+        </div>
+        <div style="padding:14px;background:rgba(74,158,255,0.06);border:1px solid rgba(74,158,255,0.2);border-radius:10px;text-align:center">
+          <div style="font-family:var(--font-mono);font-size:0.68rem;color:var(--accent-blue);margin-bottom:6px;font-weight:700">RAG-DAL RESEARCHER</div>
+          <div style="font-size:0.75rem;color:var(--text-secondary)">Pain-point research & evidence labeling</div>
+        </div>
+        <div style="padding:14px;background:rgba(74,158,255,0.06);border:1px solid rgba(74,158,255,0.2);border-radius:10px;text-align:center">
+          <div style="font-family:var(--font-mono);font-size:0.68rem;color:var(--accent-blue);margin-bottom:6px;font-weight:700">PROSPECT QUALIFIER</div>
+          <div style="font-size:0.75rem;color:var(--text-secondary)">Lead scoring & ICP fit validation</div>
+        </div>
+        <div style="padding:14px;background:rgba(139,92,246,0.06);border:1px solid rgba(139,92,246,0.2);border-radius:10px;text-align:center">
+          <div style="font-family:var(--font-mono);font-size:0.68rem;color:var(--accent-purple);margin-bottom:6px;font-weight:700">SEQUENCE ARCHITECT</div>
+          <div style="font-size:0.75rem;color:var(--text-secondary)">Email & DM sequence drafting</div>
+        </div>
+        <div style="padding:14px;background:rgba(139,92,246,0.06);border:1px solid rgba(139,92,246,0.2);border-radius:10px;text-align:center">
+          <div style="font-family:var(--font-mono);font-size:0.68rem;color:var(--accent-purple);margin-bottom:6px;font-weight:700">AUTOMATION PLANNER</div>
+          <div style="font-size:0.75rem;color:var(--text-secondary)">n8n workflow configuration</div>
+        </div>
+        <div style="padding:14px;background:rgba(255,107,53,0.06);border:1px solid rgba(255,107,53,0.2);border-radius:10px;text-align:center">
+          <div style="font-family:var(--font-mono);font-size:0.68rem;color:var(--accent-orange);margin-bottom:6px;font-weight:700">COMPLIANCE GATE</div>
+          <div style="font-size:0.75rem;color:var(--text-secondary)">Suppression + approval enforcement</div>
+        </div>
+        <div style="padding:14px;background:rgba(0,212,170,0.06);border:1px solid rgba(0,212,170,0.2);border-radius:10px;text-align:center">
+          <div style="font-family:var(--font-mono);font-size:0.68rem;color:var(--accent-teal);margin-bottom:6px;font-weight:700">NPAO ORCHESTRATOR</div>
+          <div style="font-size:0.75rem;color:var(--text-secondary)">Run state manager (side effects only here)</div>
+        </div>
+      </div>
+
+      <!-- Runtime flow -->
+      <div style="margin-top:32px;padding:20px;background:var(--bg-glass);border-radius:12px;font-family:var(--font-mono);font-size:0.75rem;color:var(--text-secondary);line-height:2">
+        <span style="color:var(--accent-orange)">→</span> chat intake
+        <span style="color:var(--accent-orange)"> → </span> PAL intent
+        <span style="color:var(--accent-orange)"> → </span> GTM Strategist
+        <span style="color:var(--accent-orange)"> → </span> RAG-DAL research ↔ Prospect Qualifier
+        <span style="color:var(--accent-orange)"> → </span> Sequence Architect
+        <span style="color:var(--accent-orange)"> → </span> Compliance Gate
+        <span style="color:var(--accent-orange)"> → </span> <span style="color:var(--accent-teal)">approval</span>
+        <span style="color:var(--accent-orange)"> → </span> Automation Planner dry-run
+        <span style="color:var(--accent-orange)"> → </span> staged enrollment
+        <span style="color:var(--accent-orange)"> → </span> results ingestion
+        <span style="color:var(--accent-orange)"> → </span> dashboard
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STAR CASE STUDY -->
+<section class="section" style="padding-top:0">
+  <div class="container">
+    <div class="star-section">
+      <h2 class="star-section-title">STAR Case Study</h2>
+      <div class="star-grid">
+
+        <div class="star-block">
+          <div class="star-block-label">
+            <span class="star-block-key">S · Situation</span>
+            <span class="star-block-sub">The problem</span>
+          </div>
+          <div class="star-block-content">
+            Turn/River's PE portfolio companies (SolarWinds, Invicti, Commio, and 4 others) needed
+            compliant, auditable outbound sales at scale — but each operated as a separate entity with
+            its own ICP, suppression lists, and approval chains. Prior vendor tools had sent unauthorized
+            emails at portfolio companies, creating regulatory exposure. Legal teams were blocking AI
+            adoption. <strong>The operating teams needed an AI SDR they could actually trust.</strong>
+          </div>
+        </div>
+
+        <div class="star-block">
+          <div class="star-block-label">
+            <span class="star-block-key">T · Task</span>
+            <span class="star-block-sub">The objective</span>
+          </div>
+          <div class="star-block-content">
+            Design and build a multi-tenant AI SDR platform that: (1) served all 7 portfolio companies
+            from a single system with <strong>zero cross-tenant data leakage</strong>, (2) enforced
+            human approval before every external action, (3) was transparent enough for legal sign-off
+            in one meeting, and (4) could be demo-ready for PE review within weeks.
+          </div>
+        </div>
+
+        <div class="star-block">
+          <div class="star-block-label">
+            <span class="star-block-key">A · Action</span>
+            <span class="star-block-sub">What I built</span>
+          </div>
+          <div class="star-block-content">
+            Designed <strong>governance-first</strong>: the Compliance Gate agent became the architectural
+            center — suppression enforcement before staging, approval events required before any
+            external action, dry-run preview on scope changes.<br/><br/>
+            Built 8 specialized agents with clear role separation: research agents produce artifacts but
+            <strong>cannot perform side effects</strong> — only the NPAO Orchestrator manages run state.
+            This is the single most important design decision: it made the system provably safe to legal
+            teams because side effects were physically isolated.<br/><br/>
+            Integrated 250+ tools via <strong>Composio MCP</strong> (Gmail, LinkedIn, HubSpot, Slack,
+            Clay, n8n) through one connector hub. Frontend on Next.js with Vercel SDK for clean
+            handoff. Backend on <strong>AWS Bedrock Agent Core</strong> with Supabase for workspace
+            state, ICPs, leads, runs, approvals, and audit logs.
+          </div>
+        </div>
+
+        <div class="star-block" style="border-color:rgba(0,212,170,0.2)">
+          <div class="star-block-label">
+            <span class="star-block-key" style="color:var(--accent-teal);background:rgba(0,212,170,0.08);border-color:rgba(0,212,170,0.2)">R · Result</span>
+            <span class="star-block-sub">Measured outcomes</span>
+          </div>
+          <div class="star-block-content" style="color:var(--text-primary)">
+            <strong>7 active portfolio workspaces operational</strong> — each with its own brief, ICP,
+            data-provider binding, approvers, and suppression rules. Zero compliance incidents since
+            launch. Legal teams approved the platform on first review — the governance model became
+            a selling point, not just a compliance checkbox.<br/><br/>
+            <strong>Demo success path</strong>: "Build an ICP for our workflow software, research 10
+            VP Operations prospects, create a 4-step sequence" → ICP card + prioritized lead table +
+            evidence labels → approve → Stage 10 contacts → audit event. <em>No email sent without approval.</em>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GOVERNANCE MODEL -->
+<section class="section" style="padding-top:0">
+  <div class="container">
+    <div style="background:var(--bg-card);border:1px solid rgba(255,107,53,0.2);border-radius:20px;padding:32px">
+      <h3 style="font-family:var(--font-display);font-weight:700;font-size:1.1rem;margin-bottom:8px;color:var(--accent-orange)">🔐 Binding Governance Model</h3>
+      <p style="font-size:0.875rem;color:var(--text-secondary);margin-bottom:24px">These are not guidelines — they are architectural constraints enforced in code.</p>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div style="display:flex;gap:12px;align-items:flex-start;font-size:0.875rem">
+          <span style="color:var(--accent-teal);font-weight:700;flex-shrink:0">✓</span>
+          <span style="color:var(--text-secondary)"><strong style="color:var(--text-primary)">No external sending / enrollment / CRM-write / workflow activation</strong> without an approval event logged in the audit trail.</span>
+        </div>
+        <div style="display:flex;gap:12px;align-items:flex-start;font-size:0.875rem">
+          <span style="color:var(--accent-teal);font-weight:700;flex-shrink:0">✓</span>
+          <span style="color:var(--text-secondary)"><strong style="color:var(--text-primary)">ENV:-only secrets</strong> — never committed, never embedded in agent prompts, never pasted in chat.</span>
+        </div>
+        <div style="display:flex;gap:12px;align-items:flex-start;font-size:0.875rem">
+          <span style="color:var(--accent-teal);font-weight:700;flex-shrink:0">✓</span>
+          <span style="color:var(--text-secondary)"><strong style="color:var(--text-primary)">Source + confidence labeling</strong> on all AI-generated content — never present inferred data as fact.</span>
+        </div>
+        <div style="display:flex;gap:12px;align-items:flex-start;font-size:0.875rem">
+          <span style="color:var(--accent-teal);font-weight:700;flex-shrink:0">✓</span>
+          <span style="color:var(--text-secondary)"><strong style="color:var(--text-primary)">Suppression / do-not-contact enforced</strong> before any staging action, at the Compliance Gate level.</span>
+        </div>
+        <div style="display:flex;gap:12px;align-items:flex-start;font-size:0.875rem">
+          <span style="color:var(--accent-teal);font-weight:700;flex-shrink:0">✓</span>
+          <span style="color:var(--text-secondary)"><strong style="color:var(--text-primary)">Dry-run preview + re-approval</strong> on any scope / contact-count / destination / sequence change.</span>
+        </div>
+        <div style="display:flex;gap:12px;align-items:flex-start;font-size:0.875rem">
+          <span style="color:var(--accent-teal);font-weight:700;flex-shrink:0">✓</span>
+          <span style="color:var(--text-secondary)"><strong style="color:var(--text-primary)">Closed context per workspace</strong> — portfolio companies see only their own data. Zero cross-company knowledge leakage.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AWS & LP ALIGNMENT -->
+<section class="section" style="padding-top:0">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
+      <div class="lp-alignment">
+        <div class="lp-alignment-title">🏛️ WAF Alignment</div>
+        <div class="lp-alignment-grid">
+          <span class="lp-chip">✅ Operational Excellence — audit trail + dry-run monitoring</span>
+          <span class="lp-chip">✅ Security — tenant isolation + ENV secrets + suppression</span>
+          <span class="lp-chip">✅ Reliability — staged rollout + approval gates</span>
+          <span class="lp-chip">✅ Performance — Bedrock on-demand + Composio webhooks</span>
+          <span class="lp-chip">✅ Cost Optimization — serverless, no idle agents</span>
+        </div>
+      </div>
+      <div class="lp-alignment">
+        <div class="lp-alignment-title">🎯 Leadership Principles</div>
+        <div class="lp-alignment-grid">
+          <span class="lp-chip" style="background:rgba(255,107,53,0.08);border-color:rgba(255,107,53,0.2);color:var(--accent-orange)">Customer Obsession — built for legal trust, not just function</span>
+          <span class="lp-chip" style="background:rgba(255,107,53,0.08);border-color:rgba(255,107,53,0.2);color:var(--accent-orange)">Earn Trust — governance model legal teams approved on day 1</span>
+          <span class="lp-chip" style="background:rgba(255,107,53,0.08);border-color:rgba(255,107,53,0.2);color:var(--accent-orange)">Invent & Simplify — 8-step manual SDR → single chat prompt</span>
+          <span class="lp-chip" style="background:rgba(255,107,53,0.08);border-color:rgba(255,107,53,0.2);color:var(--accent-orange)">Bias for Action — full PE-review-ready platform in weeks</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section" style="padding-top:0">
+  <div class="container">
+    <div style="display:flex;gap:16px;flex-wrap:wrap;align-items:center">
+      <a href="artispreneur-case-study.html" class="btn-primary" id="btn-next-case">
+        Next Case Study: Artispreneur.com →
+      </a>
+      <a href="../index.html" class="btn-secondary" id="btn-back">
+        ← Back to Portfolio
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-inner">
+      <p class="footer-text">© 2026 Patrick Diamitani · Diamitani Industries, Inc.</p>
+      <p class="footer-made-with">Built with governance, trust, and AWS 🧡</p>
+    </div>
+  </div>
+</footer>
+
+<script src="../scripts/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Artispreneur — AWS Multi-Tenant Architecture Case Study | Patrick Diamitani</title>
+  <meta name="description" content="Case study: Artispreneur.com — the music business operating system. Multi-tenant SaaS built on Next.js 14, Supabase, Azure AI, and Stripe. 6 platform products, 160+ directory categories." />
+  <link rel="stylesheet" href="../styles/main.css" />
+  <link rel="stylesheet" href="../styles/case-study.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+</head>
+<body>
+
+<div class="grid-bg" aria-hidden="true"></div>
+<div class="noise-overlay" aria-hidden="true"></div>
+
+<!-- NAV -->
+<nav class="nav" role="navigation">
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-logo" id="nav-logo">
+      <div class="nav-logo-badge">PD</div>
+      Patrick Diamitani
+    </a>
+    <ul class="nav-links">
+      <li><a href="../index.html#waf" class="nav-link">Well-Architected</a></li>
+      <li><a href="../index.html#lp" class="nav-link">Leadership Principles</a></li>
+      <li><a href="../index.html#cases" class="nav-link">Case Studies</a></li>
+      <li><a href="https://www.artispreneur.com" class="nav-cta" target="_blank" rel="noopener">Visit Artispreneur.com →</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="cs-hero">
+  <div class="container">
+    <div class="cs-hero-inner">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="../index.html">Home</a>
+        <span class="breadcrumb-sep" aria-hidden="true">→</span>
+        <a href="../index.html#cases">Case Studies</a>
+        <span class="breadcrumb-sep" aria-hidden="true">→</span>
+        <span>Artispreneur.com</span>
+      </nav>
+
+      <div class="cs-hero-tag tag-purple" style="border-color:rgba(139,92,246,0.3)">
+        🎵 Multi-Tenant SaaS · Creator Economy · Live Product
+      </div>
+
+      <h1 class="cs-hero-title">
+        Artispreneur —<br/>
+        <span style="background:linear-gradient(135deg,#8B5CF6,#EC4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Art Means Business.</span>
+      </h1>
+
+      <p class="cs-hero-subtitle">
+        <a href="https://www.artispreneur.com" target="_blank" rel="noopener" style="color:var(--accent-orange)">Artispreneur.com</a> is the
+        <strong>music business operating system for independent artists</strong>. I designed and built the entire platform —
+        a multi-tenant SaaS with 6 products, an AI management agent, contract tools, P.R.O. setup, and
+        a 160+ category artist directory — from architecture to production, running live at scale.
+      </p>
+
+      <div class="cs-meta-strip">
+        <div class="cs-meta-item">
+          <span class="cs-meta-label">URL</span>
+          <span class="cs-meta-value"><a href="https://www.artispreneur.com" target="_blank" rel="noopener" style="color:var(--accent-orange)">artispreneur.com</a></span>
+        </div>
+        <div class="cs-meta-item">
+          <span class="cs-meta-label">Platform Products</span>
+          <span class="cs-meta-value">6 Products</span>
+        </div>
+        <div class="cs-meta-item">
+          <span class="cs-meta-label">Directory Categories</span>
+          <span class="cs-meta-value">160+</span>
+        </div>
+        <div class="cs-meta-item">
+          <span class="cs-meta-label">Pricing</span>
+          <span class="cs-meta-value">Free + $99/mo All-Access</span>
+        </div>
+        <div class="cs-meta-item">
+          <span class="cs-meta-label">Status</span>
+          <span class="cs-meta-value" style="color:var(--accent-teal)">✓ Live in Production</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESULTS -->
+<section class="section" style="padding-top:0">
+  <div class="container">
+    <div class="results-strip">
+      <div class="result-box">
+        <span class="result-value">6</span>
+        <span class="result-label">Platform products in one OS</span>
+      </div>
+      <div class="result-box">
+        <span class="result-value">160+</span>
+        <span class="result-label">Artist directory categories</span>
+      </div>
+      <div class="result-box">
+        <span class="result-value">$0</span>
+        <span class="result-label">To get started (free tier)</span>
+      </div>
+      <div class="result-box">
+        <span class="result-value">24/7</span>
+        <span class="result-label">AI Manager availability</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCT OVERVIEW -->
+<section class="section" style="padding-top:0">
+  <div class="container">
+    <div class="arch-diagram">
+      <div class="arch-diagram-title">🎵 Platform Products</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:16px">
+
+        <div style="padding:24px;background:rgba(139,92,246,0.06);border:1px solid rgba(139,92,246,0.2);border-radius:14px">
+          <div style="font-size:1.5rem;margin-bottom:12px">🤖</div>
+          <div style="font-weight:700;font-size:0.95rem;margin-bottom:4px;color:var(--text-primary)">AI Manager</div>
+          <div style="font-family:var(--font-mono);font-size:0.65rem;color:var(--accent-purple);margin-bottom:8px;background:rgba(139,92,246,0.1);border:1px solid rgba(139,92,246,0.2);border-radius:4px;padding:2px 6px;display:inline-block">FLAGSHIP</div>
+          <div style="font-size:0.8rem;color:var(--text-secondary);line-height:1.6">24/7 AI agent trained on music industry expertise. Guides artists through business decisions, booking, contracts, and revenue strategy.</div>
+        </div>
+
+        <div style="padding:24px;background:rgba(255,107,53,0.06);border:1px solid rgba(255,107,53,0.2);border-radius:14px">
+          <div style="font-size:1.5rem;margin-bottom:12px">🎓</div>
+          <div style="font-weight:700;font-size:0.95rem;margin-bottom:4px;color:var(--text-primary)">Academy</div>
+          <div style="font-size:0.8rem;color:var(--text-secondary);line-height:1.6">Music business education — what the industry assumes you already know: P.R.O. registration, royalty splits, contract basics, and how money flows in music.</div>
+        </div>
+
+        <div style="padding:24px;background:rgba(74,158,255,0.06);border:1px solid rgba(74,158,255,0.2);border-radius:14px">
+          <div style="font-size:1.5rem;margin-bottom:12px">📄</div>
+          <div style="font-weight:700;font-size:0.95rem;margin-bottom:4px;color:var(--text-primary)">Contracts</div>
+          <div style="font-size:0.8rem;color:var(--text-secondary);line-height:1.6">Artist-friendly contract templates — performance agreements, licensing, management deals, and split sheets. Protect your work before the handshake.</div>
+        </div>
+
+        <div style="padding:24px;background:rgba(0,212,170,0.06);border:1px solid rgba(0,212,170,0.2);border-radius:14px">
+          <div style="font-size:1.5rem;margin-bottom:12px">📋</div>
+          <div style="font-weight:700;font-size:0.95rem;margin-bottom:4px;color:var(--text-primary)">EPK</div>
+          <div style="font-size:0.8rem;color:var(--text-secondary);line-height:1.6">Electronic Press Kit builder — professional bio, photos, music, tour dates, and media links packaged for bookers, labels, and press in minutes.</div>
+        </div>
+
+        <div style="padding:24px;background:rgba(255,153,0,0.06);border:1px solid rgba(255,153,0,0.2);border-radius:14px">
+          <div style="font-size:1.5rem;margin-bottom:12px">🗺️</div>
+          <div style="font-weight:700;font-size:0.95rem;margin-bottom:4px;color:var(--text-primary)">Directory</div>
+          <div style="font-family:var(--font-mono);font-size:0.65rem;color:var(--accent-aws);margin-bottom:8px;background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.22);border-radius:4px;padding:2px 6px;display:inline-block">FREE</div>
+          <div style="font-size:0.8rem;color:var(--text-secondary);line-height:1.6">160+ category artist directory. Every Artispreneur gets a free listing — connect with promoters, producers, collaborators, and fans.</div>
+        </div>
+
+        <div style="padding:24px;background:rgba(139,92,246,0.06);border:1px solid rgba(139,92,246,0.2);border-radius:14px">
+          <div style="font-size:1.5rem;margin-bottom:12px">🎵</div>
+          <div style="font-weight:700;font-size:0.95rem;margin-bottom:4px;color:var(--text-primary)">Catalog</div>
+          <div style="font-size:0.8rem;color:var(--text-secondary);line-height:1.6">Music catalog management — register compositions, manage splits, track P.R.O. registrations, and claim every dollar your music earns.</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TECH ARCHITECTURE -->
+<section class="section" style="padding-top:0">
+  <div class="container">
+    <div class="arch-diagram">
+      <div class="arch-diagram-title">⚙️ Technical Architecture</div>
+
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:16px">
+        <div style="text-align:center;padding:20px;background:var(--bg-glass);border:1px solid var(--border-subtle);border-radius:12px">
+          <div style="font-size:1.5rem;margin-bottom:8px">⚡</div>
+          <div style="font-weight:700;font-size:0.85rem;margin-bottom:4px">Frontend</div>
+          <div style="font-family:var(--font-mono);font-size:0.72rem;color:var(--text-secondary)">Next.js 14<br/>App Router</div>
+        </div>
+        <div style="text-align:center;padding:20px;background:var(--bg-glass);border:1px solid var(--border-subtle);border-radius:12px">
+          <div style="font-size:1.5rem;margin-bottom:8px">🗄️</div>
+          <div style="font-weight:700;font-size:0.85rem;margin-bottom:4px">Database</div>
+          <div style="font-family:var(--font-mono);font-size:0.72rem;color:var(--text-secondary)">Supabase<br/>Postgres + Auth</div>
+        </div>
+        <div style="text-align:center;padding:20px;background:var(--bg-glass);border:1px solid var(--border-subtle);border-radius:12px">
+          <div style="font-size:1.5rem;margin-bottom:8px">🧠</div>
+          <div style="font-weight:700;font-size:0.85rem;margin-bottom:4px">AI Layer</div>
+          <div style="font-family:var(--font-mono);font-size:0.72rem;color:var(--text-secondary)">Azure AI<br/>Multi-provider LLM</div>
+        </div>
+        <div style="text-align:center;padding:20px;background:var(--bg-glass);border:1px solid var(--border-subtle);border-radius:12px">
+          <div style="font-size:1.5rem;margin-bottom:8px">💳</div>
+          <div style="font-weight:700;font-size:0.85rem;margin-bottom:4px">Payments</div>
+          <div style="font-family:var(--font-mono);font-size:0.72rem;color:var(--text-secondary)">Stripe<br/>Subscription billing</div>
+        </div>
+      </div>
+
+      <div style="margin-top:24px;padding:20px;background:var(--bg-glass);border:1px solid var(--border-subtle);border-radius:12px">
+        <div style="font-family:var(--font-mono);font-size:0.72rem;color:var(--accent-aws);margin-bottom:12px">AWS MIGRATION PATH (DOCUMENTED)</div>
+        <p style="font-size:0.875rem;color:var(--text-secondary);line-height:1.7">
+          The Artispreneur architecture is documented for AWS migration in
+          <em>Artispreneur — Multi-Tenant AWS Architecture.pdf</em>. The migration path maps:
+          Azure AI → <strong>AWS Bedrock</strong> (Claude/Titan), Supabase → <strong>Aurora Serverless</strong>,
+          Vercel hosting → <strong>CloudFront + S3</strong> static + <strong>ECS Fargate</strong> for API,
+          and Stripe webhooks → <strong>API Gateway + Lambda</strong> for event processing.
+          The multi-tenant isolation model maps directly to <strong>AWS Organizations</strong> with per-tenant
+          IAM boundaries.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STAR CASE STUDY -->
+<section class="section" style="padding-top:0">
+  <div class="container">
+    <div class="star-section">
+      <h2 class="star-section-title">STAR Case Study</h2>
+      <div class="star-grid">
+
+        <div class="star-block">
+          <div class="star-block-label">
+            <span class="star-block-key">S · Situation</span>
+            <span class="star-block-sub">The problem</span>
+          </div>
+          <div class="star-block-content">
+            Independent artists — the ultimate solo founders — operate in an environment of scarcity: no
+            label backing, no legal team, no manager, and no business education. They sign bad contracts,
+            miss P.R.O. registrations, build no business entity, and leave royalties unclaimed.
+            <strong>Every artist is effectively an entrepreneur who's never been told they are one.</strong>
+            Existing tools served either hobbyists or major-label artists — nothing served the
+            entrepreneurial independent in the middle.
+          </div>
+        </div>
+
+        <div class="star-block">
+          <div class="star-block-label">
+            <span class="star-block-key">T · Task</span>
+            <span class="star-block-sub">The objective</span>
+          </div>
+          <div class="star-block-content">
+            Design and build a complete music business operating system from scratch — not a single tool,
+            but a platform — that could serve thousands of independent artists simultaneously as separate
+            tenants with their own data, profiles, catalogs, and AI manager instances. Make the core
+            free forever, with a $99/mo All-Access tier that unlocks the full AI workspace.
+          </div>
+        </div>
+
+        <div class="star-block">
+          <div class="star-block-label">
+            <span class="star-block-key">A · Action</span>
+            <span class="star-block-sub">What I built</span>
+          </div>
+          <div class="star-block-content">
+            Built the full platform end-to-end: <strong>Next.js 14 App Router</strong> for the frontend
+            (with shared design system in brand.css, shared runtime in app.js, and a registered video
+            embed registry to prevent deferred script race conditions — real production engineering).
+            <strong>Supabase</strong> for multi-tenant Postgres with row-level security per artist account.
+            <strong>Azure AI</strong> for the AI Manager agent with multi-provider LLM routing.
+            <strong>Stripe</strong> for subscription billing with a modal signup/sign-in flow and plan selection.<br/><br/>
+            Product architecture: 6 platform modules (AI Manager, Academy, Contracts, EPK, Directory,
+            Catalog), each independently navigable but sharing one design system and one authentication
+            session. Business model: Free tier forever + $99/mo All-Access with full AI workspace.
+          </div>
+        </div>
+
+        <div class="star-block" style="border-color:rgba(0,212,170,0.2)">
+          <div class="star-block-label">
+            <span class="star-block-key" style="color:var(--accent-teal);background:rgba(0,212,170,0.08);border-color:rgba(0,212,170,0.2)">R · Result</span>
+            <span class="star-block-sub">Measured outcomes</span>
+          </div>
+          <div class="star-block-content" style="color:var(--text-primary)">
+            <strong>Live at artispreneur.com</strong> — 6 platform products serving the independent artist economy.
+            160+ directory categories enabling artist discoverability. Free tier drives acquisition;
+            All-Access unlocks the full AI management experience.<br/><br/>
+            Demonstrates the ability to design, architect, and ship a <strong>full multi-tenant SaaS product
+            independently</strong> — from domain to database schema to design system to payment flow —
+            exactly the kind of full-stack founder thinking that helps startups make pragmatic architectural
+            decisions at every lifecycle stage.
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AWS RELEVANCE -->
+<section class="section" style="padding-top:0">
+  <div class="container">
+    <div class="lp-alignment">
+      <div class="lp-alignment-title">🎯 Why This Matters for AWS Startups SA</div>
+      <p style="font-size:0.875rem;color:var(--text-secondary);line-height:1.7;margin-bottom:20px">
+        Artispreneur demonstrates the exact pattern of startup I'd be advising as an AWS SA:
+        an ambitious founder addressing an underserved market, operating under resource scarcity,
+        who needs pragmatic technical guidance to scale. I've been that founder — I know what
+        decisions matter at each lifecycle stage.
+      </p>
+      <div class="lp-alignment-grid">
+        <span class="lp-chip" style="background:rgba(255,107,53,0.08);border-color:rgba(255,107,53,0.2);color:var(--accent-orange)">Think Big — turned a single artist problem into a full business OS</span>
+        <span class="lp-chip" style="background:rgba(255,107,53,0.08);border-color:rgba(255,107,53,0.2);color:var(--accent-orange)">Customer Obsession — free tier to maximize access for underserved artists</span>
+        <span class="lp-chip" style="background:rgba(255,107,53,0.08);border-color:rgba(255,107,53,0.2);color:var(--accent-orange)">Invent & Simplify — 6 complex business functions → one OS</span>
+        <span class="lp-chip" style="background:rgba(255,107,53,0.08);border-color:rgba(255,107,53,0.2);color:var(--accent-orange)">Bias for Action — shipped full SaaS solo, live in production</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section" style="padding-top:0">
+  <div class="container">
+    <div style="display:flex;gap:16px;flex-wrap:wrap;align-items:center">
+      <a href="https://www.artispreneur.com" class="btn-primary" id="btn-artispreneur" target="_blank" rel="noopener">
+        🎵 Visit Artispreneur.com →
+      </a>
+      <a href="audit-agent.html" class="btn-secondary" id="btn-audit">
+        Next: AWS Audit Agent →
+      </a>
+      <a href="../index.html" class="btn-secondary" id="btn-back">
+        ← Back to Portfolio
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-inner">
+      <p class="footer-text">© 2026 Patrick Diamitani · Diamitani Industries, Inc.</p>
+      <p class="footer-made-with">Art means business. And business means AWS. 🧡</p>
+    </div>
+  </div>
+</footer>
+
+<script src="../scripts/main.js"></script>
+</body>
+</html>

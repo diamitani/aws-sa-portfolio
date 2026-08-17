@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ROSTR × AWS Well-Architected Framework — Patrick Diamitani</title>
+  <link rel="stylesheet" href="../styles/main.css" />
+  <style>
+    .waf-page {
+      padding-top: 120px;
+      padding-bottom: 80px;
+      min-height: 100vh;
+      position: relative;
+      z-index: 2;
+    }
+
+    .waf-header {
+      text-align: center;
+      max-width: 900px;
+      margin: 0 auto 80px;
+    }
+
+    .waf-page-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 5vw, 3.5rem);
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 24px;
+    }
+
+    .waf-page-subtitle {
+      font-size: 1.15rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: 32px;
+    }
+
+    /* Architecture Diagram */
+    .arch-diagram {
+      max-width: 1100px;
+      margin: 0 auto 80px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 24px;
+      padding: 48px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .arch-diagram::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent-orange), transparent);
+    }
+
+    .arch-diagram-title {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent-aws);
+      margin-bottom: 32px;
+      text-align: center;
+    }
+
+    .arch-flow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .arch-component {
+      padding: 20px 28px;
+      background: var(--bg-glass);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.25s var(--ease-out);
+      min-width: 140px;
+    }
+
+    .arch-component:hover,
+    .arch-component.active {
+      background: rgba(255,107,53,0.08);
+      border-color: var(--accent-orange);
+      transform: translateY(-4px);
+    }
+
+    .arch-component-icon {
+      font-size: 1.5rem;
+      margin-bottom: 8px;
+    }
+
+    .arch-component-name {
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin-bottom: 4px;
+    }
+
+    .arch-component-sub {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--text-muted);
+    }
+
+    .arch-arrow {
+      font-size: 1.5rem;
+      color: var(--accent-orange);
+      opacity: 0.5;
+    }
+
+    /* Component Detail Panel */
+    .component-detail {
+      max-width: 1100px;
+      margin: 0 auto 80px;
+      display: none;
+    }
+
+    .component-detail.visible {
+      display: block;
+      animation: slideIn 0.3s var(--ease-out);
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .detail-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 24px;
+      overflow: hidden;
+    }
+
+    .detail-header {
+      padding: 32px 40px;
+      background: linear-gradient(135deg, rgba(255,107,53,0.1), rgba(74,158,255,0.05));
+      border-bottom: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .detail-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.75rem;
+      background: rgba(255,107,53,0.15);
+      border: 1px solid rgba(255,107,53,0.25);
+    }
+
+    .detail-title-wrap {
+      flex: 1;
+    }
+
+    .detail-title {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .detail-subtitle {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+
+    .detail-body {
+      padding: 40px;
+    }
+
+    .detail-description {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      margin-bottom: 32px;
+    }
+
+    /* WAF Mapping */
+    .waf-mapping {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .waf-mapping-card {
+      padding: 24px;
+      background: var(--bg-glass);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      transition: all 0.25s var(--ease-out);
+    }
+
+    .waf-mapping-card:hover {
+      border-color: rgba(255,107,53,0.2);
+      transform: translateY(-4px);
+    }
+
+    .mapping-pillar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .mapping-pillar-icon {
+      font-size: 1.25rem;
+    }
+
+    .mapping-pillar-name {
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    .mapping-description {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* Pillar Deep Dive Section */
+    .pillars-deep-dive {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .pillar-section {
+      margin-bottom: 48px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .pillar-header {
+      padding: 28px 32px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .pillar-header:hover {
+      background: rgba(255,107,53,0.03);
+    }
+
+    .pillar-header-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+    }
+
+    .pillar-ops .pillar-header-icon { background: rgba(139,92,246,0.15); }
+    .pillar-sec .pillar-header-icon { background: rgba(255,153,0,0.15); }
+    .pillar-rel .pillar-header-icon { background: rgba(74,158,255,0.15); }
+    .pillar-perf .pillar-header-icon { background: rgba(255,107,53,0.15); }
+    .pillar-cost .pillar-header-icon { background: rgba(0,212,170,0.15); }
+    .pillar-sus .pillar-header-icon { background: rgba(34,197,94,0.15); }
+
+    .pillar-header-text {
+      flex: 1;
+    }
+
+    .pillar-header-title {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .pillar-header-subtitle {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+
+    .pillar-toggle {
+      font-size: 1.25rem;
+      color: var(--text-muted);
+      transition: transform 0.3s var(--ease-out);
+    }
+
+    .pillar-section.open .pillar-toggle {
+      transform: rotate(180deg);
+    }
+
+    .pillar-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s var(--ease-out);
+    }
+
+    .pillar-section.open .pillar-content {
+      max-height: 1000px;
+    }
+
+    .pillar-content-inner {
+      padding: 0 32px 32px;
+    }
+
+    .rostr-mapping {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 16px;
+    }
+
+    .rostr-component {
+      padding: 20px 24px;
+      background: var(--bg-glass);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+    }
+
+    .rostr-component-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .rostr-component-badge {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      padding: 4px 8px;
+      background: rgba(255,107,53,0.1);
+      border: 1px solid rgba(255,107,53,0.2);
+      border-radius: 6px;
+      color: var(--accent-orange);
+    }
+
+    .rostr-component-name {
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .rostr-component-text {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* Legend */
+    .legend {
+      max-width: 1100px;
+      margin: 80px auto 0;
+      padding: 32px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+    }
+
+    .legend-title {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent-orange);
+      margin-bottom: 20px;
+    }
+
+    .legend-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .legend-badge {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      background: rgba(255,107,53,0.1);
+      border: 1px solid rgba(255,107,53,0.2);
+      border-radius: 6px;
+      color: var(--accent-orange);
+    }
+
+    .legend-text {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+    }
+
+    @media (max-width: 900px) {
+      .arch-flow {
+        flex-direction: column;
+      }
+      .arch-arrow {
+        transform: rotate(90deg);
+      }
+      .waf-mapping {
+        grid-template-columns: 1fr;
+      }
+      .rostr-mapping {
+        grid-template-columns: 1fr;
+      }
+      .legend-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .legend-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="grid-bg" aria-hidden="true"></div>
+<div class="noise-overlay" aria-hidden="true"></div>
+
+<nav class="nav scrolled" role="navigation">
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-logo">
+      <div class="nav-logo-badge">PD</div>
+      Patrick Diamitani
+    </a>
+    <ul class="nav-links">
+      <li><a href="../index.html#lp" class="nav-link">Leadership</a></li>
+      <li><a href="../index.html#waf" class="nav-link">Well-Architected</a></li>
+      <li><a href="developer-advocacy.html" class="nav-link">Developer Advocacy</a></li>
+      <li><a href="../index.html#contact" class="nav-cta">Let's Connect →</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="waf-page">
+  <div class="container">
+
+    <header class="waf-header">
+      <div class="section-label">Custom Agent Harness × AWS WAF</div>
+      <h1 class="waf-page-title">
+        ROSTR Framework<br/>
+        <span class="gradient-text">mapped to six pillars.</span>
+      </h1>
+      <p class="waf-page-subtitle">
+        The ROSTR Framework (Runtime, Orchestration, State, Tools, References) is my production
+        architecture for multi-agent systems. Every component aligns directly to AWS Well-Architected
+        Framework principles. Click any component to see how.
+      </p>
+    </header>
+
+    <!-- Interactive Architecture Diagram -->
+    <div class="arch-diagram">
+      <div class="arch-diagram-title">⚡ ROSTR Agent Architecture Flow</div>
+      <div class="arch-flow">
+
+        <div class="arch-component" data-component="pal" onclick="showComponent('pal')">
+          <div class="arch-component-icon">🎯</div>
+          <div class="arch-component-name">PAL</div>
+          <div class="arch-component-sub">Intent Compiler</div>
+        </div>
+
+        <span class="arch-arrow">→</span>
+
+        <div class="arch-component" data-component="npao" onclick="showComponent('npao')">
+          <div class="arch-component-icon">🔀</div>
+          <div class="arch-component-name">NPAO</div>
+          <div class="arch-component-sub">Phase Router</div>
+        </div>
+
+        <span class="arch-arrow">→</span>
+
+        <div class="arch-component" data-component="ragdal" onclick="showComponent('ragdal')">
+          <div class="arch-component-icon">📚</div>
+          <div class="arch-component-name">RAG-DAL</div>
+          <div class="arch-component-sub">Knowledge Layer</div>
+        </div>
+
+        <span class="arch-arrow">→</span>
+
+        <div class="arch-component" data-component="agent" onclick="showComponent('agent')">
+          <div class="arch-component-icon">🤖</div>
+          <div class="arch-component-name">Agent</div>
+          <div class="arch-component-sub">Execution</div>
+        </div>
+
+        <span class="arch-arrow">→</span>
+
+        <div class="arch-component" data-component="hub" onclick="showComponent('hub')">
+          <div class="arch-component-icon">🗄️</div>
+          <div class="arch-component-name">Hub</div>
+          <div class="arch-component-sub">State + Memory</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Component Details (shown on click) -->
+    <div class="component-detail" id="detail-pal">
+      <div class="detail-card">
+        <div class="detail-header">
+          <div class="detail-icon">🎯</div>
+          <div class="detail-title-wrap">
+            <h2 class="detail-title">PAL — Prompt Abstraction Layer</h2>
+            <p class="detail-subtitle">Transform loose intent into strict agent manifests</p>
+          </div>
+        </div>
+        <div class="detail-body">
+          <p class="detail-description">
+            PAL is the intent compiler that processes user requests through 5 stages: Intent Extraction,
+            Context Injection, Semantic Enhancement, Runtime Compilation, and Output Routing. It ensures
+            no agent ever runs without structured context and explicit completion criteria.
+          </p>
+          <div class="waf-mapping">
+            <div class="waf-mapping-card">
+              <div class="mapping-pillar">
+                <span class="mapping-pillar-icon">⚙️</span>
+                <span class="mapping-pillar-name">Operational Excellence</span>
+              </div>
+              <p class="mapping-description">Every agent invocation has explicit completion criteria and escalation policies — no ambiguous "done" states.</p>
+            </div>
+            <div class="waf-mapping-card">
+              <div class="mapping-pillar">
+                <span class="mapping-pillar-icon">🔐</span>
+                <span class="mapping-pillar-name">Security</span>
+              </div>
+              <p class="mapping-description">Tool permissions are explicit allow/deny lists. Dangerous operations require escalation_policy: "require-approval".</p>
+            </div>
+            <div class="waf-mapping-card">
+              <div class="mapping-pillar">
+                <span class="mapping-pillar-icon">🔄</span>
+                <span class="mapping-pillar-name">Reliability</span>
+              </div>
+              <p class="mapping-description">Timeout_seconds prevents runaway executions. Behavior profiles ensure predictable agent responses.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="component-detail" id="detail-npao">
+      <div class="detail-card">
+        <div class="detail-header">
+          <div class="detail-icon">🔀</div>
+          <div class="detail-title-wrap">
+            <h2 class="detail-title">NPAO — Navigate, Prioritize, Allocate, Orchestrate</h2>
+            <p class="detail-subtitle">Phase-aware task routing and priority scoring</p>
+          </div>
+        </div>
+        <div class="detail-body">
+          <p class="detail-description">
+            NPAO classifies every task into one of 5 phases (PreD → Design → Development → Deployment → Debugging),
+            scores priority across 4 dimensions (Phase Urgency, Dependency Impact, Business Impact, Resource Efficiency),
+            and routes to the optimal agent type based on phase specialization.
+          </p>
+          <div class="waf-mapping">
+            <div class="waf-mapping-card">
+              <div class="mapping-pillar">
+                <span class="mapping-pillar-icon">⚡</span>
+                <span class="mapping-pillar-name">Performance Efficiency</span>
+              </div>
+              <p class="mapping-description">Right-sized agent allocation — research agents for PreD, builder agents for Development. No over-allocation.</p>
+            </div>
+            <div class="waf-mapping-card">
+              <div class="mapping-pillar">
+                <span class="mapping-pillar-icon">💰</span>
+                <span class="mapping-pillar-name">Cost Optimization</span>
+              </div>
+              <p class="mapping-description">Resource Efficiency scoring prevents expensive agents on simple tasks. Model selection matches task complexity.</p>
+            </div>
+            <div class="waf-mapping-card">
+              <div class="mapping-pillar">
+                <span class="mapping-pillar-icon">⚙️</span>
+                <span class="mapping-pillar-name">Operational Excellence</span>
+              </div>
+              <p class="mapping-description">Phase gates enforce PreD research before Development. No code written until problem is validated.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="component-detail" id="detail-ragdal">
+      <div class="detail-card">
+        <div class="detail-header">
+          <div class="detail-icon">📚</div>
+          <div class="detail-title-wrap">
+            <h2 class="detail-title">RAG-DAL — Dynamic Acquisition Layer</h2>
+            <p class="detail-subtitle">Multi-pass retrieval with source credibility weighting</p>
+          </div>
+        </div>
+        <div class="detail-body">
+          <p class="detail-description">
+            RAG-DAL implements autonomous multi-pass retrieval with a 3-tier source architecture (Academic → Editorial → Community)
+            and credibility weighting (1.0 → 0.75 → 0.40). Coverage validation ensures 92% confidence before advancing.
+          </p>
+          <div class="waf-mapping">
+            <div class="waf-mapping-card">
+              <div class="mapping-pillar">
+                <span class="mapping-pillar-icon">🔄</span>
+                <span class="mapping-pillar-name">Reliability</span>
+              </div>
+              <p class="mapping-description">Multi-pass retrieval fills gaps automatically. 4-pass maximum with explicit "unresolvable" marking.</p>
+            </div>
+            <div class="waf-mapping-card">
+              <div class="mapping-pillar">
+                <span class="mapping-pillar-icon">🔐</span>
+                <span class="mapping-pillar-name">Security</span>
+              </div>
+              <p class="mapping-description">Source credibility prevents hallucination from low-quality inputs. Tier 1 required for factual claims.</p>
+            </div>
+            <div class="waf-mapping-card">
+              <div class="mapping-pillar">
+                <span class="mapping-pillar-icon">💰</span>
+                <span class="mapping-pillar-name">Cost Optimization</span>
+              </div>
+              <p class="mapping-description">Early-exit when confidence ≥ 0.8. No unnecessary retrieval passes once coverage is sufficient.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="component-detail" id="detail-agent">
+      <div class="detail-card">
+        <div class="detail-header">
+          <div class="detail-icon">🤖</div>
+          <div class="detail-title-wrap">
+            <h2 class="detail-title">Agent Execution</h2>
+            <p class="detail-subtitle">Specialized agents with phase-matched capabilities</p>
+          </div>
+        </div>
+        <div class="detail-body">
+          <p class="detail-description">
+            Each agent has a registered capability set, tool permissions, phase specializations, and performance stats.
+            Allocation algorithm scores agents on context similarity (0.50), specialization overlap (0.35), and load (0.15).
+          </p>
+          <div class="waf-mapping">
+            <div class="waf-mapping-card">
+              <div class="mapping-pillar">
+                <span class="mapping-pillar-icon">⚡</span>
+                <span class="mapping-pillar-name">Performance Efficiency</span>
+              </div>
+              <p class="mapping-description">Async agent actions decouple user experience from long-running operations. Parallel orchestration patterns.</p>
+            </div>
+            <div class="waf-mapping-card">
+              <div class="mapping-pillar">
+                <span class="mapping-pillar-icon">🌱</span>
+                <span class="mapping-pillar-name">Sustainability</span>
+              </div>
+              <p class="mapping-description">Event-driven invocation — agents only run when triggered. Zero idle compute when no work exists.</p>
+            </div>
+            <div class="waf-mapping-card">
+              <div class="mapping-pillar">
+                <span class="mapping-pillar-icon">⚙️</span>
+                <span class="mapping-pillar-name">Operational Excellence</span>
+              </div>
+              <p class="mapping-description">Full audit trail on every agent action. Performance stats enable continuous optimization.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="component-detail" id="detail-hub">
+      <div class="detail-card">
+        <div class="detail-header">
+          <div class="detail-icon">🗄️</div>
+          <div class="detail-title-wrap">
+            <h2 class="detail-title">Reference Hub — Persistent State</h2>
+            <p class="detail-subtitle">4-level state management with knowledge compounding</p>
+          </div>
+        </div>
+        <div class="detail-body">
+          <p class="detail-description">
+            The Hub manages state across 4 levels: Session (ephemeral), Project (persistent), Organization (evolving),
+            and Agent (portable). Learnings persist automatically, enabling knowledge compounding across sessions.
+          </p>
+          <div class="waf-mapping">
+            <div class="waf-mapping-card">
+              <div class="mapping-pillar">
+                <span class="mapping-pillar-icon">🔄</span>
+                <span class="mapping-pillar-name">Reliability</span>
+              </div>
+              <p class="mapping-description">Multi-level state prevents context loss. Checkpoints enable rollback. Decisions persist with rationale.</p>
+            </div>
+            <div class="waf-mapping-card">
+              <div class="mapping-pillar">
+                <span class="mapping-pillar-icon">🔐</span>
+                <span class="mapping-pillar-name">Security</span>
+              </div>
+              <p class="mapping-description">Cross-namespace access requires permission. Project state is isolated from org state by default.</p>
+            </div>
+            <div class="waf-mapping-card">
+              <div class="mapping-pillar">
+                <span class="mapping-pillar-icon">💰</span>
+                <span class="mapping-pillar-name">Cost Optimization</span>
+              </div>
+              <p class="mapping-description">Per-workspace cost attribution for multi-tenant billing. Session state uses ephemeral storage.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pillar Deep Dives -->
+    <section class="pillars-deep-dive">
+      <div class="section-label" style="margin-bottom: 32px;">Six Pillars × ROSTR Mapping</div>
+
+      <div class="pillar-section pillar-ops" onclick="togglePillar(this)">
+        <div class="pillar-header">
+          <div class="pillar-header-icon">⚙️</div>
+          <div class="pillar-header-text">
+            <div class="pillar-header-title">Operational Excellence</div>
+            <div class="pillar-header-subtitle">Run and monitor systems to deliver business value</div>
+          </div>
+          <span class="pillar-toggle">▼</span>
+        </div>
+        <div class="pillar-content">
+          <div class="pillar-content-inner">
+            <div class="rostr-mapping">
+              <div class="rostr-component">
+                <div class="rostr-component-header">
+                  <span class="rostr-component-badge">PAL</span>
+                  <span class="rostr-component-name">Explicit Completion Criteria</span>
+                </div>
+                <p class="rostr-component-text">Every agent manifest includes completion_criteria as a checklist. No ambiguous "done" states — success is measurable.</p>
+              </div>
+              <div class="rostr-component">
+                <div class="rostr-component-header">
+                  <span class="rostr-component-badge">NPAO</span>
+                  <span class="rostr-component-name">Phase Gate Enforcement</span>
+                </div>
+                <p class="rostr-component-text">Tasks cannot advance from PreD to Development without documented go/no-go decision. Research before building.</p>
+              </div>
+              <div class="rostr-component">
+                <div class="rostr-component-header">
+                  <span class="rostr-component-badge">HUB</span>
+                  <span class="rostr-component-name">Full Audit Trail</span>
+                </div>
+                <p class="rostr-component-text">timeline.jsonl logs every agent action with timestamps. decisions.md captures rationale for all key choices.</p>
+              </div>
+              <div class="rostr-component">
+                <div class="rostr-component-header">
+                  <span class="rostr-component-badge">AGENT</span>
+                  <span class="rostr-component-name">Performance Stats</span>
+                </div>
+                <p class="rostr-component-text">Agent registry tracks tasks_completed, avg_completion_time, and success_rate. Continuous optimization from real data.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pillar-section pillar-sec" onclick="togglePillar(this)">
+        <div class="pillar-header">
+          <div class="pillar-header-icon">🔐</div>
+          <div class="pillar-header-text">
+            <div class="pillar-header-title">Security</div>
+            <div class="pillar-header-subtitle">Protect information, systems, and assets</div>
+          </div>
+          <span class="pillar-toggle">▼</span>
+        </div>
+        <div class="pillar-content">
+          <div class="pillar-content-inner">
+            <div class="rostr-mapping">
+              <div class="rostr-component">
+                <div class="rostr-component-header">
+                  <span class="rostr-component-badge">PAL</span>
+                  <span class="rostr-component-name">Explicit Tool Permissions</span>
+                </div>
+                <p class="rostr-component-text">tools_enabled uses allow/deny lists. Dangerous operations like file_system:write:production are denied by default.</p>
+              </div>
+              <div class="rostr-component">
+                <div class="rostr-component-header">
+                  <span class="rostr-component-badge">RAG-DAL</span>
+                  <span class="rostr-component-name">Source Credibility Gates</span>
+                </div>
+                <p class="rostr-component-text">Tier 1 sources (academic, .gov) required for factual claims. Prevents hallucination from unreliable inputs.</p>
+              </div>
+              <div class="rostr-component">
+                <div class="rostr-component-header">
+                  <span class="rostr-component-badge">HUB</span>
+                  <span class="rostr-component-name">Namespace Isolation</span>
+                </div>
+                <p class="rostr-component-text">Cross-namespace access requires explicit permission. Project state isolated from org state by default.</p>
+              </div>
+              <div class="rostr-component">
+                <div class="rostr-component-header">
+                  <span class="rostr-component-badge">AGENT</span>
+                  <span class="rostr-component-name">Human-in-the-Loop</span>
+                </div>
+                <p class="rostr-component-text">escalation_policy: "require-approval" gates any external-facing action. Zero sends without human approval.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pillar-section pillar-rel" onclick="togglePillar(this)">
+        <div class="pillar-header">
+          <div class="pillar-header-icon">🔄</div>
+          <div class="pillar-header-text">
+            <div class="pillar-header-title">Reliability</div>
+            <div class="pillar-header-subtitle">Recover from failures and meet demand</div>
+          </div>
+          <span class="pillar-toggle">▼</span>
+        </div>
+        <div class="pillar-content">
+          <div class="pillar-content-inner">
+            <div class="rostr-mapping">
+              <div class="rostr-component">
+                <div class="rostr-component-header">
+                  <span class="rostr-component-badge">PAL</span>
+                  <span class="rostr-component-name">Timeout Enforcement</span>
+                </div>
+                <p class="rostr-component-text">timeout_seconds prevents runaway executions. No agent runs forever — explicit bounds on all operations.</p>
+              </div>
+              <div class="rostr-component">
+                <div class="rostr-component-header">
+                  <span class="rostr-component-badge">RAG-DAL</span>
+                  <span class="rostr-component-name">Multi-Pass with Fallback</span>
+                </div>
+                <p class="rostr-component-text">4-pass maximum retrieval with explicit "unresolvable" marking. Gaps are flagged, not silently ignored.</p>
+              </div>
+              <div class="rostr-component">
+                <div class="rostr-component-header">
+                  <span class="rostr-component-badge">HUB</span>
+                  <span class="rostr-component-name">Checkpoint Recovery</span>
+                </div>
+                <p class="rostr-component-text">checkpoints/ directory enables rollback to known-good states. Multi-level state prevents total context loss.</p>
+              </div>
+              <div class="rostr-component">
+                <div class="rostr-component-header">
+                  <span class="rostr-component-badge">NPAO</span>
+                  <span class="rostr-component-name">Agent Fallback Chains</span>
+                </div>
+                <p class="rostr-component-text">Allocation algorithm queues tasks when no eligible agent available. Dependency resolution prevents deadlocks.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pillar-section pillar-perf" onclick="togglePillar(this)">
+        <div class="pillar-header">
+          <div class="pillar-header-icon">⚡</div>
+          <div class="pillar-header-text">
+            <div class="pillar-header-title">Performance Efficiency</div>
+            <div class="pillar-header-subtitle">Use computing resources efficiently</div>
+          </div>
+          <span class="pillar-toggle">▼</span>
+        </div>
+        <div class="pillar-content">
+          <div class="pillar-content-inner">
+            <div class="rostr-mapping">
+              <div class="rostr-component">
+                <div class="rostr-component-header">
+                  <span class="rostr-component-badge">NPAO</span>
+                  <span class="rostr-component-name">Right-Sized Allocation</span>
+                </div>
+                <p class="rostr-component-text">Research agents for PreD, builder agents for Development. Model selection matches task complexity.</p>
+              </div>
+              <div class="rostr-component">
+                <div class="rostr-component-header">
+                  <span class="rostr-component-badge">AGENT</span>
+                  <span class="rostr-component-name">Async Execution</span>
+                </div>
+                <p class="rostr-component-text">Long-running operations decouple from user experience. Parallel orchestration patterns reduce wall-clock time.</p>
+              </div>
+              <div class="rostr-component">
+                <div class="rostr-component-header">
+                  <span class="rostr-component-badge">RAG-DAL</span>
+                  <span class="rostr-component-name">Early Exit Optimization</span>
+                </div>
+                <p class="rostr-component-text">Retrieval stops when confidence ≥ 0.8. No unnecessary passes once coverage is sufficient.</p>
+              </div>
+              <div class="rostr-component">
+                <div class="rostr-component-header">
+                  <span class="rostr-component-badge">HUB</span>
+                  <span class="rostr-component-name">Context Caching</span>
+                </div>
+                <p class="rostr-component-text">Prior decisions and learnings loaded via vector similarity. No re-derivation of established facts.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pillar-section pillar-cost" onclick="togglePillar(this)">
+        <div class="pillar-header">
+          <div class="pillar-header-icon">💰</div>
+          <div class="pillar-header-text">
+            <div class="pillar-header-title">Cost Optimization</div>
+            <div class="pillar-header-subtitle">Avoid unnecessary costs</div>
+          </div>
+          <span class="pillar-toggle">▼</span>
+        </div>
+        <div class="pillar-content">
+          <div class="pillar-content-inner">
+            <div class="rostr-mapping">
+              <div class="rostr-component">
+                <div class="rostr-component-header">
+                  <span class="rostr-component-badge">NPAO</span>
+                  <span class="rostr-component-name">Resource Efficiency Scoring</span>
+                </div>
+                <p class="rostr-component-text">Priority formula includes resource_efficiency (0.10 weight). Quick, high-confidence tasks rise above complex unknowns.</p>
+              </div>
+              <div class="rostr-component">
+                <div class="rostr-component-header">
+                  <span class="rostr-component-badge">PAL</span>
+                  <span class="rostr-component-name">Context Budget Management</span>
+                </div>
+                <p class="rostr-component-text">Max 8000 tokens allocated across system, tools, examples, output. Priority loading by relevance, not recency.</p>
+              </div>
+              <div class="rostr-component">
+                <div class="rostr-component-header">
+                  <span class="rostr-component-badge">HUB</span>
+                  <span class="rostr-component-name">Tiered Storage</span>
+                </div>
+                <p class="rostr-component-text">Session state uses ephemeral storage. Project state persists to file + vector DB. Cost matches access pattern.</p>
+              </div>
+              <div class="rostr-component">
+                <div class="rostr-component-header">
+                  <span class="rostr-component-badge">AGENT</span>
+                  <span class="rostr-component-name">Model Selection</span>
+                </div>
+                <p class="rostr-component-text">Benchmarked model matrix: deepseek-r1:14b for synthesis, qwen2.5-coder:14b for balanced use. Right model, right job.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pillar-section pillar-sus" onclick="togglePillar(this)">
+        <div class="pillar-header">
+          <div class="pillar-header-icon">🌱</div>
+          <div class="pillar-header-text">
+            <div class="pillar-header-title">Sustainability</div>
+            <div class="pillar-header-subtitle">Minimize environmental impact</div>
+          </div>
+          <span class="pillar-toggle">▼</span>
+        </div>
+        <div class="pillar-content">
+          <div class="pillar-content-inner">
+            <div class="rostr-mapping">
+              <div class="rostr-component">
+                <div class="rostr-component-header">
+                  <span class="rostr-component-badge">AGENT</span>
+                  <span class="rostr-component-name">Event-Driven Invocation</span>
+                </div>
+                <p class="rostr-component-text">Agents only run when triggered. Zero idle compute when no work exists. Serverless-first architecture.</p>
+              </div>
+              <div class="rostr-component">
+                <div class="rostr-component-header">
+                  <span class="rostr-component-badge">NPAO</span>
+                  <span class="rostr-component-name">Batch Optimization</span>
+                </div>
+                <p class="rostr-component-text">Queue-based processing for non-urgent tasks. Scheduled execution during off-peak hours when possible.</p>
+              </div>
+              <div class="rostr-component">
+                <div class="rostr-component-header">
+                  <span class="rostr-component-badge">HUB</span>
+                  <span class="rostr-component-name">Knowledge Compounding</span>
+                </div>
+                <p class="rostr-component-text">Learnings persist across sessions. Same question answered once, not re-computed. Reduced redundant processing.</p>
+              </div>
+              <div class="rostr-component">
+                <div class="rostr-component-header">
+                  <span class="rostr-component-badge">RAG-DAL</span>
+                  <span class="rostr-component-name">Retrieval Caching</span>
+                </div>
+                <p class="rostr-component-text">Knowledge base ingestion stores vector embeddings. Subsequent queries use cached embeddings, not re-retrieval.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Legend -->
+    <div class="legend">
+      <div class="legend-title">ROSTR Components</div>
+      <div class="legend-grid">
+        <div class="legend-item">
+          <span class="legend-badge">PAL</span>
+          <span class="legend-text">Prompt Abstraction Layer</span>
+        </div>
+        <div class="legend-item">
+          <span class="legend-badge">NPAO</span>
+          <span class="legend-text">Navigate, Prioritize, Allocate, Orchestrate</span>
+        </div>
+        <div class="legend-item">
+          <span class="legend-badge">RAG-DAL</span>
+          <span class="legend-text">Dynamic Acquisition Layer</span>
+        </div>
+        <div class="legend-item">
+          <span class="legend-badge">AGENT</span>
+          <span class="legend-text">Specialized Execution</span>
+        </div>
+        <div class="legend-item">
+          <span class="legend-badge">HUB</span>
+          <span class="legend-text">Reference Hub (State)</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <p class="footer-text">© 2026 Patrick Diamitani · Diamitani Industries, Inc.</p>
+      <p class="footer-made-with">Built with 🧡 and AWS Well-Architected principles</p>
+    </div>
+  </div>
+</footer>
+
+<script src="../scripts/main.js"></script>
+<script>
+  // Component detail panel toggle
+  function showComponent(componentId) {
+    // Hide all detail panels
+    document.querySelectorAll('.component-detail').forEach(el => {
+      el.classList.remove('visible');
+    });
+
+    // Remove active state from all components
+    document.querySelectorAll('.arch-component').forEach(el => {
+      el.classList.remove('active');
+    });
+
+    // Show selected panel
+    const panel = document.getElementById('detail-' + componentId);
+    if (panel) {
+      panel.classList.add('visible');
+    }
+
+    // Add active state to clicked component
+    const component = document.querySelector(`[data-component="${componentId}"]`);
+    if (component) {
+      component.classList.add('active');
+    }
+
+    // Scroll to panel
+    if (panel) {
+      panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+
+  // Pillar accordion toggle
+  function togglePillar(section) {
+    section.classList.toggle('open');
+  }
+
+  // Show PAL by default
+  document.addEventListener('DOMContentLoaded', () => {
+    showComponent('pal');
+  });
+</script>
+</body>
+</html>

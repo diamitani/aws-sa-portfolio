@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Invent and Simplify — Patrick Diamitani | AWS Leadership Principles</title>
+  <link rel="stylesheet" href="../../styles/main.css" />
+  <link rel="stylesheet" href="../../styles/lp-detail.css" />
+</head>
+<body>
+
+<div class="grid-bg" aria-hidden="true"></div>
+<div class="noise-overlay" aria-hidden="true"></div>
+
+<nav class="nav scrolled" role="navigation">
+  <div class="nav-inner">
+    <a href="../../index.html#lp" class="nav-logo">
+      <div class="nav-logo-badge">PD</div>
+      Patrick Diamitani
+    </a>
+    <ul class="nav-links">
+      <li><a href="../../index.html#lp" class="nav-link">← Back to Leadership</a></li>
+      <li><a href="../../index.html#waf" class="nav-link">Well-Architected</a></li>
+      <li><a href="../developer-advocacy.html" class="nav-link">Developer Advocacy</a></li>
+      <li><a href="../../index.html#contact" class="nav-cta">Let's Connect →</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="lp-detail">
+  <div class="container">
+
+    <header class="lp-detail-header">
+      <div class="lp-detail-badge">
+        <span class="lp-badge-number">LP 03</span>
+        <span class="lp-badge-aws">AWS Leadership Principle</span>
+      </div>
+      <h1 class="lp-detail-title">Invent and Simplify</h1>
+      <p class="lp-detail-definition">
+        <em>"Leaders expect and require innovation and invention from their teams and always find ways to simplify. They are externally aware, look for new ideas from everywhere, and are not limited by 'not invented here.'"</em>
+      </p>
+    </header>
+
+    <section class="star-breakdown">
+
+      <article class="star-section star-situation">
+        <div class="star-marker">
+          <span class="star-letter">S</span>
+          <span class="star-word">Situation</span>
+        </div>
+        <div class="star-content">
+          <p>Our VP of Growth wanted to eliminate roughly <strong>two hours a day</strong> that account executives were spending on manual prospecting and research.</p>
+          <div class="star-insight">
+            <span class="insight-icon">🎯</span>
+            <span>His vision was an end-to-end automation that could research leads against defined criteria, identify the right contacts, build a pain-point analysis for each one, write personalized outreach emails, and send them on the reps' behalf—so AEs could spend their time calling warm leads instead of researching cold ones.</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="star-section star-task">
+        <div class="star-marker">
+          <span class="star-letter">T</span>
+          <span class="star-word">Task</span>
+        </div>
+        <div class="star-content">
+          <p>I took on building a fully automated pipeline that would run daily, research and qualify new leads, generate AI-personalized messaging for each one, and enroll them into an outreach sequence without any manual rep involvement.</p>
+        </div>
+      </article>
+
+      <article class="star-section star-action">
+        <div class="star-marker">
+          <span class="star-letter">A</span>
+          <span class="star-word">Action</span>
+        </div>
+        <div class="star-content">
+          <div class="action-steps">
+            <div class="action-step">
+              <span class="step-number">01</span>
+              <div class="step-content">
+                <h4>Daily Trigger + Scoring</h4>
+                <p>Designed a workflow that triggered every morning at 7am and scanned HubSpot for companies that had crossed into "Hot" or "Warm" status based on our Factors.AI and ZoomInfo scoring criteria.</p>
+              </div>
+            </div>
+            <div class="action-step">
+              <span class="step-number">02</span>
+              <div class="step-content">
+                <h4>Smart Filtering</h4>
+                <p>The workflow filtered out any accounts that were already active opportunities or open deals, then mapped the remaining leads to rep territories using round-robin assignment logic.</p>
+              </div>
+            </div>
+            <div class="action-step">
+              <span class="step-number">03</span>
+              <div class="step-content">
+                <h4>Credit-Conscious Contact Discovery</h4>
+                <p>Combined an HTTP GET request with an n8n-to-Clay webhook that queried Amplemarket and Clay for contact data, then ranked contacts by strength so we only spent enrichment credits revealing the people most likely to convert—rather than paying to unmask every contact at a company.</p>
+              </div>
+            </div>
+            <div class="action-step">
+              <span class="step-number">04</span>
+              <div class="step-content">
+                <h4>AI Research + Pain-Point Mapping</h4>
+                <p>For each qualified contact, I wrote system instructions for an AI node that researched the company and prospect online, formed a pain-point hypothesis, and mapped it to how our product could address that specific need.</p>
+              </div>
+            </div>
+            <div class="action-step">
+              <span class="step-number">05</span>
+              <div class="step-content">
+                <h4>Personalized Sequence Generation</h4>
+                <p>That analysis then drove AI-generated copy for a three-email sequence, tailored to each contact rather than templated.</p>
+              </div>
+            </div>
+            <div class="action-step">
+              <span class="step-number">06</span>
+              <div class="step-content">
+                <h4>Multi-Tool Routing</h4>
+                <p>Routed the finished sequences two ways: into a HubSpot list for reps working leads inside HubSpot, and directly into Amplemarket's outreach tool via a Clay API column push for reps working from that platform.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="star-section star-result">
+        <div class="star-marker">
+          <span class="star-letter">R</span>
+          <span class="star-word">Result</span>
+        </div>
+        <div class="star-content">
+          <div class="result-highlight">
+            <div class="result-metric">
+              <span class="metric-value">7am</span>
+              <span class="metric-label">Daily Auto-Run</span>
+            </div>
+            <div class="result-metric">
+              <span class="metric-value">3-Email</span>
+              <span class="metric-label">Personalized Sequence</span>
+            </div>
+            <div class="result-metric">
+              <span class="metric-value">$0</span>
+              <span class="metric-label">Wasted Enrichment</span>
+            </div>
+          </div>
+          <p>The result is a fully automated messaging engine that sources new leads daily from external platforms, enriches and ranks contacts through Clay and Amplemarket, generates personalized research and copy with AI, and pushes finished sequences straight into the tools reps already use.</p>
+          <p class="result-impact">Removed the manual research and writing work the VP had originally targeted and giving AEs a daily queue of warm, pre-qualified leads ready to call.</p>
+          <div class="result-example">
+            <h4>The "Simplify" Half:</h4>
+            <p>The design stayed resource-conscious by only spending enrichment credits on the highest-ranked contacts rather than unmasking every lead indiscriminately—reflecting the "simplify" half of the principle alongside the invention itself.</p>
+          </div>
+        </div>
+      </article>
+
+    </section>
+
+    <section class="video-section">
+      <h3 class="video-title">📹 Case Study Walkthrough</h3>
+      <div class="video-placeholder">
+        <div class="video-upload-prompt">
+          <span class="video-icon">🎬</span>
+          <p>Video walkthrough coming soon</p>
+          <span class="video-note">End-to-end demo of the prospect automation pipeline</span>
+        </div>
+      </div>
+    </section>
+
+    <nav class="lp-nav">
+      <a href="ownership.html" class="lp-nav-btn">
+        <span>←</span> Previous: Ownership
+      </a>
+      <a href="learn-be-curious.html" class="lp-nav-btn lp-nav-next">
+        Next: Learn and Be Curious <span>→</span>
+      </a>
+    </nav>
+
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <p class="footer-text">© 2026 Patrick Diamitani · Diamitani Industries, Inc.</p>
+      <p class="footer-made-with">Built with 🧡 and AWS Well-Architected principles</p>
+    </div>
+  </div>
+</footer>
+
+<script src="../../scripts/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bias for Action — Patrick Diamitani | AWS Leadership Principles</title>
+  <link rel="stylesheet" href="../../styles/main.css" />
+  <link rel="stylesheet" href="../../styles/lp-detail.css" />
+</head>
+<body>
+
+<div class="grid-bg" aria-hidden="true"></div>
+<div class="noise-overlay" aria-hidden="true"></div>
+
+<nav class="nav scrolled" role="navigation">
+  <div class="nav-inner">
+    <a href="../../index.html#lp" class="nav-logo">
+      <div class="nav-logo-badge">PD</div>
+      Patrick Diamitani
+    </a>
+    <ul class="nav-links">
+      <li><a href="../../index.html#lp" class="nav-link">← Back to Leadership</a></li>
+      <li><a href="../../index.html#waf" class="nav-link">Well-Architected</a></li>
+      <li><a href="../developer-advocacy.html" class="nav-link">Developer Advocacy</a></li>
+      <li><a href="../../index.html#contact" class="nav-cta">Let's Connect →</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="lp-detail">
+  <div class="container">
+
+    <header class="lp-detail-header">
+      <div class="lp-detail-badge">
+        <span class="lp-badge-number">LP 11</span>
+        <span class="lp-badge-aws">AWS Leadership Principle</span>
+      </div>
+      <h1 class="lp-detail-title">Bias for Action</h1>
+      <p class="lp-detail-definition">
+        <em>"Speed matters in business. Many decisions and actions are reversible and do not need extensive study. We value calculated risk taking."</em>
+      </p>
+    </header>
+
+    <section class="star-breakdown">
+
+      <article class="star-section star-situation">
+        <div class="star-marker">
+          <span class="star-letter">S</span>
+          <span class="star-word">Situation</span>
+        </div>
+        <div class="star-content">
+          <p>Our n8n instance was running daily workflow executions in production, and some were silently failing.</p>
+          <div class="star-insight">
+            <span class="insight-icon">⚠️</span>
+            <span>There was no process in place to catch these failures proactively—someone would only notice a broken workflow once it caused a downstream problem, by which point <strong>revenue-generating automations had already been down for hours or days</strong>.</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="star-section star-task">
+        <div class="star-marker">
+          <span class="star-letter">T</span>
+          <span class="star-word">Task</span>
+        </div>
+        <div class="star-content">
+          <p>Without being asked, I decided to build a monitoring solution rather than wait for a failure to become visible enough that leadership requested one.</p>
+          <p>I set out to create a Claude skill and a corresponding n8n workflow that would automatically audit every execution daily and flag failures with a proposed fix, so we'd catch broken automations the same day they broke instead of discovering them reactively.</p>
+        </div>
+      </article>
+
+      <article class="star-section star-action">
+        <div class="star-marker">
+          <span class="star-letter">A</span>
+          <span class="star-word">Action</span>
+        </div>
+        <div class="star-content">
+          <div class="action-steps">
+            <div class="action-step">
+              <span class="step-number">01</span>
+              <div class="step-content">
+                <h4>Two-Way Door Decision</h4>
+                <p>Rather than spend weeks scoping a perfect monitoring platform, I moved on the simplest version that would work and treated it as a two-way door I could iterate on.</p>
+              </div>
+            </div>
+            <div class="action-step">
+              <span class="step-number">02</span>
+              <div class="step-content">
+                <h4>Skill Bootstrapping</h4>
+                <p>Reused a skill I'd already built, n8n Engineer, to accelerate building a new one from a prompt rather than starting from zero.</p>
+              </div>
+            </div>
+            <div class="action-step">
+              <span class="step-number">03</span>
+              <div class="step-content">
+                <h4>Architecture Design</h4>
+                <p>Gave it a lightweight project plan, architecture, and PRD, and had it connect to our n8n instance through a custom MCP and API integration to pull every workflow and execution, node by node, and output the results as both a spreadsheet and a written report—with the option to scan everything or target a specific workflow by ID or URL.</p>
+              </div>
+            </div>
+            <div class="action-step">
+              <span class="step-number">04</span>
+              <div class="step-content">
+                <h4>Immediate Production Use</h4>
+                <p>Once that skill, n8n-execution-analyst, was working, I immediately used it to build the actual production workflow rather than treating the skill as a standalone experiment: a daily job that pulls all active executions from the prior day, generates a status table and root-cause analysis for any failures, and sends the report to the VP of Growth.</p>
+              </div>
+            </div>
+            <div class="action-step">
+              <span class="step-number">05</span>
+              <div class="step-content">
+                <h4>Ship, Don't Sequence</h4>
+                <p>Shipped this in a single build cycle instead of separating skill-building and workflow-deployment into sequential phases, since a working daily report—even an imperfect one—was more valuable immediately than a more polished version delivered later.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="star-section star-result">
+        <div class="star-marker">
+          <span class="star-letter">R</span>
+          <span class="star-word">Result</span>
+        </div>
+        <div class="star-content">
+          <div class="result-highlight">
+            <div class="result-metric">
+              <span class="metric-value">Daily</span>
+              <span class="metric-label">Automated Audit</span>
+            </div>
+            <div class="result-metric">
+              <span class="metric-value">&lt;24h</span>
+              <span class="metric-label">Failure Detection</span>
+            </div>
+            <div class="result-metric">
+              <span class="metric-value">Auto</span>
+              <span class="metric-label">Root-Cause Analysis</span>
+            </div>
+          </div>
+          <p>RevOps and Growth now get a daily audit of every active n8n workflow, complete with failure analysis and suggested fixes, without anyone having to ask for it or manually investigate.</p>
+          <p class="result-impact">This turned workflow failures from something we discovered <strong>days later</strong>, often after they'd already broken a downstream process, into something caught and diagnosed <strong>within 24 hours</strong>—cutting the turnaround time between a workflow breaking and a fix being redeployed.</p>
+          <div class="result-example">
+            <h4>The Two-Way Door in Action:</h4>
+            <p>Because I built and shipped it as a working first version rather than over-engineering it upfront, I was able to start learning from real daily reports immediately and can still iterate on the report format or add new checks without disrupting what's already in production.</p>
+          </div>
+        </div>
+      </article>
+
+    </section>
+
+    <section class="video-section">
+      <h3 class="video-title">📹 Case Study Walkthrough</h3>
+      <div class="video-placeholder">
+        <div class="video-upload-prompt">
+          <span class="video-icon">🎬</span>
+          <p>Video walkthrough coming soon</p>
+          <span class="video-note">n8n execution analyst skill demo and daily report example</span>
+        </div>
+      </div>
+    </section>
+
+    <nav class="lp-nav">
+      <a href="highest-standards.html" class="lp-nav-btn">
+        <span>←</span> Previous: Insist on Highest Standards
+      </a>
+      <a href="../../index.html#lp" class="lp-nav-btn lp-nav-next">
+        View All Principles <span>→</span>
+      </a>
+    </nav>
+
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <p class="footer-text">© 2026 Patrick Diamitani · Diamitani Industries, Inc.</p>
+      <p class="footer-made-with">Built with 🧡 and AWS Well-Architected principles</p>
+    </div>
+  </div>
+</footer>
+
+<script src="../../scripts/main.js"></script>
+</body>
+</html>

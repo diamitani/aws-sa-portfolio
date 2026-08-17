@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Customer Obsession — Patrick Diamitani | AWS Leadership Principles</title>
+  <link rel="stylesheet" href="../../styles/main.css" />
+  <link rel="stylesheet" href="../../styles/lp-detail.css" />
+</head>
+<body>
+
+<div class="grid-bg" aria-hidden="true"></div>
+<div class="noise-overlay" aria-hidden="true"></div>
+
+<nav class="nav scrolled" role="navigation">
+  <div class="nav-inner">
+    <a href="../../index.html#lp" class="nav-logo">
+      <div class="nav-logo-badge">PD</div>
+      Patrick Diamitani
+    </a>
+    <ul class="nav-links">
+      <li><a href="../../index.html#lp" class="nav-link">← Back to Leadership</a></li>
+      <li><a href="../../index.html#waf" class="nav-link">Well-Architected</a></li>
+      <li><a href="../developer-advocacy.html" class="nav-link">Developer Advocacy</a></li>
+      <li><a href="../../index.html#contact" class="nav-cta">Let's Connect →</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="lp-detail">
+  <div class="container">
+
+    <!-- Header -->
+    <header class="lp-detail-header">
+      <div class="lp-detail-badge">
+        <span class="lp-badge-number">LP 01</span>
+        <span class="lp-badge-aws">AWS Leadership Principle</span>
+      </div>
+      <h1 class="lp-detail-title">Customer Obsession</h1>
+      <p class="lp-detail-definition">
+        <em>"Leaders start with the customer and work backwards. They work vigorously to earn and keep customer trust."</em>
+      </p>
+    </header>
+
+    <!-- STAR Format Breakdown -->
+    <section class="star-breakdown">
+
+      <article class="star-section star-situation">
+        <div class="star-marker">
+          <span class="star-letter">S</span>
+          <span class="star-word">Situation</span>
+        </div>
+        <div class="star-content">
+          <p>Our sales reps needed a customized pre-call brief to review before every client meeting. They already had access to raw datapoints—web activity, HubSpot engagement, past meeting notes—but that data lived in silos and required manual digging.</p>
+          <div class="star-insight">
+            <span class="insight-icon">💡</span>
+            <span>What they actually needed was <strong>synthesized insight</strong>, not another dashboard of numbers.</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="star-section star-task">
+        <div class="star-marker">
+          <span class="star-letter">T</span>
+          <span class="star-word">Task</span>
+        </div>
+        <div class="star-content">
+          <p>I was asked to build a workflow automation that combined company and prospect research, lead intelligence, and HubSpot activity signals into a single, actionable brief for reps ahead of every call.</p>
+          <p>Marketing leadership and the board separately requested the same kind of insight generated automatically for every Marketing Qualified Lead (MQL), so I owned both builds.</p>
+        </div>
+      </article>
+
+      <article class="star-section star-action">
+        <div class="star-marker">
+          <span class="star-letter">A</span>
+          <span class="star-word">Action</span>
+        </div>
+        <div class="star-content">
+          <div class="action-steps">
+            <div class="action-step">
+              <span class="step-number">01</span>
+              <div class="step-content">
+                <h4>Data Source Mapping</h4>
+                <p>Mapped every data source I'd need: HubSpot contact and company activity, prior meeting history (where available), Factors.ai intent data from our existing subscription, and our internal product/service catalog for matching relevance.</p>
+              </div>
+            </div>
+            <div class="action-step">
+              <span class="step-number">02</span>
+              <div class="step-content">
+                <h4>n8n Workflow Build</h4>
+                <p>Built an n8n workflow that pulled scheduled meetings from HubSpot daily and enriched each one with contact- and company-level data.</p>
+              </div>
+            </div>
+            <div class="action-step">
+              <span class="step-number">03</span>
+              <div class="step-content">
+                <h4>Prompt Engineering</h4>
+                <p>The hardest part was prompt engineering the AI node so it moved beyond surface-level summaries—for example, correctly reading a spike in page views and mapping it to the right Atlas product (like flagging interest in Argentina regulatory content and tying it to the relevant compliance offering).</p>
+              </div>
+            </div>
+            <div class="action-step">
+              <span class="step-number">04</span>
+              <div class="step-content">
+                <h4>Benchmark Validation</h4>
+                <p>To validate accuracy, I manually pulled a sample of high-activity contacts (identified with Claude), reviewed their page views and actions myself, and wrote my own analysis as a benchmark to calibrate what "good" output looked like for the AI.</p>
+              </div>
+            </div>
+            <div class="action-step">
+              <span class="step-number">05</span>
+              <div class="step-content">
+                <h4>Stakeholder Review & Ship</h4>
+                <p>Reviewed the approach with my manager and the marketing team, refined the prompt logic until it consistently matched that benchmark, then built the rep-facing and MQL-facing versions in parallel and shipped both to production.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="star-section star-result">
+        <div class="star-marker">
+          <span class="star-letter">R</span>
+          <span class="star-word">Result</span>
+        </div>
+        <div class="star-content">
+          <div class="result-highlight">
+            <div class="result-metric">
+              <span class="metric-value">5-bullet</span>
+              <span class="metric-label">Action Brief Per Contact</span>
+            </div>
+            <div class="result-metric">
+              <span class="metric-value">100%</span>
+              <span class="metric-label">MQL Coverage</span>
+            </div>
+            <div class="result-metric">
+              <span class="metric-value">Daily</span>
+              <span class="metric-label">Auto-Generated</span>
+            </div>
+          </div>
+          <p>The finished workflow pulls signal from contact messages, web activity, and company/contact research to auto-generate a concise 5-bullet action brief for every prospect and MQL, mapped directly to our relevant products and services.</p>
+          <p class="result-impact">It's now embedded as a <strong>standard view on every contact record in HubSpot</strong>, giving reps and marketing a consistent, always-current source of insight instead of a one-off summary—directly reducing the manual research time reps previously spent per call.</p>
+        </div>
+      </article>
+
+    </section>
+
+    <!-- Video Section (placeholder) -->
+    <section class="video-section">
+      <h3 class="video-title">📹 Case Study Walkthrough</h3>
+      <div class="video-placeholder">
+        <div class="video-upload-prompt">
+          <span class="video-icon">🎬</span>
+          <p>Video walkthrough coming soon</p>
+          <span class="video-note">Detailed demo of the pre-call brief automation in action</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Navigation -->
+    <nav class="lp-nav">
+      <a href="../../index.html#lp" class="lp-nav-btn">
+        <span>←</span> Back to All Principles
+      </a>
+      <a href="ownership.html" class="lp-nav-btn lp-nav-next">
+        Next: Ownership <span>→</span>
+      </a>
+    </nav>
+
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <p class="footer-text">© 2026 Patrick Diamitani · Diamitani Industries, Inc.</p>
+      <p class="footer-made-with">Built with 🧡 and AWS Well-Architected principles</p>
+    </div>
+  </div>
+</footer>
+
+<script src="../../scripts/main.js"></script>
+</body>
+</html>

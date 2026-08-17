@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Patrick Diamitani — AWS Startup Solutions Architect | GTM AI & Automation Manager</title>
+  <meta name="description" content="Patrick Diamitani — GTM AI & Automation Manager at Atlas HXM. Builder of production agentic AI systems, multi-tenant SaaS platforms, and startup infrastructure on AWS Bedrock, DynamoDB, Cognito, and S3." />
+  <meta property="og:title" content="Patrick Diamitani — AWS Startup Solutions Architect" />
+  <meta property="og:description" content="Builder of production agentic AI systems and startup GTM infrastructure on AWS Bedrock, DynamoDB, Cognito, and S3." />
+  <meta property="og:type" content="website" />
+  <link rel="stylesheet" href="styles/main.css" />
+  <!-- Preconnect for Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+</head>
+<body>
+
+<!-- Ambient background -->
+<div class="grid-bg" aria-hidden="true"></div>
+<div class="noise-overlay" aria-hidden="true"></div>
+<div class="particles" aria-hidden="true"></div>
+
+<!-- ═══════════════════════════════════════════════════
+     NAVIGATION
+════════════════════════════════════════════════════ -->
+<nav class="nav" role="navigation" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="#hero" class="nav-logo" id="nav-logo">
+      <div class="nav-logo-badge" aria-hidden="true">PD</div>
+      Patrick Diamitani
+    </a>
+    <ul class="nav-links" role="list">
+      <li><a href="#lp"       class="nav-link" id="nav-lp">Leadership</a></li>
+      <li><a href="#waf"      class="nav-link" id="nav-waf">Well-Architected</a></li>
+      <li><a href="#advocacy" class="nav-link" id="nav-advocacy">Advocacy</a></li>
+      <li><a href="#cases"    class="nav-link" id="nav-cases">Case Studies</a></li>
+      <li><a href="#contact"  class="nav-cta"  id="nav-contact">Let's Connect →</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════
+     HERO
+════════════════════════════════════════════════════ -->
+<section class="hero" id="hero">
+  <div class="hero-glow" aria-hidden="true"></div>
+  <div class="hero-glow-2" aria-hidden="true"></div>
+  <div class="container">
+    <div class="hero-content">
+      <!-- Left: Text -->
+      <div class="hero-left">
+        <div class="hero-label" id="hero-label">
+          <span class="hero-label-dot" aria-hidden="true"></span>
+          GTM AI &amp; Automation Manager · Atlas HXM · Chicago, IL
+        </div>
+
+        <h1 class="hero-title" id="hero-title">
+          I build the infrastructure<br/>
+          <span class="gradient-text">ambitious startups</span><br/>
+          run on.
+        </h1>
+
+        <p class="hero-description" id="hero-description">
+          I'm <strong>Patrick Diamitani</strong> — GTM AI &amp; Automation Manager at <strong>Atlas HXM</strong> and
+          an AI-native builder who has architected production agentic systems, multi-tenant SaaS, and
+          autonomous GTM engines on <strong>AWS Bedrock, DynamoDB, Cognito, and S3</strong>. I've shipped
+          10+ products including <a href="https://www.artispreneur.com" target="_blank" style="color:var(--accent-orange)">Artispreneur.com</a>,
+          <a href="https://www.rostragent.com" target="_blank" style="color:var(--accent-orange)">Rostr Agent</a>, and the
+          TurnRiver SDR Platform — and I translate startup scarcity into scalable architecture.
+        </p>
+
+        <p class="hero-description" style="margin-top:-16px; font-size:1rem;">
+          Currently building
+          <span style="color:var(--text-primary); font-weight:600;">
+            <span id="typing-target">agentic AI pipelines</span><span class="typing-cursor" aria-hidden="true"></span>
+          </span>
+          for high-growth startups.
+        </p>
+
+        <div class="hero-actions" id="hero-actions">
+          <a href="#cases" class="btn-primary" id="btn-view-cases">
+            View Case Studies
+            <span aria-hidden="true">→</span>
+          </a>
+          <a href="#contact" class="btn-secondary" id="btn-connect">
+            <span aria-hidden="true">☁️</span>
+            Let's Talk AWS
+          </a>
+        </div>
+
+        <!-- AWS Service badges -->
+        <div class="aws-strip reveal">
+          <span class="aws-badge">☁️ Bedrock Agent Core</span>
+          <span class="aws-badge">🗄️ DynamoDB</span>
+          <span class="aws-badge">🔐 Cognito</span>
+          <span class="aws-badge">📦 S3</span>
+          <span class="aws-badge">🔗 API Gateway</span>
+          <span class="aws-badge">⚡ Lambda</span>
+        </div>
+
+        <!-- Stats -->
+        <div class="hero-stats reveal reveal-delay-2">
+          <div class="hero-stat" id="stat-agents">
+            <span class="hero-stat-value" data-count="8" data-suffix="+">8+</span>
+            <span class="hero-stat-label">AI Agents Shipped</span>
+          </div>
+          <div class="hero-stat" id="stat-companies">
+            <span class="hero-stat-value" data-count="7" data-suffix="+">7+</span>
+            <span class="hero-stat-label">Portfolio Cos. Served</span>
+          </div>
+          <div class="hero-stat" id="stat-aws">
+            <span class="hero-stat-value" data-count="6" data-suffix=" pillars">6 pillars</span>
+            <span class="hero-stat-label">WAF Alignment</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Architecture visual -->
+      <div class="hero-visual" aria-label="AWS architecture overview" role="img">
+        <div class="arch-card">
+          <div class="arch-title">⚡ Production Agent Architecture</div>
+          <div class="arch-nodes" role="list">
+
+            <div class="arch-node" role="listitem" id="arch-cognito">
+              <div class="arch-node-icon" style="background:rgba(255,153,0,0.12)" aria-hidden="true">🔐</div>
+              <div class="arch-node-text">
+                <span class="arch-node-name">AWS Cognito</span>
+                <span class="arch-node-sub">JWT · Multi-tenant isolation</span>
+              </div>
+              <span style="font-family:var(--font-mono);font-size:0.65rem;color:var(--accent-teal)">AUTH</span>
+            </div>
+
+            <div class="arch-connector" aria-hidden="true"></div>
+
+            <div class="arch-node" role="listitem" id="arch-gateway">
+              <div class="arch-node-icon" style="background:rgba(74,158,255,0.12)" aria-hidden="true">🔗</div>
+              <div class="arch-node-text">
+                <span class="arch-node-name">API Gateway</span>
+                <span class="arch-node-sub">REST · Rate limiting · CORS</span>
+              </div>
+              <span style="font-family:var(--font-mono);font-size:0.65rem;color:var(--accent-blue)">ROUTE</span>
+            </div>
+
+            <div class="arch-connector" aria-hidden="true"></div>
+
+            <div class="arch-node" role="listitem" id="arch-bedrock">
+              <div class="arch-node-icon" style="background:rgba(255,107,53,0.12)" aria-hidden="true">🧠</div>
+              <div class="arch-node-text">
+                <span class="arch-node-name">Bedrock Agent Core</span>
+                <span class="arch-node-sub">Multi-agent orchestration</span>
+              </div>
+              <span style="font-family:var(--font-mono);font-size:0.65rem;color:var(--accent-orange)">CORE</span>
+            </div>
+
+            <div class="arch-connector" aria-hidden="true"></div>
+
+            <div class="arch-node" role="listitem" id="arch-dynamo">
+              <div class="arch-node-icon" style="background:rgba(139,92,246,0.12)" aria-hidden="true">🗄️</div>
+              <div class="arch-node-text">
+                <span class="arch-node-name">DynamoDB</span>
+                <span class="arch-node-sub">Session state · Audit trail</span>
+              </div>
+              <span style="font-family:var(--font-mono);font-size:0.65rem;color:var(--accent-purple)">STATE</span>
+            </div>
+
+            <div class="arch-connector" aria-hidden="true"></div>
+
+            <div class="arch-node" role="listitem" id="arch-s3">
+              <div class="arch-node-icon" style="background:rgba(0,212,170,0.12)" aria-hidden="true">📦</div>
+              <div class="arch-node-text">
+                <span class="arch-node-name">S3 Artifact Store</span>
+                <span class="arch-node-sub">AES-256 · Workflow packages</span>
+              </div>
+              <span style="font-family:var(--font-mono);font-size:0.65rem;color:var(--accent-teal)">STORE</span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     ABOUT
+════════════════════════════════════════════════════ -->
+<section class="section about" id="about">
+  <div class="container">
+    <div class="about-grid">
+
+      <div class="about-avatar-wrap reveal">
+        <div class="about-avatar" id="about-avatar">
+          <div class="about-avatar-placeholder" aria-label="Patrick Diamitani">
+            🧑🏾‍💻
+          </div>
+        </div>
+        <div class="about-badge">
+          <span class="about-badge-dot" aria-hidden="true"></span>
+          Available · Sep 8–14, 2026
+        </div>
+      </div>
+
+      <div class="about-content">
+        <div class="section-label reveal" id="about-label">About Me</div>
+        <h2 class="section-title reveal reveal-delay-1" id="about-title">
+          The builder AWS is<br/>
+          <span class="gradient-text">looking for.</span>
+        </h2>
+
+        <p class="about-narrative reveal reveal-delay-2">
+          I'm an <strong>AI-native solutions architect</strong> currently serving as <strong>GTM AI &amp; Automation
+          Manager at Atlas HXM</strong>, where I build and deploy enterprise-grade AI workflows, revenue
+          automation systems, and agentic pipelines that run on AWS. I don't just advise — I
+          <strong>build and ship</strong>.
+        </p>
+
+        <p class="about-narrative reveal reveal-delay-2">
+          I architected the <strong>TurnRiver SDR Agent Platform</strong> for Turn/River Growth Equity Partners —
+          a governed, multi-tenant system on <strong>AWS Bedrock Agent Core</strong> serving a $4B+ PE portfolio.
+          Eight specialized agents. Zero external sends without human approval. Full audit trail.
+          I also built <a href="https://www.artispreneur.com" target="_blank" style="color:var(--accent-orange);font-weight:600">Artispreneur.com</a> — a
+          multi-tenant SaaS platform (Next.js 14 · Supabase · Azure AI · Stripe) serving independent
+          artists as their complete music business OS.
+        </p>
+
+        <p class="about-narrative reveal reveal-delay-2">
+          My published research — the <strong>ROSTR Framework</strong> — benchmarks agent performance across
+          200 tasks, 8 domains, at identical model, temperature, and tools. I hold <strong>10+ shipped
+          products</strong> across GTM AI, compliance automation, creator tech, and cloud infrastructure.
+          <a href="https://www.rostragent.com" target="_blank" style="color:var(--accent-orange)">rostragent.com</a> ·
+          <a href="https://www.gencyai.com" target="_blank" style="color:var(--accent-orange)">gencyai.com</a> ·
+          <a href="https://www.6thagent.com" target="_blank" style="color:var(--accent-orange)">6thagent.com</a>
+        </p>
+
+        <p class="about-narrative reveal reveal-delay-2">
+          The thread through everything: <strong>pragmatic architecture under scarcity</strong>.
+          The right AWS service at the right lifecycle stage. Not over-engineered, not fragile —
+          scalable from day 1, cost-optimized by design. That's exactly what early-stage startups
+          need from an SA.
+        </p>
+
+        <div class="about-highlights reveal reveal-delay-3">
+          <div class="highlight-card" id="highlight-agentic">
+            <span class="highlight-icon">🧠</span>
+            <div class="highlight-title">Agentic AI Architecture</div>
+            <div class="highlight-text">Multi-agent orchestration, tool-use, memory/state, human-in-the-loop governance</div>
+          </div>
+          <div class="highlight-card" id="highlight-aws">
+            <span class="highlight-icon">☁️</span>
+            <div class="highlight-title">AWS Production Systems</div>
+            <div class="highlight-text">Bedrock, DynamoDB, S3, Cognito, API Gateway, Lambda — shipped and running</div>
+          </div>
+          <div class="highlight-card" id="highlight-startup">
+            <span class="highlight-icon">🚀</span>
+            <div class="highlight-title">Startup GTM Expertise</div>
+            <div class="highlight-text">RevOps, PE portfolio ops, Clay, HubSpot, n8n automation pipelines at scale</div>
+          </div>
+          <div class="highlight-card" id="highlight-content">
+            <span class="highlight-icon">📝</span>
+            <div class="highlight-title">Technical Content Creator</div>
+            <div class="highlight-text">Architecture docs, proposals, one-sheeters — translating complexity into clarity</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     AWS WELL-ARCHITECTED FRAMEWORK
+════════════════════════════════════════════════════ -->
+<section class="section waf" id="waf">
+  <div class="container">
+    <div class="waf-intro">
+      <div>
+        <div class="section-label reveal" id="waf-label">AWS Well-Architected</div>
+        <h2 class="section-title reveal reveal-delay-1" id="waf-title">
+          Six pillars.<br/>
+          <span class="gradient-text">My actual work.</span>
+        </h2>
+      </div>
+      <div class="section-subtitle reveal reveal-delay-2" id="waf-subtitle">
+        The AWS Well-Architected Framework isn't abstract to me — every pillar maps directly
+        to decisions I've made in production systems. <a href="pages/waf-interactive.html" style="color:var(--accent-orange);font-weight:600;">See how ROSTR maps to all 6 pillars →</a>
+      </div>
+    </div>
+
+    <div class="waf-pillars" role="list">
+
+      <div class="pillar-card reveal" role="listitem" id="pillar-ops">
+        <div class="pillar-card-inner">
+          <span class="pillar-icon" aria-hidden="true">⚙️</span>
+          <div class="pillar-name">Operational Excellence</div>
+          <p class="pillar-description">
+            n8n execution intelligence layer for real-time pipeline monitoring. Dry-run preview
+            before every automation activation. Full audit trail on every agent action.
+          </p>
+          <span class="pillar-evidence">→ TurnRiver SDR Agent</span>
+        </div>
+      </div>
+
+      <div class="pillar-card reveal reveal-delay-1" role="listitem" id="pillar-sec">
+        <div class="pillar-card-inner">
+          <span class="pillar-icon" aria-hidden="true">🔐</span>
+          <div class="pillar-name">Security</div>
+          <p class="pillar-description">
+            AWS Cognito JWT authentication with per-tenant isolation. ENV-only secrets —
+            never committed, never embedded. Suppression enforcement before any staging action.
+          </p>
+          <span class="pillar-evidence">→ Multi-tenant Isolation Pattern</span>
+        </div>
+      </div>
+
+      <div class="pillar-card reveal reveal-delay-2" role="listitem" id="pillar-rel">
+        <div class="pillar-card-inner">
+          <span class="pillar-icon" aria-hidden="true">🔄</span>
+          <div class="pillar-name">Reliability</div>
+          <p class="pillar-description">
+            Multi-agent fallback chains — research agents produce artifacts, never perform side
+            effects. Clay enrichment webhook with resumable execution pattern. Staged rollouts
+            (10 at a time, approval-gated).
+          </p>
+          <span class="pillar-evidence">→ Compliance Gate Agent</span>
+        </div>
+      </div>
+
+      <div class="pillar-card reveal" role="listitem" id="pillar-perf">
+        <div class="pillar-card-inner">
+          <span class="pillar-icon" aria-hidden="true">⚡</span>
+          <div class="pillar-name">Performance Efficiency</div>
+          <p class="pillar-description">
+            Bedrock on-demand inference — no idle model costs. DynamoDB on-demand billing
+            scales with actual usage. Async agent actions decouple user experience from
+            long-running enrichment pipelines.
+          </p>
+          <span class="pillar-evidence">→ Prospect Engine Architecture</span>
+        </div>
+      </div>
+
+      <div class="pillar-card reveal reveal-delay-1" role="listitem" id="pillar-cost">
+        <div class="pillar-card-inner">
+          <span class="pillar-icon" aria-hidden="true">💰</span>
+          <div class="pillar-name">Cost Optimization</div>
+          <p class="pillar-description">
+            Clay Credit Governance automation — prevents runaway enrichment costs. Serverless-first
+            architecture eliminates idle EC2 spend. Per-workspace cost attribution for
+            multi-tenant billing transparency.
+          </p>
+          <span class="pillar-evidence">→ Clay Credit Governance Agent</span>
+        </div>
+      </div>
+
+      <div class="pillar-card reveal reveal-delay-2" role="listitem" id="pillar-sus">
+        <div class="pillar-card-inner">
+          <span class="pillar-icon" aria-hidden="true">🌱</span>
+          <div class="pillar-name">Sustainability</div>
+          <p class="pillar-description">
+            Serverless-first means no idle compute. Event-driven architecture eliminates
+            polling. Agents only invoke when triggered — compute runs only when value is
+            being generated.
+          </p>
+          <span class="pillar-evidence">→ Event-Driven Agent Design</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     LEADERSHIP PRINCIPLES
+════════════════════════════════════════════════════ -->
+<section class="section lp" id="lp">
+  <div class="container">
+    <div class="section-label reveal" id="lp-label">Amazon Leadership Principles</div>
+    <h2 class="section-title reveal reveal-delay-1" id="lp-title">
+      Not just principles I know.<br/>
+      <span class="gradient-text">Principles I've lived.</span>
+    </h2>
+    <p class="section-subtitle reveal reveal-delay-2" id="lp-subtitle">
+      Six of Amazon's 16 Leadership Principles, grounded in real STAR-format evidence from my work.
+      Click any card to see the full case study.
+    </p>
+
+    <div class="lp-card-grid reveal reveal-delay-2" role="list">
+
+      <!-- LP 1: Customer Obsession -->
+      <a href="pages/leadership/customer-obsession.html" class="lp-card-link" role="listitem">
+        <div class="lp-card-new">
+          <div class="lp-card-header-new">
+            <span class="lp-number">LP 01</span>
+            <h3 class="lp-principle-new">Customer Obsession</h3>
+          </div>
+          <p class="lp-card-preview">Built pre-call briefing automation that synthesizes HubSpot activity, web signals, and intent data into actionable 5-bullet briefs for every prospect and MQL.</p>
+          <div class="lp-card-result">
+            <span class="result-tag">Result:</span> Embedded as standard view on every HubSpot contact record
+          </div>
+          <span class="lp-card-cta">Read Full Case Study →</span>
+        </div>
+      </a>
+
+      <!-- LP 2: Ownership -->
+      <a href="pages/leadership/ownership.html" class="lp-card-link" role="listitem">
+        <div class="lp-card-new">
+          <div class="lp-card-header-new">
+            <span class="lp-number">LP 02</span>
+            <h3 class="lp-principle-new">Ownership</h3>
+          </div>
+          <p class="lp-card-preview">Built Claude Cowork skill to auto-format and import leads using RevOps template, closing the adoption gap that was causing data hygiene issues.</p>
+          <div class="lp-card-result">
+            <span class="result-tag">Result:</span> Zero template errors, 100% data compliance
+          </div>
+          <span class="lp-card-cta">Read Full Case Study →</span>
+        </div>
+      </a>
+
+      <!-- LP 3: Invent and Simplify -->
+      <a href="pages/leadership/invent-simplify.html" class="lp-card-link" role="listitem">
+        <div class="lp-card-new">
+          <div class="lp-card-header-new">
+            <span class="lp-number">LP 03</span>
+            <h3 class="lp-principle-new">Invent and Simplify</h3>
+          </div>
+          <p class="lp-card-preview">Built fully automated prospect engine: daily lead sourcing, AI-personalized 3-email sequences, credit-conscious enrichment, multi-tool routing.</p>
+          <div class="lp-card-result">
+            <span class="result-tag">Result:</span> Eliminated 2 hours/day of AE prospecting work
+          </div>
+          <span class="lp-card-cta">Read Full Case Study →</span>
+        </div>
+      </a>
+
+      <!-- LP 4: Learn and Be Curious -->
+      <a href="pages/leadership/learn-be-curious.html" class="lp-card-link" role="listitem">
+        <div class="lp-card-new">
+          <div class="lp-card-header-new">
+            <span class="lp-number">LP 05</span>
+            <h3 class="lp-principle-new">Learn and Be Curious</h3>
+          </div>
+          <p class="lp-card-preview">30-day sprint publishing daily AI newsletter on LinkedIn. Built custom GPT for consistent format, cross-posted for distribution amplification.</p>
+          <div class="lp-card-result">
+            <span class="result-tag">Result:</span> 992+ subscribers, inbound business leads generated
+          </div>
+          <span class="lp-card-cta">Read Full Case Study →</span>
+        </div>
+      </a>
+
+      <!-- LP 5: Insist on Highest Standards -->
+      <a href="pages/leadership/highest-standards.html" class="lp-card-link" role="listitem">
+        <div class="lp-card-new">
+          <div class="lp-card-header-new">
+            <span class="lp-number">LP 08</span>
+            <h3 class="lp-principle-new">Insist on Highest Standards</h3>
+          </div>
+          <p class="lp-card-preview">Built ROSTR Framework with benchmarked model selection, RAG-DAL retrieval, and mandatory PRD/architecture outputs. +15.2% task completion vs baseline.</p>
+          <div class="lp-card-result">
+            <span class="result-tag">Result:</span> Published framework, 92% retrieval confidence
+          </div>
+          <span class="lp-card-cta">Read Full Case Study →</span>
+        </div>
+      </a>
+
+      <!-- LP 6: Bias for Action -->
+      <a href="pages/leadership/bias-for-action.html" class="lp-card-link" role="listitem">
+        <div class="lp-card-new">
+          <div class="lp-card-header-new">
+            <span class="lp-number">LP 11</span>
+            <h3 class="lp-principle-new">Bias for Action</h3>
+          </div>
+          <p class="lp-card-preview">Without being asked, built n8n execution monitoring: daily audit, failure flagging, root-cause analysis. Shipped working first version in single cycle.</p>
+          <div class="lp-card-result">
+            <span class="result-tag">Result:</span> Workflow failures caught within 24 hours
+          </div>
+          <span class="lp-card-cta">Read Full Case Study →</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     DEVELOPER ADVOCACY
+════════════════════════════════════════════════════ -->
+<section class="section advocacy" id="advocacy">
+  <div class="container">
+    <div class="advocacy-intro">
+      <div>
+        <div class="section-label reveal">Developer Advocacy</div>
+        <h2 class="section-title reveal reveal-delay-1">
+          Building in public.<br/>
+          <span class="gradient-text">Teaching what I learn.</span>
+        </h2>
+      </div>
+      <div class="section-subtitle reveal reveal-delay-2">
+        I believe the best builders are also teachers. Here's how I share what I'm learning about
+        AI, automation, and cloud architecture with the broader developer community.
+      </div>
+    </div>
+
+    <div class="advocacy-cards reveal reveal-delay-2">
+
+      <!-- LiveBuildAI Newsletter -->
+      <a href="https://www.linkedin.com/newsletters/livebuildai-7169756795706515456/" target="_blank" class="advocacy-card">
+        <div class="advocacy-card-icon" style="background:rgba(139,92,246,0.15);">📰</div>
+        <div class="advocacy-card-content">
+          <h3 class="advocacy-card-title">LiveBuildAI Newsletter</h3>
+          <p class="advocacy-card-desc">Daily AI news, tools, and insights. 30-day publishing sprint → 992+ subscribers. Each edition: top 5 stories, featured tool, video of the day.</p>
+          <div class="advocacy-card-stats">
+            <span class="advocacy-stat"><strong>992+</strong> subscribers</span>
+            <span class="advocacy-stat"><strong>30</strong> daily articles</span>
+            <span class="advocacy-stat"><strong>Inbound</strong> leads</span>
+          </div>
+        </div>
+        <span class="advocacy-card-arrow">→</span>
+      </a>
+
+      <!-- YouTube Channel -->
+      <a href="https://www.youtube.com/@gptpat" target="_blank" class="advocacy-card">
+        <div class="advocacy-card-icon" style="background:rgba(255,0,0,0.15);">🎬</div>
+        <div class="advocacy-card-content">
+          <h3 class="advocacy-card-title">GPTPat YouTube</h3>
+          <p class="advocacy-card-desc">Video walkthroughs of production AI systems — n8n workflow automations, multi-agent architectures, AWS Bedrock builds. Real code, not just concepts.</p>
+          <div class="advocacy-card-stats">
+            <span class="advocacy-stat"><strong>Video</strong> tutorials</span>
+            <span class="advocacy-stat"><strong>Real</strong> production code</span>
+            <span class="advocacy-stat"><strong>n8n + AI</strong> focus</span>
+          </div>
+        </div>
+        <span class="advocacy-card-arrow">→</span>
+      </a>
+
+    </div>
+
+    <div class="advocacy-cta reveal reveal-delay-3">
+      <a href="pages/developer-advocacy.html" class="btn-secondary">
+        View All Content →
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     EXPERIENCE / TIMELINE
+════════════════════════════════════════════════════ -->
+<section class="section" id="work">
+  <div class="container">
+    <div class="section-label reveal" id="work-label">Experience</div>
+    <h2 class="section-title reveal reveal-delay-1" id="work-title">
+      The work behind<br/>
+      <span class="gradient-text">the architecture.</span>
+    </h2>
+
+    <div class="timeline reveal reveal-delay-2" role="list">
+
+      <div class="timeline-item" role="listitem" id="role-atlas">
+        <div class="timeline-date">Sep 2025 – Present</div>
+        <div class="timeline-dot" aria-hidden="true"></div>
+        <div class="timeline-content">
+          <div class="timeline-role">GTM AI &amp; Automation Manager</div>
+          <div class="timeline-company">Atlas HXM · Chicago, IL</div>
+          <div class="timeline-bullets">
+            <div class="timeline-bullet">Built and deployed enterprise AI workflows automating inbound MQL classification, pre-call briefing, post-sales call summaries, and EOR compliance checking</div>
+            <div class="timeline-bullet">Architected Clay Prospecting Engine and Credit Governance automation — preventing runaway enrichment costs across 50+ country data operations</div>
+            <div class="timeline-bullet">Deployed Entity Readiness automated reporting replacing weekly manual analyst work with AI-driven summaries</div>
+            <div class="timeline-bullet">Led GTM AI stack selection, implementation, and training across RevOps, Sales, and Marketing teams</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item" role="listitem" id="role-diamitani">
+        <div class="timeline-date">Jan 2014 – Present</div>
+        <div class="timeline-dot" aria-hidden="true"></div>
+        <div class="timeline-content">
+          <div class="timeline-role">Founder &amp; AI Solutions Architect</div>
+          <div class="timeline-company">Diamitani Industries, Inc. · Remote</div>
+          <div class="timeline-bullets">
+            <div class="timeline-bullet">Shipped 10+ AI and SaaS products: Artispreneur.com (music business OS), Rostr Agent (ROSTR Framework benchmarks), GencyAI, 6th Agent, LetsVibeAI, TrainLola, ReplAI, FCRA Agent, HuddleCo, and more</div>
+            <div class="timeline-bullet">Architected TurnRiver SDR Agent Platform — 8-agent multi-tenant system on AWS Bedrock Agent Core for Turn/River PE portfolio ($4B+ AUM)</div>
+            <div class="timeline-bullet">Published ROSTR Framework: benchmark of 200 tasks across 8 domains, identical model, temperature &amp; tools — MIT licensed open-source research</div>
+            <div class="timeline-bullet">Delivered AI automation consulting to Atlas HXM, Turn/River portfolio companies, and creator-economy startups</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item" role="listitem" id="role-turnriver">
+        <div class="timeline-date">2024</div>
+        <div class="timeline-dot" aria-hidden="true"></div>
+        <div class="timeline-content">
+          <div class="timeline-role">GTM Engineer — AI SDR Platform</div>
+          <div class="timeline-company">Turn/River Growth Equity Partners</div>
+          <div class="timeline-bullets">
+            <div class="timeline-bullet">Delivered full-stack AI SDR agent platform for PE firm managing SolarWinds, StarLIMS, ASCI, Commio, Invicti, Paessler AG, Tufin</div>
+            <div class="timeline-bullet">Designed governance architecture: approval-gated sends, suppression enforcement, dry-run previews, full audit trail</div>
+            <div class="timeline-bullet">Integrated 250+ tools via Composio + native MCP connectors (HubSpot, Clay, n8n, LinkedIn, Gmail)</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     CASE STUDIES
+════════════════════════════════════════════════════ -->
+<section class="section case-studies" id="cases">
+  <div class="container">
+    <div class="section-label reveal" id="cases-label">Case Studies</div>
+    <h2 class="section-title reveal reveal-delay-1" id="cases-title">
+      Production systems.<br/>
+      <span class="gradient-text">Real architecture.</span>
+    </h2>
+    <p class="section-subtitle reveal reveal-delay-2" id="cases-subtitle">
+      Not demos. Not prototypes. These are systems I designed, built, and shipped — running on AWS,
+      serving real customers, with real governance and real results.
+    </p>
+
+    <div class="cs-grid" role="list">
+
+      <!-- Case Study 1: Prospect Engine -->
+      <a href="pages/prospect-engine-case-study.html" class="cs-card reveal" role="listitem" id="cs-prospect" aria-label="View Prospect Engine Case Study">
+        <div class="cs-card-header cs-card-gradient-1">
+          <div class="cs-card-bg" aria-hidden="true">🧠</div>
+          <span class="cs-card-tag tag-orange">AWS Bedrock · Multi-Agent</span>
+          <h3 class="cs-card-title">Prospect Automation Engine</h3>
+        </div>
+        <div class="cs-card-body">
+          <p class="cs-card-description">
+            Enterprise revenue operations platform built on AWS Bedrock Agent Core.
+            Multi-agent orchestration with DynamoDB state, S3 artifact storage, and
+            Cognito authentication — driving a 6-step prospecting pipeline from ICP
+            to enrolled sequence.
+          </p>
+          <div class="cs-card-metrics" aria-label="Key metrics">
+            <div>
+              <span class="cs-metric-value">6</span>
+              <span class="cs-metric-label">Pipeline Steps Automated</span>
+            </div>
+            <div>
+              <span class="cs-metric-value">4</span>
+              <span class="cs-metric-label">Action Groups</span>
+            </div>
+            <div>
+              <span class="cs-metric-value">100%</span>
+              <span class="cs-metric-label">Approval-Gated</span>
+            </div>
+          </div>
+          <div class="cs-tech-chips" aria-label="Technologies used">
+            <span class="tech-chip">Bedrock Agent Core</span>
+            <span class="tech-chip">DynamoDB</span>
+            <span class="tech-chip">S3</span>
+            <span class="tech-chip">Cognito</span>
+            <span class="tech-chip">API Gateway</span>
+            <span class="tech-chip">n8n</span>
+          </div>
+          <div class="cs-card-link" aria-hidden="true">Read Case Study →</div>
+        </div>
+      </a>
+
+      <!-- Case Study 2: TurnRiver SDR Agent -->
+      <a href="pages/turnriver-sdr-case-study.html" class="cs-card reveal reveal-delay-1" role="listitem" id="cs-turnriver" aria-label="View TurnRiver SDR Case Study">
+        <div class="cs-card-header cs-card-gradient-2">
+          <div class="cs-card-bg" aria-hidden="true">🤖</div>
+          <span class="cs-card-tag tag-blue">PE Portfolio · Multi-Tenant</span>
+          <h3 class="cs-card-title">TurnRiver SDR Agent Platform</h3>
+        </div>
+        <div class="cs-card-body">
+          <p class="cs-card-description">
+            Governed, multi-tenant AI SDR workspace for Turn/River Growth Equity Partners
+            and 7 active portfolio companies. 8 specialized agents, compliance-first design,
+            and a human-in-the-loop approval model that legal teams trusted on first review.
+          </p>
+          <div class="cs-card-metrics" aria-label="Key metrics">
+            <div>
+              <span class="cs-metric-value">8</span>
+              <span class="cs-metric-label">Specialized Agents</span>
+            </div>
+            <div>
+              <span class="cs-metric-value">7</span>
+              <span class="cs-metric-label">Portfolio Companies</span>
+            </div>
+            <div>
+              <span class="cs-metric-value">0</span>
+              <span class="cs-metric-label">Compliance Incidents</span>
+            </div>
+          </div>
+          <div class="cs-tech-chips" aria-label="Technologies used">
+            <span class="tech-chip">AWS Bedrock</span>
+            <span class="tech-chip">Composio</span>
+            <span class="tech-chip">n8n</span>
+            <span class="tech-chip">Clay</span>
+            <span class="tech-chip">HubSpot MCP</span>
+            <span class="tech-chip">Next.js</span>
+          </div>
+          <div class="cs-card-link" aria-hidden="true">Read Case Study →</div>
+        </div>
+      </a>
+
+      <!-- Case Study 3: Startup AWS Audit Agent -->
+      <a href="pages/audit-agent.html" class="cs-card reveal reveal-delay-2" role="listitem" id="cs-audit" aria-label="View AWS Startup Audit Agent">
+        <div class="cs-card-header cs-card-gradient-3">
+          <div class="cs-card-bg" aria-hidden="true">🔍</div>
+          <span class="cs-card-tag tag-purple">New · Concept & Demo</span>
+          <h3 class="cs-card-title">AWS Startup Audit Agent</h3>
+        </div>
+        <div class="cs-card-body">
+          <p class="cs-card-description">
+            A Well-Architected Review agent purpose-built for early-stage startups. Scans
+            AWS environments, maps findings to WAF pillars, and generates a prioritized
+            remediation roadmap — the kind of pragmatic guidance a startup SA would give
+            on day one.
+          </p>
+          <div class="cs-card-metrics" aria-label="Key metrics">
+            <div>
+              <span class="cs-metric-value">6</span>
+              <span class="cs-metric-label">WAF Pillars Covered</span>
+            </div>
+            <div>
+              <span class="cs-metric-value">Auto</span>
+              <span class="cs-metric-label">Remediation Plans</span>
+            </div>
+            <div>
+              <span class="cs-metric-value">IaC</span>
+              <span class="cs-metric-label">CloudFormation Output</span>
+            </div>
+          </div>
+          <div class="cs-tech-chips" aria-label="Technologies used">
+            <span class="tech-chip">Bedrock Agents</span>
+            <span class="tech-chip">AWS Config</span>
+            <span class="tech-chip">Trusted Advisor</span>
+            <span class="tech-chip">CloudFormation</span>
+            <span class="tech-chip">Lambda</span>
+          </div>
+          <div class="cs-card-link" aria-hidden="true">View Architecture →</div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     SKILLS / TECH STACK
+════════════════════════════════════════════════════ -->
+<section class="section skills" id="skills">
+  <div class="container">
+    <div class="section-label reveal" id="skills-label">Technical Capabilities</div>
+    <h2 class="section-title reveal reveal-delay-1" id="skills-title">
+      The full stack.<br/>
+      <span class="gradient-text">From prompt to production.</span>
+    </h2>
+
+    <div class="skills-grid reveal reveal-delay-2" role="list">
+
+      <div class="skill-category" role="listitem" id="skill-aws">
+        <div class="skill-cat-header">
+          <div class="skill-cat-icon" style="background:rgba(255,153,0,0.12)" aria-hidden="true">☁️</div>
+          <span class="skill-cat-name">AWS Services</span>
+        </div>
+        <ul class="skill-list" role="list">
+          <li class="skill-item">Bedrock Agent Core / Mantle</li>
+          <li class="skill-item">DynamoDB (on-demand)</li>
+          <li class="skill-item">S3 + Versioning + AES-256</li>
+          <li class="skill-item">Cognito User Pools</li>
+          <li class="skill-item">API Gateway (REST/HTTP)</li>
+          <li class="skill-item">Lambda (serverless compute)</li>
+          <li class="skill-item">CloudFormation / IaC</li>
+          <li class="skill-item">EC2, VPC, IAM, CloudWatch</li>
+        </ul>
+      </div>
+
+      <div class="skill-category" role="listitem" id="skill-ai">
+        <div class="skill-cat-header">
+          <div class="skill-cat-icon" style="background:rgba(139,92,246,0.12)" aria-hidden="true">🧠</div>
+          <span class="skill-cat-name">AI / Agents</span>
+        </div>
+        <ul class="skill-list" role="list">
+          <li class="skill-item">Multi-agent orchestration</li>
+          <li class="skill-item">Tool-use / function calling</li>
+          <li class="skill-item">Memory & state management</li>
+          <li class="skill-item">Human-in-the-loop design</li>
+          <li class="skill-item">Agent runtime selection</li>
+          <li class="skill-item">Claude / Gemini / GPT-4</li>
+          <li class="skill-item">Composio (250+ integrations)</li>
+          <li class="skill-item">RAG + knowledge bases</li>
+        </ul>
+      </div>
+
+      <div class="skill-category" role="listitem" id="skill-gtm">
+        <div class="skill-cat-header">
+          <div class="skill-cat-icon" style="background:rgba(255,107,53,0.12)" aria-hidden="true">🚀</div>
+          <span class="skill-cat-name">GTM / RevOps</span>
+        </div>
+        <ul class="skill-list" role="list">
+          <li class="skill-item">Clay (enrichment, waterfall)</li>
+          <li class="skill-item">HubSpot (CRM + MCP)</li>
+          <li class="skill-item">n8n workflow automation</li>
+          <li class="skill-item">Amplemarket / ZoomInfo</li>
+          <li class="skill-item">ICP design & lead scoring</li>
+          <li class="skill-item">Cold email architecture</li>
+          <li class="skill-item">Attribution & analytics</li>
+          <li class="skill-item">PE portfolio operations</li>
+        </ul>
+      </div>
+
+      <div class="skill-category" role="listitem" id="skill-eng">
+        <div class="skill-cat-header">
+          <div class="skill-cat-icon" style="background:rgba(0,212,170,0.12)" aria-hidden="true">⚙️</div>
+          <span class="skill-cat-name">Engineering</span>
+        </div>
+        <ul class="skill-list" role="list">
+          <li class="skill-item">Python (agents, scripts)</li>
+          <li class="skill-item">JavaScript / TypeScript</li>
+          <li class="skill-item">Next.js 14 (App Router)</li>
+          <li class="skill-item">REST APIs + webhooks</li>
+          <li class="skill-item">Supabase (Postgres)</li>
+          <li class="skill-item">Vercel (deploy + SDK)</li>
+          <li class="skill-item">GitHub Actions (CI/CD)</li>
+          <li class="skill-item">Docker / containers</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     CONTACT / CTA
+════════════════════════════════════════════════════ -->
+<section class="section contact" id="contact">
+  <div class="container">
+    <div class="contact-card">
+      <div class="contact-glow" aria-hidden="true"></div>
+
+      <div class="section-label" style="justify-content:center" id="contact-label">
+        AWS · Startups · Round 3
+      </div>
+
+      <h2 class="contact-title" id="contact-title">
+        Ready to help startups<br/>
+        <span class="gradient-text">build what's next.</span>
+      </h2>
+
+      <p class="contact-subtitle" id="contact-subtitle">
+        I've shipped production agentic AI systems on AWS, served PE portfolio startups at scale, and
+        lived every WAF pillar through real architecture decisions. I'm ready to bring that to the
+        AWS Startup SA team — and to every startup I'd have the privilege to serve.
+      </p>
+
+      <div class="contact-actions">
+        <a href="mailto:patrick.diamitani@gmail.com" class="btn-primary" id="btn-email">
+          ✉️ patrick.diamitani@gmail.com
+        </a>
+        <a href="pages/prospect-engine-case-study.html" class="btn-secondary" id="btn-cases-2">
+          View Case Studies →
+        </a>
+      </div>
+
+      <div class="contact-links">
+        <a href="https://linkedin.com/in/diamitani" class="contact-link" id="link-linkedin" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile">
+          <span aria-hidden="true">💼</span> linkedin.com/in/diamitani
+        </a>
+        <a href="https://www.artispreneur.com" class="contact-link" id="link-artispreneur" target="_blank" rel="noopener noreferrer" aria-label="Artispreneur product">
+          <span aria-hidden="true">🎵</span> artispreneur.com
+        </a>
+        <a href="pages/audit-agent.html" class="contact-link" id="link-agent" aria-label="AWS Audit Agent demo">
+          <span aria-hidden="true">🔍</span> AWS Audit Agent
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════════════ -->
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-inner">
+      <p class="footer-text">© 2026 Patrick Diamitani · Diamitani Industries, Inc.</p>
+      <p class="footer-made-with">
+        Built with <span aria-hidden="true">🧡</span> and AWS Well-Architected principles
+      </p>
+    </div>
+  </div>
+</footer>
+
+<script src="scripts/main.js"></script>
+</body>
+</html>
